@@ -67,7 +67,7 @@ public class EmpleadosController implements Initializable {
         
         btnRegresar.setOnAction(eh -> {
             try {
-                App.setRoot("primary");
+                App.setRoot("primary1");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
