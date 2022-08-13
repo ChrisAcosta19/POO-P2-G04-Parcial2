@@ -95,5 +95,107 @@ public class NuevoEmpleadoController implements Initializable {
         });
     }    
     
+    @FXML
+    private void agregarServicio(ActionEvent event) {
+        Servicio s = cmbServicios.getValue();
+        if(s == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Debe seleccionar un servicio del ComboBox");
+            alert.showAndWait();
+        } else {
+            if(!servicios.contains(s)){
+                servicios.add(s);
+            }
+            tvServicios.getItems().setAll(servicios);
+        }
+    }
+
+    @FXML
+    private void eliminarServicio(ActionEvent event) {
+        Servicio s = (Servicio) tvServicios.getSelectionModel().getSelectedItem();
+        if(s == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Debe seleccionar un servicio de la tabla");
+            alert.showAndWait();
+        }else{
+            servicios.remove(s);
+            tvServicios.getItems().setAll(servicios);
+        }
+    }
+
+    @FXML
+    private void guardarEmpleado(ActionEvent event) {
+        ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
+        System.out.println("Guardando empleado");
+        RadioButton selectedRadioButton = (RadioButton) estado.getSelectedToggle();
+        String estado = selectedRadioButton.getText();
+        System.out.println(estado);
+        boolean estadoBoolean = estado.equals("Activo");
+        Empleado e = new Empleado(txtCedula.getText(),
+                txtNombre.getText(),
+                txtTelefono.getText(),
+                txtEmail.getText(),
+                estadoBoolean);
+        e.setListaServicios(servicios);
+        
+        if(empleado == null){
+            empleados.add(e);
+            System.out.println("Nuevo Empleado:" + e);
+            //serializar la lista
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))){
+                out.writeObject(empleados);
+                out.flush();
+
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Nuevo empleado agregado exitosamente");
+
+                alert.showAndWait();
+                App.setRoot("Empleados");
+
+            } catch (IOException ex) {
+                System.out.println("IOException:" + ex.getMessage());
+            }
+        }else{
+            int indice = empleados.indexOf(empleado);
+            empleados.set(indice, e);
+            
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))){
+                out.writeObject(empleados);
+                out.flush();
+
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Empleado editado exitosamente");
+
+                alert.showAndWait();
+                App.setRoot("Empleados");
+
+            } catch (IOException ex) {
+                System.out.println("IOException:" + ex.getMessage());
+            }
+            empleado = null;
+        }
+    }
     
+    public void llenarCampos(Empleado e){
+        lblTitulo.setText("Editar Empleado");
+        txtCedula.setText(e.getCedula());
+        txtNombre.setText(e.getNombre());
+        txtTelefono.setText(e.getTelefono());
+        txtEmail.setText(e.getEmail());
+        if (e.getEstado().equals("Activo"))
+            rbA.setSelected(true);
+        else
+            rbI.setSelected(true);
+        tvServicios.getItems().setAll(empleado.getListaServicios());
+    }
 }

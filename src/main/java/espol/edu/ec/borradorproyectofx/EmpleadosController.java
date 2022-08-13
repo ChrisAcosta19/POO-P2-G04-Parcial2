@@ -74,5 +74,101 @@ public class EmpleadosController implements Initializable {
         });
     }    
     
+    private void cargarServicios(){
+        Callback<TableColumn<Empleado, Void>, TableCell<Empleado, Void>> cellFactory = new Callback<TableColumn<Empleado, Void>, TableCell<Empleado, Void>>() {
+            @Override
+            public TableCell<Empleado, Void> call(final TableColumn<Empleado, Void> param) {
+                TableCell<Empleado, Void> cell = new TableCell<Empleado, Void>() {
+                   
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            //hbox para ubicar los botones
+                            HBox hbOpciones = new HBox(5);
+                            //recuperar el empleado de la fila
+                            Empleado emp = getTableView().getItems().get(getIndex());
+                            //ComboBox para la lista de servicios del empleado
+                            ComboBox cmbServicios = new ComboBox();
+                            cmbServicios.getItems().setAll(emp.getListaServicios());
+                            //se agregan combobox al hbox
+                            hbOpciones.getChildren().addAll(cmbServicios);
+                            //se ubica hbox en la celda
+                            setGraphic(hbOpciones);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colServicios.setCellFactory(cellFactory);
+    }
     
+    @FXML
+    private void mostrarVentana(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevoEmpleado.fxml"));//no tiene el controlador especificado
+        VBox root = (VBox) fxmlLoader.load();
+        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios}
+        App.changeRoot(root);
+    }
+
+    @FXML
+    private void editarEmpleado(ActionEvent event) throws IOException {
+        Empleado e = (Empleado) tvEmpleados.getSelectionModel().getSelectedItem();
+        if(e == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Debe seleccionar un empleado");
+            alert.showAndWait();
+        }else{
+            NuevoEmpleadoController.empleado = e;
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevoEmpleado.fxml"));
+            VBox root = (VBox) fxmlLoader.load();
+            NuevoEmpleadoController ct = (NuevoEmpleadoController) fxmlLoader.getController();
+            ct.llenarCampos(e);
+            App.changeRoot(root);
+        }
+    }
+
+    @FXML
+    private void eliminarEmpleado(ActionEvent event) {
+        Empleado e = (Empleado) tvEmpleados.getSelectionModel().getSelectedItem();
+        if(e == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Debe seleccionar un empleado");
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Eliminar Servicio");
+            alert.setContentText("¿Está seguro de que desea eliminar este empleado?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
+                empleados.remove(e);
+                try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))){
+                    out.writeObject(empleados);
+                    out.flush();
+
+                    //mostrar informacion
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Dialog");
+                    alert.setHeaderText("Resultado de la operación");
+                    alert.setContentText("Empleado eliminado exitosamente");
+                    alert.showAndWait();
+                    App.setRoot("Empleados");
+                } catch (IOException ex) {
+                    System.out.println("IOException:" + ex.getMessage());
+                }
+            } else {
+                // ... user chose CANCEL or closed the dialog
+            }
+        }
+    }
 }
