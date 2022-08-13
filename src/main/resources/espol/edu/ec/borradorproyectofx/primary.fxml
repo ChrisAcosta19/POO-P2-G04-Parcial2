@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox prefHeight="419.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.PrimaryController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="399.0" prefWidth="300.0">
+         <children>
+            <ImageView fx:id="imgServicios" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnServicios" mnemonicParsing="false" text="Servicios" />
+            <ImageView fx:id="imgCitas" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnCitas" mnemonicParsing="false" text="Citas" />
+            <ImageView fx:id="imgAtenciones" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnAtenciones" mnemonicParsing="false" text="Atenciones" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="419.0" prefWidth="300.0">
+         <children>
+            <ImageView fx:id="imgEmpleados" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnEmpleados" mnemonicParsing="false" text="Empleados" />
+            <ImageView fx:id="imgClientes" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnClientes" mnemonicParsing="false" text="Clientes" />
+            <ImageView fx:id="imgSalir" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnSalir" mnemonicParsing="false" text="Salir" />
+         </children>
+      </VBox>
+   </children>
+</HBox>
