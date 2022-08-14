@@ -33,3 +33,11 @@ nbdist/
 .nb-gradle/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Java,NetBeans
+*.lst
+target/classes/.netbeans_automatic_build
+*.class
+*.class
+*.class
+*.lst
+*.lst
+target/test-classes/.netbeans_automatic_build
