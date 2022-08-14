@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package espol.edu.ec.borradorproyectofx;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,47 +10,52 @@ import java.io.*;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author chris
+ * @author Usuario
  */
-public class PrimaryController implements Initializable {
+public class Primary1Controller implements Initializable {
 
     @FXML
-    private Button btnServicios;
+    private BorderPane mainPane;
     @FXML
-    private Button btnEmpleados;
+    private ImageView iconSalir;
+    @FXML
+    private GridPane buttonsPane;
+    @FXML
+    private Button btnSrvs;
+    @FXML
+    private Button btnEmpl;
+    @FXML
+    private Button btnClients;
+    @FXML
+    private Button btnAtens;
     @FXML
     private Button btnCitas;
     @FXML
-    private Button btnClientes;
+    private ImageView iconCitas;
     @FXML
-    private Button btnAtenciones;
+    private ImageView iconSrv;
     @FXML
-    private Button btnSalir;
+    private ImageView iconAtens;
     @FXML
-    private ImageView imgServicios;
+    private ImageView iconClientes;
     @FXML
-    private ImageView imgCitas;
-    @FXML
-    private ImageView imgAtenciones;
-    @FXML
-    private ImageView imgEmpleados;
-    @FXML
-    private ImageView imgClientes;
-    @FXML
-    private ImageView imgSalir;
+    private ImageView iconEmpl;
 
-    /**
+
+       /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarImagenes();
-        btnServicios.setOnAction(eh -> {
+        btnSrvs.setOnAction(eh -> {
             try {
                 App.setRoot("Servicios");
             } catch (IOException ex) {
@@ -62,7 +63,7 @@ public class PrimaryController implements Initializable {
             }
         });
         
-        btnEmpleados.setOnAction(eh -> {
+        btnEmpl.setOnAction(eh -> {
             try {
                 App.setRoot("Empleados");
             } catch (IOException ex) {
@@ -70,7 +71,7 @@ public class PrimaryController implements Initializable {
             }
         });
         
-        btnSalir.setOnAction(eh -> {
+        iconSalir.setOnMouseClicked(eh -> {
             Node source = (Node) eh.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
@@ -83,27 +84,27 @@ public class PrimaryController implements Initializable {
         try {
             input = new FileInputStream(App.pathImg + "iconServicios.png");
             image = new Image(input, 100, 100, false, false);
-            imgServicios.setImage(image);
+            iconSrv.setImage(image);
             
             input = new FileInputStream(App.pathImg + "iconCitas.png");
             image = new Image(input, 100, 100, false, false);
-            imgCitas.setImage(image);
+            iconCitas.setImage(image);
             
             input = new FileInputStream(App.pathImg + "iconAtenciones.png");
             image = new Image(input, 100, 100, false, false);
-            imgAtenciones.setImage(image);
+            iconAtens.setImage(image);
             
             input = new FileInputStream(App.pathImg + "iconEmpleados.png");
             image = new Image(input, 100, 100, false, false);
-            imgEmpleados.setImage(image);
+            iconEmpl.setImage(image);
             
             input = new FileInputStream(App.pathImg + "iconClientes.png");
             image = new Image(input, 100, 100, false, false);
-            imgClientes.setImage(image);
+            iconClientes.setImage(image);
             
             input = new FileInputStream(App.pathImg + "iconSalir.png");
             image = new Image(input, 100, 100, false, false);
-            imgSalir.setImage(image);
+            iconSalir.setImage(image);
         } catch (IOException ex) {
             System.out.println("No se pudo cargar imagen");
         } finally {
