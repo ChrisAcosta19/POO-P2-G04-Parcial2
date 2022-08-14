@@ -47,6 +47,8 @@ public class Primary1Controller implements Initializable {
     private ImageView iconClientes;
     @FXML
     private ImageView iconEmpl;
+    @FXML
+    private Button btnGame;
 
 
        /**
@@ -75,6 +77,14 @@ public class Primary1Controller implements Initializable {
             Node source = (Node) eh.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
+        });
+        
+        btnGame.setOnAction(eh -> {
+            try {
+                App.setRoot("cuantosHayMain");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
     }
 

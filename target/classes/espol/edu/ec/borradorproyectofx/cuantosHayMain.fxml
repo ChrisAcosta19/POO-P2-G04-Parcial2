@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.CuantosHayMainController">
+   <top>
+      <Label alignment="CENTER" prefHeight="92.0" prefWidth="433.0" text="JUGUEMOS A CONTAR" textAlignment="JUSTIFY" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="90.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="btnAvanzar" fitHeight="100.0" fitWidth="170.0" layoutX="430.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="btnHome" fitHeight="100.0" fitWidth="170.0" layoutX="121.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <Label text="¿CUÁNTOS HAY?" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+   </center>
+</BorderPane>
