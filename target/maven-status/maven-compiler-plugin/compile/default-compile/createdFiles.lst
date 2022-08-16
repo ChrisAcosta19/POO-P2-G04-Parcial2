@@ -5,11 +5,8 @@ espol\edu\ec\borradorproyectofx\App.class
 espol\edu\ec\borradorproyectofx\ServiciosController.class
 espol\edu\ec\borradorproyectofx\Primary1Controller.class
 modelo\Empleado.class
-espol\edu\ec\borradorproyectofx\CuantosHayGameController.class
 espol\edu\ec\borradorproyectofx\EmpleadosController$1.class
 espol\edu\ec\borradorproyectofx\NuevoServicioController.class
 espol\edu\ec\borradorproyectofx\EmpleadosController.class
 module-info.class
-espol\edu\ec\borradorproyectofx\CuantosHayGameController$Game.class
 modelo\Persona.class
-espol\edu\ec\borradorproyectofx\CuantosHayMainController.class

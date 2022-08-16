@@ -23,7 +23,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Usuario
  */
-public class CuantosHayGameController implements Initializable {
+public class GameController implements Initializable {
 
     @FXML
     private BorderPane mainPane;
@@ -62,6 +62,8 @@ public class CuantosHayGameController implements Initializable {
     private Boolean[] ToF={true,false};
     private int ejercicio=0;
     ArrayList<Ejercicio> ejercicios=new ArrayList<>();
+    @FXML
+    private ImageView respuestaVisualMal;
     
     
     @Override
@@ -72,22 +74,24 @@ public class CuantosHayGameController implements Initializable {
         btnRetroceder.setOnMouseClicked(eh -> {
             if(ejercicio==0){
             try {
-                App.setRoot("cuantosHayMain");
+                App.setRoot("gameMain");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }} else{ejercicio--;}
         });
         //asumiendo que este es el numero ingresado en el text field del main controller
         ArrayList <Ejercicio> ejerciciosVacio= new ArrayList<>();
-        
-        Game g1=new Game(20,ejerciciosVacio);
+        System.out.println("++++++++++++++++++++++++");
+        System.out.println();
+        System.out.println("++++++++++++++++++++++++");
+        Game g1=new Game(GameMainController.numEjercicios,ejerciciosVacio);
         numImagenesXEjercicio=g1.imagesPerQuestion();
         for(int x:numImagenesXEjercicio){
             ArrayList <String> imagenesModelo= new ArrayList <>();
             int j=(int) Math.floor(Math.random()*2); boolean bool=false;
             if (j==1){bool=true;}
             g1.imagesSelection(x,bool,imagenesModelo);
-            Ejercicio lista=new Ejercicio(x,imagenesModelo,0);
+            Ejercicio lista=new Ejercicio(x,imagenesModelo,1);
             g1.ejercicios.add(lista); 
             
         }
@@ -103,14 +107,14 @@ public class CuantosHayGameController implements Initializable {
         
         try{
         ejercicio(g1,ejercicio);
+        int intentos=0;
         btnVerificarRespuesta.setOnMouseClicked(eh -> {
             if(Integer.valueOf(fieldRespuesta.getText())==g1.ejercicios.get(ejercicio).respuesta){
             setImage("happy",respuestaVisual);
-            } else{setGif("globoe",respuestaVisual);}
-            
+            } else{setGif("globoe",respuestaVisual,g1.ejercicios.get(ejercicio));
+            }
             });
         }catch (Exception ex) {
-                System.out.println("AQUI ES");
                 ex.printStackTrace();}
         
         btnAvanzar.setOnMouseClicked(eh -> {
@@ -123,11 +127,21 @@ public class CuantosHayGameController implements Initializable {
             } catch (IOException ex) {
                 ex.printStackTrace();
             } catch (IndexOutOfBoundsException ex){
-                System.out.println("SE ACABO EL PROGRAMA");
+                try {
+                App.setRoot("gameEnd");
+            } catch (IOException exe){
+                exe.printStackTrace();
+            }
             }
         });
         
         btnRetroceder.setOnMouseClicked(eh -> {
+            if(ejercicio==0){
+            try {
+                App.setRoot("gameMain");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }} else{
             respuestaVisual.imageProperty().set(null);
             fieldRespuesta.clear();
             System.out.println("--------------------------");
@@ -138,6 +152,7 @@ public class CuantosHayGameController implements Initializable {
                 ex.printStackTrace();
             } catch (IndexOutOfBoundsException ex){
                 System.out.println("SE ACABO EL PROGRAMA");
+            }
             }
         });
         
@@ -173,7 +188,8 @@ public class CuantosHayGameController implements Initializable {
             }
     }
     
-    void setGif(String name,ImageView iView){
+    void setGif(String name,ImageView iView,Ejercicio e){
+        e.intentosAumentar();
         InputStream input = null;
            Image image = null;
             try {
@@ -230,7 +246,7 @@ public class CuantosHayGameController implements Initializable {
               imagesPerQ.add(a);}
             
             for(int b=0;b<numEjercicios-4;b++){
-              a= (int)Math.floor(Math.random()*5)+2;
+              a= (int)Math.floor(Math.random()*6)+1;
               imagesPerQ.add(a);}
         
         } else if (numEjercicios>10){
@@ -239,12 +255,12 @@ public class CuantosHayGameController implements Initializable {
               imagesPerQ.add(a);}
             
             for(int b=0;b<4;b++){
-              a= (int)Math.floor(Math.random()*5)+2;
+              a= (int)Math.floor(Math.random()*6)+1;
               imagesPerQ.add(a);}
   
             if (numEjercicios==11){
               for(int b=0;b<3;b++){
-                a= (int)Math.floor(Math.random()*5)+4;
+                a= (int)Math.floor(Math.random()*7)+2;
                 imagesPerQ.add(a);}
               
             } else{
@@ -253,7 +269,7 @@ public class CuantosHayGameController implements Initializable {
                 imagesPerQ.add(a);}
               
               for(int b=0;b<numEjercicios-11;b++){
-                a= (int)Math.floor(Math.random()*8)+2;
+                a= (int)Math.floor(Math.random()*8)+1;
                 imagesPerQ.add(a);}
             }
  
@@ -316,7 +332,10 @@ public class CuantosHayGameController implements Initializable {
             this.imagenes = imagenes;
             this.intentos = intentos;
         }
-
+        
+        public void intentosAumentar(){
+            intentos++;
+        }
         
 
  
