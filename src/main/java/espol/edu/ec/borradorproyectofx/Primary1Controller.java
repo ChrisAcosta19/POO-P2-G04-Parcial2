@@ -89,7 +89,7 @@ public class Primary1Controller implements Initializable {
         
         btnGame.setOnAction(eh -> {
             try {
-                App.setRoot("cuantosHayMain");
+                App.setRoot("gameMain");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

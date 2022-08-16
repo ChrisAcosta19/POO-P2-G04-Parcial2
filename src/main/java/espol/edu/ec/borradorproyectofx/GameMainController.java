@@ -16,62 +16,54 @@ import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 /**
  * FXML Controller class
  *
  * @author Usuario
  */
-public class CuantosHayGameController implements Initializable {
+public class GameMainController implements Initializable {
 
 
     @FXML
     private BorderPane mainPane;
     @FXML
-    private GridPane buttonsPane;
-    @FXML
-    private ImageView iconCitas;
-    @FXML
-    private ImageView iconSrv;
-    @FXML
-    private ImageView iconAtens;
-    @FXML
-    private TextField fieldRespuesta;
-    @FXML
-    private ImageView img11;
-    @FXML
-    private ImageView img12;
-    @FXML
-    private ImageView img13;
-    @FXML
-    private ImageView img21;
-    @FXML
-    private ImageView img22;
-    @FXML
-    private ImageView img23;
-    @FXML
-    private ImageView img24;
-    @FXML
-    private ImageView img14;
-    @FXML
     private ImageView btnAvanzar;
     @FXML
-    private ImageView btnRetroceder;
- 
-       /**
-     * Initializes the controller class.
-     */
+    private ImageView btnHome;
+    @FXML
+    private TextField fieldNumEjercicios;
+    public static int numEjercicios;
+    
+    /*private int numEjercicio=Integer.valueOf(fieldNumEjercicios.getText());
+    
+    public int getNumEjercicio(){
+        return numEjercicio;
+    }*/
+      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarImagenes();
         
-        btnRetroceder.setOnMouseClicked(eh -> {
+        btnAvanzar.setOnMouseClicked(eh -> {
             try {
-                App.setRoot("cuantosHayMain");
+                numEjercicios=Integer.valueOf(fieldNumEjercicios.getText());
+                App.setRoot("game");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
+
+        btnHome.setOnMouseClicked(eh -> {
+            try {
+                App.setRoot("primary1");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        
+        
+        
+        
     }
 
     private void cargarImagenes(){
@@ -82,9 +74,10 @@ public class CuantosHayGameController implements Initializable {
             image = new Image(input, 100, 100, false, false);
             btnAvanzar.setImage(image);
             
-            input = new FileInputStream(App.pathImgGame + "arrow_left.png");
+            input = new FileInputStream(App.pathImgGame + "home.png");
             image = new Image(input, 100, 100, false, false);
-            btnRetroceder.setImage(image);
+            btnHome.setImage(image);
+            
             
         } catch (IOException ex) {
             System.out.println("No se pudo cargar imagen");
