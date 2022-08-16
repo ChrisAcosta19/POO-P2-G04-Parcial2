@@ -131,58 +131,77 @@ public class NuevoEmpleadoController implements Initializable {
     private void guardarEmpleado(ActionEvent event) {
         ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
         System.out.println("Guardando empleado");
-        RadioButton selectedRadioButton = (RadioButton) estado.getSelectedToggle();
-        String estado = selectedRadioButton.getText();
-        System.out.println(estado);
+        String estado = "";
+        try{
+            RadioButton selectedRadioButton = (RadioButton) this.estado.getSelectedToggle();
+            estado = selectedRadioButton.getText();
+            System.out.println(estado);
+        }catch(Exception e){
+            Validacion.mensaje = "Debe seleccionar un estado\n";
+        }
         boolean estadoBoolean = estado.equals("Activo");
-        Empleado e = new Empleado(txtCedula.getText(),
-                txtNombre.getText(),
-                txtTelefono.getText(),
-                txtEmail.getText(),
-                estadoBoolean);
-        e.setListaServicios(servicios);
+        Validacion.validarEntero("Cedula",txtCedula.getText());
+        Validacion.validarNombre("Empleado",txtNombre.getText());
+        Validacion.validarEntero("Telefono",txtTelefono.getText());
+        Validacion.validarEmail("Empleado",txtEmail.getText());
         
-        if(empleado == null){
-            empleados.add(e);
-            System.out.println("Nuevo Empleado:" + e);
-            //serializar la lista
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))){
-                out.writeObject(empleados);
-                out.flush();
+        if(Validacion.mensaje.equals("")){
+            Empleado e = new Empleado(txtCedula.getText(),
+                    txtNombre.getText(),
+                    txtTelefono.getText(),
+                    txtEmail.getText(),
+                    estadoBoolean);
+            e.setListaServicios(servicios);
 
-                //mostrar informacion
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Resultado de la operación");
-                alert.setContentText("Nuevo empleado agregado exitosamente");
+            if (empleado == null) {
+                empleados.add(e);
+                System.out.println("Nuevo Empleado:" + e);
+                //serializar la lista
+                try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))) {
+                    out.writeObject(empleados);
+                    out.flush();
 
-                alert.showAndWait();
-                App.setRoot("Empleados");
+                    //mostrar informacion
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Dialog");
+                    alert.setHeaderText("Resultado de la operación");
+                    alert.setContentText("Nuevo empleado agregado exitosamente");
 
-            } catch (IOException ex) {
-                System.out.println("IOException:" + ex.getMessage());
+                    alert.showAndWait();
+                    App.setRoot("Empleados");
+
+                } catch (IOException ex) {
+                    System.out.println("IOException:" + ex.getMessage());
+                }
+            } else {
+                int indice = empleados.indexOf(empleado);
+                empleados.set(indice, e);
+
+                try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))) {
+                    out.writeObject(empleados);
+                    out.flush();
+
+                    //mostrar informacion
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Dialog");
+                    alert.setHeaderText("Resultado de la operación");
+                    alert.setContentText("Empleado editado exitosamente");
+
+                    alert.showAndWait();
+                    App.setRoot("Empleados");
+
+                } catch (IOException ex) {
+                    System.out.println("IOException:" + ex.getMessage());
+                }
+                empleado = null;
             }
-        }else{
-            int indice = empleados.indexOf(empleado);
-            empleados.set(indice, e);
-            
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))){
-                out.writeObject(empleados);
-                out.flush();
-
-                //mostrar informacion
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Resultado de la operación");
-                alert.setContentText("Empleado editado exitosamente");
-
-                alert.showAndWait();
-                App.setRoot("Empleados");
-
-            } catch (IOException ex) {
-                System.out.println("IOException:" + ex.getMessage());
-            }
-            empleado = null;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText(Validacion.mensaje);
+            alert.showAndWait();
+            Validacion.mensaje = "";
         }
     }
     

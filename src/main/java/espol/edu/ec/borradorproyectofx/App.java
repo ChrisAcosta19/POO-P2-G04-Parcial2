@@ -6,8 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.*;
-import modelo.Empleado;
-import modelo.Servicio;
+import modelo.*;
 
 /**
  * JavaFX App
@@ -17,6 +16,7 @@ public class App extends Application {
     private static Scene scene;
     public static String pathServicios = "archivos/Servicio.bin";
     public static String pathEmpleados = "archivos/Empleado.bin";
+    public static String pathClientes = "archivos/Clientes.bin";
     public static String pathImg = "src/main/resources/images/";
     public static String pathImgGame = "src/main/resources/images/game/";
 
@@ -39,6 +39,7 @@ public class App extends Application {
     public static void main(String[] args) {
         Servicio.crearArchivo(pathServicios);
         Empleado.crearArchivo(pathEmpleados, pathServicios);
+        Cliente.crearArchivo(pathClientes);
         launch();
     }
 

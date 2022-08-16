@@ -28,14 +28,6 @@ public class Primary1Controller implements Initializable {
     @FXML
     private GridPane buttonsPane;
     @FXML
-    private Button btnSrvs;
-    @FXML
-    private Button btnEmpl;
-    @FXML
-    private Button btnClients;
-    @FXML
-    private Button btnAtens;
-    @FXML
     private Button btnCitas;
     @FXML
     private ImageView iconCitas;
@@ -49,6 +41,14 @@ public class Primary1Controller implements Initializable {
     private ImageView iconEmpl;
     @FXML
     private Button btnGame;
+    @FXML
+    private Button btnServicios;
+    @FXML
+    private Button btnEmpleados;
+    @FXML
+    private Button btnClientes;
+    @FXML
+    private Button btnAtenciones;
 
 
        /**
@@ -57,7 +57,7 @@ public class Primary1Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarImagenes();
-        btnSrvs.setOnAction(eh -> {
+        btnServicios.setOnAction(eh -> {
             try {
                 App.setRoot("Servicios");
             } catch (IOException ex) {
@@ -65,9 +65,17 @@ public class Primary1Controller implements Initializable {
             }
         });
         
-        btnEmpl.setOnAction(eh -> {
+        btnEmpleados.setOnAction(eh -> {
             try {
                 App.setRoot("Empleados");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        
+        btnClientes.setOnAction(eh -> {
+            try {
+                App.setRoot("Clientes");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

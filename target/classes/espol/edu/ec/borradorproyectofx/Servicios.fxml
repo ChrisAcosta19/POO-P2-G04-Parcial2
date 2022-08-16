@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.ServiciosController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.ServiciosController">
    <children>
       <HBox alignment="CENTER" prefHeight="65.0" prefWidth="600.0">
          <children>
             <Label text="SERVICIOS" />
          </children>
       </HBox>
-      <TableView fx:id="tvServicios" maxWidth="631.0" prefHeight="232.0" prefWidth="631.0">
+      <TableView fx:id="tvServicios" maxWidth="600.0" prefHeight="334.0" prefWidth="600.0" translateX="20.0">
         <columns>
-          <TableColumn fx:id="colNombre" prefWidth="222.0" text="Nombre" />
-          <TableColumn fx:id="colDuracion" prefWidth="142.0" text="Duración" />
-            <TableColumn fx:id="colPrecio" prefWidth="115.0" text="Precio" />
-            <TableColumn fx:id="colEstado" maxWidth="1.7976931348623157E308" prefWidth="120.0" text="Estado" />
+          <TableColumn fx:id="colNombre" maxWidth="1.7976931348623157E308" prefWidth="184.0" text="Nombre" />
+          <TableColumn fx:id="colDuracion" maxWidth="1.7976931348623157E308" prefWidth="139.0" text="Duración" />
+            <TableColumn fx:id="colPrecio" maxWidth="1.7976931348623157E308" prefWidth="133.0" text="Precio" />
+            <TableColumn fx:id="colEstado" maxWidth="1.7976931348623157E308" prefWidth="143.0" text="Estado" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">

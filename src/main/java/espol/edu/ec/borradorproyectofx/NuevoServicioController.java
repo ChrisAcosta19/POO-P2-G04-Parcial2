@@ -18,6 +18,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import modelo.Servicio;
+import modelo.Validacion;
 /**
  * FXML Controller class
  *
@@ -64,57 +65,73 @@ public class NuevoServicioController implements Initializable {
     private void guardarServicio(ActionEvent event) {
         ArrayList<Servicio> servicios = Servicio.cargarServicios(App.pathServicios);//cargar la lista del archivo
         System.out.println("Guardando servicio");
-        RadioButton selectedRadioButton = (RadioButton) estado.getSelectedToggle();
-        String estado = selectedRadioButton.getText();
-        System.out.println(estado);
-        boolean estadoBoolean = estado.equals("Activo");
-        Servicio s = new Servicio(txtNombre.getText(),
-                Integer.parseInt(txtDuracion.getText()),
-                Double.parseDouble(txtPrecio.getText()),
-                estadoBoolean);
+        String estado = "";
+        try{
+            RadioButton selectedRadioButton = (RadioButton) this.estado.getSelectedToggle();
+            estado = selectedRadioButton.getText();
+            System.out.println(estado);
+        }catch(Exception e){
+            Validacion.mensaje = "Debe seleccionar un estado\n";
+        }
         
-        if(servicio == null){
-            servicios.add(s);//agregar servicio a la lista
-            System.out.println("Nuevo Servicio:" + s);
+        boolean estadoBoolean = estado.equals("Activo");
+        Validacion.validarNombre("Servicio", txtNombre.getText());
+        Validacion.validarEntero("Duracion", txtDuracion.getText());
+        Validacion.validarDouble("Precio", txtPrecio.getText());
+        
+        if(Validacion.mensaje.equals("")){
+            Servicio s = new Servicio(txtNombre.getText(),
+                    Integer.parseInt(txtDuracion.getText()),
+                    Double.parseDouble(txtPrecio.getText()),
+                    estadoBoolean);
+            if (servicio == null) {
+                servicios.add(s);//agregar servicio a la lista
+                System.out.println("Nuevo Servicio:" + s);
 
-            //serializar la lista
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathServicios))){
-                out.writeObject(servicios);
-                out.flush();
+                //serializar la lista
+                try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathServicios))) {
+                    out.writeObject(servicios);
+                    out.flush();
 
-                //mostrar informacion
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Resultado de la operación");
-                alert.setContentText("Nuevo servicio agregado exitosamente");
+                    //mostrar informacion
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Dialog");
+                    alert.setHeaderText("Resultado de la operación");
+                    alert.setContentText("Nuevo servicio agregado exitosamente");
+                    alert.showAndWait();
+                    App.setRoot("Servicios");
+                } catch (IOException ex) {
+                    System.out.println("IOException:" + ex.getMessage());
+                }
+            } else {
+                int indice = servicios.indexOf(servicio);
+                servicios.set(indice, s);
 
-                alert.showAndWait();
-                App.setRoot("Servicios");
+                try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathServicios))) {
+                    out.writeObject(servicios);
+                    out.flush();
 
-            } catch (IOException ex) {
-                System.out.println("IOException:" + ex.getMessage());
+                    //mostrar informacion
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Dialog");
+                    alert.setHeaderText("Resultado de la operación");
+                    alert.setContentText("Servicio editado exitosamente");
+
+                    alert.showAndWait();
+                    App.setRoot("Servicios");
+
+                } catch (IOException ex) {
+                    System.out.println("IOException:" + ex.getMessage());
+                }
+                servicio = null;
             }
         } else {
-            int indice = servicios.indexOf(servicio);
-            servicios.set(indice, s);
-            
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathServicios))){
-                out.writeObject(servicios);
-                out.flush();
-
-                //mostrar informacion
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Resultado de la operación");
-                alert.setContentText("Servicio editado exitosamente");
-
-                alert.showAndWait();
-                App.setRoot("Servicios");
-
-            } catch (IOException ex) {
-                System.out.println("IOException:" + ex.getMessage());
-            }
-            servicio = null;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText(Validacion.mensaje);
+            alert.showAndWait();
+            Validacion.mensaje = "";
         }
     }
     
