@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
@@ -44,8 +45,14 @@ public class GameMainController implements Initializable {
             try {
                 numEjercicios=Integer.valueOf(fieldNumEjercicios.getText());
                 App.setRoot("game");
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            } catch (Exception ex) {
+                fieldNumEjercicios.clear();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error al ingresar número");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Ingrese un número válido");
+                    alert.showAndWait();
+                    
             }
         });
 

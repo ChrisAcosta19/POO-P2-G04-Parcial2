@@ -1,10 +1,15 @@
 
 package espol.edu.ec.borradorproyectofx;
 
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -23,32 +28,35 @@ import javafx.scene.layout.GridPane;
  *
  * @author Usuario
  */
-public class GameController implements Initializable {
+public class GameController implements Initializable, Serializable {
 
-    @FXML private BorderPane mainPane;
-    @FXML private GridPane buttonsPane;
-    @FXML private TextField fieldRespuesta;
-    @FXML private ImageView img00;
-    @FXML private ImageView img01;
-    @FXML private ImageView img02;
-    @FXML private ImageView img03;
-    @FXML private ImageView img10;
-    @FXML private ImageView img11;
-    @FXML private ImageView img12;
-    @FXML private ImageView img13;
-    @FXML private ImageView btnAvanzar;
-    @FXML private ImageView btnRetroceder;
-    @FXML private ImageView respuestaVisual;
-    @FXML private Button btnVerificarRespuesta;
+    @FXML private transient BorderPane mainPane;
+    @FXML private transient GridPane buttonsPane;
+    @FXML private transient TextField fieldRespuesta;
+    @FXML private transient ImageView img00;
+    @FXML private transient ImageView img01;
+    @FXML private transient ImageView img02;
+    @FXML private transient ImageView img03;
+    @FXML private transient ImageView img10;
+    @FXML private transient ImageView img11;
+    @FXML private transient ImageView img12;
+    @FXML private transient ImageView img13;
+    @FXML private transient ImageView btnAvanzar;
+    @FXML private transient ImageView btnRetroceder;
+    @FXML private transient ImageView respuestaVisual;
+    @FXML private transient Button btnVerificarRespuesta;
     
     String[] images={"cow","cowg","cowh","duck","horse","horsea","horseb","pig","pigb","rooster","roosterb","sheep"};
-    ImageView[] imagesLocation={img01,img02,img11,img12,img03,img13,img00,img10};
+    transient ImageView[] imagesLocation={img01,img02,img11,img12,img03,img13,img00,img10};
     private ArrayList <Integer> numImagenesXEjercicio=new ArrayList<>();
     private Boolean[] ToF={true,false};
     private int ejercicio=0;
     ArrayList<Ejercicio> ejercicios=new ArrayList<>();
     @FXML
-    private ImageView respuestaVisualMal;
+    private transient ImageView respuestaVisualMal;
+    public static int timePromedio;
+    public static int timeTotal;
+    public String infoPorPregunta="";
     
     
     @Override
@@ -65,34 +73,41 @@ public class GameController implements Initializable {
             }} else{ejercicio--;}
         });
         //asumiendo que este es el numero ingresado en el text field del main controller
+        
         ArrayList <Ejercicio> ejerciciosVacio= new ArrayList<>();
-        System.out.println("++++++++++++++++++++++++");
-        System.out.println();
-        System.out.println("++++++++++++++++++++++++");
         Game g1=new Game(GameMainController.numEjercicios,ejerciciosVacio);
-        numImagenesXEjercicio=g1.imagesPerQuestion();
+        numImagenesXEjercicio=imagesPerQuestion(GameMainController.numEjercicios);
+        Thread t = new Thread( () ->
+        {
+            while (true){
+                g1.time();
+                try {
+                    Thread.sleep(1000); //dormir 5 min, por ahora 1 para probar
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+                 );
+        
+        t.setDaemon(true);
+        t.start();
         for(int x:numImagenesXEjercicio){
             ArrayList <String> imagenesModelo= new ArrayList <>();
             int j=(int) Math.floor(Math.random()*2); boolean bool=false;
             if (j==1){bool=true;}
-            g1.imagesSelection(x,bool,imagenesModelo);
+            imagesSelection(x,bool,imagenesModelo);
             Ejercicio lista=new Ejercicio(x,imagenesModelo,1,false);
             g1.ejercicios.add(lista); 
-            
-        }
-        System.out.println("AAAAAAAAAAAAAAAAAA");
+        }        
         
-        for(Ejercicio ej:g1.ejercicios){
-            for(String s:ej.imagenes){
-                System.out.println(s);
-            }
-            System.out.println("--------------------");
+        try {
+            ejercicio(g1,ejercicio);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        
         
         try{
-        ejercicio(g1,ejercicio);
-        int intentos=0;
         btnVerificarRespuesta.setOnMouseClicked(eh -> {
             if(Integer.valueOf(fieldRespuesta.getText())==g1.ejercicios.get(ejercicio).respuesta){
             setImage("happy",respuestaVisual);
@@ -111,21 +126,43 @@ public class GameController implements Initializable {
         btnAvanzar.setOnMouseClicked(eh -> {
             respuestaVisual.imageProperty().set(null);
             fieldRespuesta.clear();
-            System.out.println("--------------------------");
             ejercicio++;
             try {
                 ejercicio(g1,ejercicio);
+                
             } catch (IOException ex) {
                 ex.printStackTrace();
             } catch (IndexOutOfBoundsException ex){
                 try {
+                for(Ejercicio e:g1.ejercicios){
+                String xd=";"+e.respuesta+","+e.intentos+","+e.time;
+                infoPorPregunta+=xd;
+                timePromedio+=e.time;}
+                timePromedio/=GameMainController.numEjercicios;
+                timeTotal=g1.time;
+                try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/Games.bin"))) {
+                out.writeObject(g1);
+                out.flush();
+                }catch (Exception e){System.out.println("No se pudo guardar la sesión");
+                e.printStackTrace();}
+                
+                
+                
+                try(BufferedWriter writer = new BufferedWriter(new FileWriter("archivos/GameResultados.txt",true))){
+                    
+                    System.out.println(timeTotal);
+                    String registro=g1.numEjercicios+","+timeTotal+infoPorPregunta+"\n";
+                    writer.write(registro);
+                    writer.close();
+                    
+                                       
+                }catch(Exception e){System.out.println("No se pudo registrar los resultados de la sesión");
+                e.printStackTrace();}
+                
                 App.setRoot("gameEnd");
             } catch (IOException exe){
                 exe.printStackTrace();
-            }
-            for(Ejercicio e:g1.ejercicios){
-                System.out.println(e);
-            }
+            }       
             }
         });
         
@@ -138,7 +175,6 @@ public class GameController implements Initializable {
             }} else{
             respuestaVisual.imageProperty().set(null);
             fieldRespuesta.clear();
-            System.out.println("--------------------------");
             ejercicio--;
             try {
                 ejercicio(g1,ejercicio);
@@ -151,13 +187,31 @@ public class GameController implements Initializable {
         
     }
     
+    
     void ejercicio(Game g, int ejercicio)throws IOException {
         img00.imageProperty().set(null);img01.imageProperty().set(null);img02.imageProperty().set(null);
         img03.imageProperty().set(null);img10.imageProperty().set(null);img11.imageProperty().set(null);
         img12.imageProperty().set(null);img13.imageProperty().set(null);
         ArrayList<String> imgs=new ArrayList<>();
-        g.imagesLocation(g.ejercicios.get(ejercicio).imagenes);
-    }
+        imagesLocation(g.ejercicios.get(ejercicio).imagenes);
+        //cronometro por ejercicio
+        Thread t = new Thread( () ->
+        {
+            while (!g.ejercicios.get(ejercicio).done){ //solo continua el contador si el parametro done es falso
+                                                       //(el ejercicio no ha sido respondida correctamente)
+                g.ejercicios.get(ejercicio).time();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+                 );
+        t.setDaemon(true);
+        t.start();
+        }
+        
     
     void setImage(String name,ImageView iView){
         InputStream input = null;
@@ -207,28 +261,20 @@ public class GameController implements Initializable {
         if(a) {e.done();} else e.intentosAumentar();
         }
                  
-   
-    
-    class Game {
-
-    int numEjercicios;
-    ArrayList<Ejercicio> ejercicios;
-    ArrayList<Integer> respuestasCorrectas;
-    ArrayList<Integer> respuestasObtenidas;
-    ArrayList<Integer> numIntentosxEjercicio; //intentos hasta acertar
-
-    public Game(int numEjercicios){
-        this.numEjercicios = numEjercicios;
+   ImageView getIView(int i){
+        ImageView iv=null;
+        if(i==0){iv= img01;}
+        if(i==1){iv= img02;}
+        if(i==2){iv= img11;}
+        if(i==3){iv= img12;}
+        if(i==4){iv= img03;}
+        if(i==5){iv= img13;}
+        if(i==6){iv= img00;}
+        if(i==7){iv= img10;}
+        return iv;
     }
-
-    public Game(int numEjercicios, ArrayList<Ejercicio> ejercicios) {
-        this.numEjercicios = numEjercicios;
-        this.ejercicios = ejercicios;
-    }
-
     
-    
-    ArrayList <Integer> imagesPerQuestion(){
+    ArrayList <Integer> imagesPerQuestion(int numEjercicios){
     ArrayList <Integer> imagesPerQ=new ArrayList<>();
         int a;
         if (numEjercicios<=5){
@@ -297,29 +343,37 @@ public class GameController implements Initializable {
             }
         }
     }
-    
-    ImageView getIView(int i){
-        ImageView iv=null;
-        if(i==0){iv= img01;}
-        if(i==1){iv= img02;}
-        if(i==2){iv= img11;}
-        if(i==3){iv= img12;}
-        if(i==4){iv= img03;}
-        if(i==5){iv= img13;}
-        if(i==6){iv= img00;}
-        if(i==7){iv= img10;}
-        return iv;
+   
+    class Game implements Serializable{
+
+    int numEjercicios;
+    ArrayList<Ejercicio> ejercicios;
+    int time=0;
+
+    public Game(int numEjercicios){
+        this.numEjercicios = numEjercicios;
     }
+
+    public Game(int numEjercicios, ArrayList<Ejercicio> ejercicios) {
+        this.numEjercicios = numEjercicios;
+        this.ejercicios = ejercicios;
+    }
+
+    public void time(){
+            time++;
+                }
+    
+    
     
     }
 
  
-    class Ejercicio{
+    class Ejercicio implements Serializable{
         int respuesta;
         ArrayList<String> imagenes;
         int intentos;
         boolean done;
-        int time;
+        int time=0;
         
 
         public Ejercicio(int respuesta, ArrayList<String> imagenes, int intentos, boolean done) {
@@ -334,13 +388,20 @@ public class GameController implements Initializable {
         }
         
         public void done(){
-            done=!done;
+            done=true;
         }
+        
+        public void time(){
+            time++;
+                }
 
         @Override
         public String toString() {
-            return "Ejercicio{" + "respuesta=" + respuesta + ", intentos=" + intentos + ", time=" + time + '}';
+            return "Ejercicio{" + "respuesta=" + respuesta + ", intentos=" + intentos + ", time=" + time + "s}";
         }
+
+
+        
         
         
     }  

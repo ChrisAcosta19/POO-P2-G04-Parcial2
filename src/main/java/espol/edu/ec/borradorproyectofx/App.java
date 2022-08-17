@@ -21,6 +21,7 @@ public class App extends Application {
     public static String pathAtenciones = "archivos/Atenciones.bin";
     public static String pathImg = "images/";
     public static String pathImgGame = "src/main/resources/images/game/";
+    
 
     @Override
     public void start(Stage stage) throws IOException {

@@ -18,26 +18,30 @@
          </BorderPane.margin>
       </Label>
    </top>
-   <bottom>
-      <AnchorPane prefHeight="90.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="btnHome" fitHeight="100.0" fitWidth="170.0" layoutX="416.0" layoutY="-24.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </AnchorPane>
-   </bottom>
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="23.0" prefHeight="47.0" prefWidth="176.0" text="Tiempo Total" textAlignment="JUSTIFY">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-8.0" layoutY="14.0" prefHeight="47.0" prefWidth="194.0" text="Tiempo Promedio" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTiempoMedio" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="28.0" prefHeight="95.0" prefWidth="180.0">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <Label fx:id="lblTiempo" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="79.0" prefHeight="95.0" prefWidth="180.0">
+            <Label fx:id="lblTiempoTotal" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="109.0" prefHeight="95.0" prefWidth="180.0">
                <font>
-                  <Font size="37.0" />
+                  <Font size="29.0" />
                </font>
             </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-8.0" layoutY="100.0" prefHeight="47.0" prefWidth="194.0" text="Tiempo Total" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="btnHome" fitHeight="100.0" fitWidth="170.0" layoutX="24.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </right>
