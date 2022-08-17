@@ -26,21 +26,13 @@ import modelo.Cliente;
  */
 public class ClientesController implements Initializable {
 
-
-    @FXML
-    private TableView<Cliente> tvClientes;
-    @FXML
-    private TableColumn colCedula;
-    @FXML
-    private TableColumn colNombre;
-    @FXML
-    private TableColumn colTelefono;
-    @FXML
-    private TableColumn colEmail;
-    @FXML
-    private TableColumn<Cliente, Void> colRepresentante;
-    @FXML
-    private Button btnRegresar;
+    @FXML private TableView<Cliente> tvClientes;
+    @FXML private TableColumn colCedula;
+    @FXML private TableColumn colNombre;
+    @FXML private TableColumn colTelefono;
+    @FXML private TableColumn colEmail;
+    @FXML private TableColumn<Cliente, Void> colRepresentante;
+    @FXML  private Button btnRegresar;
     /**
      * Initializes the controller class.
      */

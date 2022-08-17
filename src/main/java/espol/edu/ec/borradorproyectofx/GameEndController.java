@@ -25,14 +25,10 @@ import javafx.scene.layout.BorderPane;
 public class GameEndController implements Initializable {
 
 
-    @FXML
-    private BorderPane mainPane;
-    @FXML
-    private ImageView btnHome;
-    @FXML
-    private ImageView aplausos;
-    @FXML
-    private Label lblTiempo;
+    @FXML private BorderPane mainPane;
+    @FXML private ImageView btnHome;
+    @FXML private ImageView aplausos;
+    @FXML private Label lblTiempo;
     /**
      * Initializes the controller class.
      */

@@ -25,36 +25,21 @@ import javafx.scene.layout.GridPane;
  */
 public class GameController implements Initializable {
 
-    @FXML
-    private BorderPane mainPane;
-    @FXML
-    private GridPane buttonsPane;
-    @FXML
-    private TextField fieldRespuesta;
-    @FXML
-    private ImageView img00;
-    @FXML
-    private ImageView img01;
-    @FXML
-    private ImageView img02;
-    @FXML
-    private ImageView img03;
-    @FXML
-    private ImageView img10;
-    @FXML
-    private ImageView img11;
-    @FXML
-    private ImageView img12;
-    @FXML
-    private ImageView img13;
-    @FXML
-    private ImageView btnAvanzar;
-    @FXML
-    private ImageView btnRetroceder;
-    @FXML
-    private ImageView respuestaVisual;
-    @FXML
-    private Button btnVerificarRespuesta;
+    @FXML private BorderPane mainPane;
+    @FXML private GridPane buttonsPane;
+    @FXML private TextField fieldRespuesta;
+    @FXML private ImageView img00;
+    @FXML private ImageView img01;
+    @FXML private ImageView img02;
+    @FXML private ImageView img03;
+    @FXML private ImageView img10;
+    @FXML private ImageView img11;
+    @FXML private ImageView img12;
+    @FXML private ImageView img13;
+    @FXML private ImageView btnAvanzar;
+    @FXML private ImageView btnRetroceder;
+    @FXML private ImageView respuestaVisual;
+    @FXML private Button btnVerificarRespuesta;
     
     String[] images={"cow","cowg","cowh","duck","horse","horsea","horseb","pig","pigb","rooster","roosterb","sheep"};
     ImageView[] imagesLocation={img01,img02,img11,img12,img03,img13,img00,img10};
@@ -91,7 +76,7 @@ public class GameController implements Initializable {
             int j=(int) Math.floor(Math.random()*2); boolean bool=false;
             if (j==1){bool=true;}
             g1.imagesSelection(x,bool,imagenesModelo);
-            Ejercicio lista=new Ejercicio(x,imagenesModelo,1);
+            Ejercicio lista=new Ejercicio(x,imagenesModelo,1,false);
             g1.ejercicios.add(lista); 
             
         }
@@ -111,7 +96,13 @@ public class GameController implements Initializable {
         btnVerificarRespuesta.setOnMouseClicked(eh -> {
             if(Integer.valueOf(fieldRespuesta.getText())==g1.ejercicios.get(ejercicio).respuesta){
             setImage("happy",respuestaVisual);
-            } else{setGif("globoe",respuestaVisual,g1.ejercicios.get(ejercicio));
+            if(!g1.ejercicios.get(ejercicio).done){
+                g1.ejercicios.get(ejercicio).done();
+            }
+            } else{setGif("globoe",respuestaVisual);
+            if(!g1.ejercicios.get(ejercicio).done){
+               g1.ejercicios.get(ejercicio).intentosAumentar();
+            }
             }
             });
         }catch (Exception ex) {
@@ -132,6 +123,9 @@ public class GameController implements Initializable {
             } catch (IOException exe){
                 exe.printStackTrace();
             }
+            for(Ejercicio e:g1.ejercicios){
+                System.out.println(e);
+            }
             }
         });
         
@@ -150,9 +144,7 @@ public class GameController implements Initializable {
                 ejercicio(g1,ejercicio);
             } catch (IOException ex) {
                 ex.printStackTrace();
-            } catch (IndexOutOfBoundsException ex){
-                System.out.println("SE ACABO EL PROGRAMA");
-            }
+            } 
             }
         });
         
@@ -188,8 +180,9 @@ public class GameController implements Initializable {
             }
     }
     
-    void setGif(String name,ImageView iView,Ejercicio e){
-        e.intentosAumentar();
+    
+    
+    void setGif(String name,ImageView iView){
         InputStream input = null;
            Image image = null;
             try {
@@ -209,17 +202,20 @@ public class GameController implements Initializable {
                 }
             }
     }
-
     
-    
+    void respuesta(Ejercicio e,boolean a){
+        if(a) {e.done();} else e.intentosAumentar();
+        }
+                 
+   
     
     class Game {
 
-    private int numEjercicios;
-    private ArrayList<Ejercicio> ejercicios;
-    private ArrayList<Integer> respuestasCorrectas;
-    private ArrayList<Integer> respuestasObtenidas;
-    private ArrayList<Integer> numIntentosxEjercicio; //intentos hasta acertar
+    int numEjercicios;
+    ArrayList<Ejercicio> ejercicios;
+    ArrayList<Integer> respuestasCorrectas;
+    ArrayList<Integer> respuestasObtenidas;
+    ArrayList<Integer> numIntentosxEjercicio; //intentos hasta acertar
 
     public Game(int numEjercicios){
         this.numEjercicios = numEjercicios;
@@ -277,7 +273,14 @@ public class GameController implements Initializable {
         return imagesPerQ;
     }
     
-    
+    void imagesLocation(ArrayList <String> imagenes){
+        int n=imagenes.size();
+            for(int r=0;r<=(n-1);r++){
+                String imagenElegida= imagenes.get(r);
+                ImageView iv=getIView(r);
+                setImage(imagenElegida,iv);
+            }
+    }
     
     void imagesSelection(int n, boolean imgDif,ArrayList<String> imagenesElegidas){
         String imagenElegida=null;
@@ -308,37 +311,37 @@ public class GameController implements Initializable {
         return iv;
     }
     
-    void imagesLocation(ArrayList <String> imagenes){
-        int n=imagenes.size();
-            for(int r=0;r<=(n-1);r++){
-                String imagenElegida= imagenes.get(r);
-                ImageView iv=getIView(r);
-                setImage(imagenElegida,iv);
-                
-                
-            }
-
     }
 
-    }
-    
+ 
     class Ejercicio{
         int respuesta;
         ArrayList<String> imagenes;
         int intentos;
+        boolean done;
+        int time;
+        
 
-        public Ejercicio(int respuesta, ArrayList<String> imagenes, int intentos) {
+        public Ejercicio(int respuesta, ArrayList<String> imagenes, int intentos, boolean done) {
             this.respuesta = respuesta;
             this.imagenes = imagenes;
             this.intentos = intentos;
+            this.done= done;
         }
         
         public void intentosAumentar(){
             intentos++;
         }
         
+        public void done(){
+            done=!done;
+        }
 
- 
-    }
-    
+        @Override
+        public String toString() {
+            return "Ejercicio{" + "respuesta=" + respuesta + ", intentos=" + intentos + ", time=" + time + '}';
+        }
+        
+        
+    }  
 }

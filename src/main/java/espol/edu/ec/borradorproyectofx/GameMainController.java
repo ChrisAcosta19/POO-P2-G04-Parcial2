@@ -24,14 +24,10 @@ import javafx.scene.layout.BorderPane;
 public class GameMainController implements Initializable {
 
 
-    @FXML
-    private BorderPane mainPane;
-    @FXML
-    private ImageView btnAvanzar;
-    @FXML
-    private ImageView btnHome;
-    @FXML
-    private TextField fieldNumEjercicios;
+    @FXML private BorderPane mainPane;
+    @FXML private ImageView btnAvanzar;
+    @FXML private ImageView btnHome;
+    @FXML private TextField fieldNumEjercicios;
     public static int numEjercicios;
     
     /*private int numEjercicio=Integer.valueOf(fieldNumEjercicios.getText());

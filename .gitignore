@@ -41,3 +41,9 @@ target/classes/.netbeans_automatic_build
 *.lst
 *.lst
 target/test-classes/.netbeans_automatic_build
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/classes/espol/edu/ec/borradorproyectofx/App.class
+*.class
+*.properties
+*.lst
+*.jar

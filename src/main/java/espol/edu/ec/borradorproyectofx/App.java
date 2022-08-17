@@ -42,8 +42,8 @@ public class App extends Application {
         Servicio.crearArchivo(pathServicios);
         Empleado.crearArchivo(pathEmpleados, pathServicios);
         Cliente.crearArchivo(pathClientes);
-        Cita.crearArchivo(pathCitas);
-        Atencion.crearArchivo(pathAtenciones);
+        //Cita.crearArchivo(pathCitas);
+        //Atencion.crearArchivo(pathAtenciones);
         launch();
     }
 

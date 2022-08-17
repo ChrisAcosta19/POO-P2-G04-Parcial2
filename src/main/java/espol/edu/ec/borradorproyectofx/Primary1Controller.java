@@ -21,34 +21,20 @@ import javafx.stage.Stage;
  */
 public class Primary1Controller implements Initializable {
 
-    @FXML
-    private BorderPane mainPane;
-    @FXML
-    private ImageView iconSalir;
-    @FXML
-    private GridPane buttonsPane;
-    @FXML
-    private Button btnCitas;
-    @FXML
-    private ImageView iconCitas;
-    @FXML
-    private ImageView iconSrv;
-    @FXML
-    private ImageView iconAtens;
-    @FXML
-    private ImageView iconClientes;
-    @FXML
-    private ImageView iconEmpl;
-    @FXML
-    private Button btnGame;
-    @FXML
-    private Button btnServicios;
-    @FXML
-    private Button btnEmpleados;
-    @FXML
-    private Button btnClientes;
-    @FXML
-    private Button btnAtenciones;
+    @FXML private BorderPane mainPane;
+    @FXML private ImageView iconSalir;
+    @FXML private GridPane buttonsPane;
+    @FXML private Button btnCitas;
+    @FXML private ImageView iconCitas;
+    @FXML private ImageView iconSrv;
+    @FXML private ImageView iconAtens;
+    @FXML private ImageView iconClientes;
+    @FXML private ImageView iconEmpl;
+    @FXML private Button btnGame;
+    @FXML private Button btnServicios;
+    @FXML private Button btnEmpleados;
+    @FXML private Button btnClientes;
+    @FXML private Button btnAtenciones;
 
 
        /**

@@ -29,16 +29,11 @@ import java.util.Optional;
  */
 public class ServiciosController implements Initializable {
 
-    @FXML
-    private TableView<Servicio> tvServicios;
-    @FXML
-    private TableColumn colNombre;
-    @FXML
-    private TableColumn colDuracion;
-    @FXML
-    private TableColumn colPrecio;
-    @FXML
-    private TableColumn colEstado;
+    @FXML private TableView<Servicio> tvServicios;
+    @FXML private TableColumn colNombre;
+    @FXML private TableColumn colDuracion;
+    @FXML private TableColumn colPrecio;
+    @FXML private TableColumn colEstado;
     
     @FXML
     private Button btnRegresar;
