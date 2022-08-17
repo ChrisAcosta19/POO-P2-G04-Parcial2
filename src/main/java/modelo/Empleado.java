@@ -50,11 +50,7 @@ public class Empleado extends Persona {
     //metodo toString para mostrar informacion
     @Override
     public String toString(){
-        String servicios = "\nServicios del empleado "+getNombre()+":";
-        for(Servicio s: listaServicios){
-            servicios += "\n" + s.getNombre();
-        }
-        return super.toString()+", Estado: "+(estado?"Activo":"Inactivo")+servicios+"\n";
+        return super.toString()+", Estado: "+(estado?"Activo":"Inactivo");
     }
     
     //Getters

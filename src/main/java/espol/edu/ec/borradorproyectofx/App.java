@@ -17,7 +17,9 @@ public class App extends Application {
     public static String pathServicios = "archivos/Servicio.bin";
     public static String pathEmpleados = "archivos/Empleado.bin";
     public static String pathClientes = "archivos/Clientes.bin";
-    public static String pathImg = "src/main/resources/images/";
+    public static String pathCitas = "archivos/Citas.bin";
+    public static String pathAtenciones = "archivos/Atenciones.bin";
+    public static String pathImg = "images/";
     public static String pathImgGame = "src/main/resources/images/game/";
 
     @Override
@@ -40,6 +42,8 @@ public class App extends Application {
         Servicio.crearArchivo(pathServicios);
         Empleado.crearArchivo(pathEmpleados, pathServicios);
         Cliente.crearArchivo(pathClientes);
+        Cita.crearArchivo(pathCitas);
+        Atencion.crearArchivo(pathAtenciones);
         launch();
     }
 

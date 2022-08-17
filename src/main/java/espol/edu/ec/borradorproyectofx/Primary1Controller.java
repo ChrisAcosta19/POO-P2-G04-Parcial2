@@ -81,6 +81,14 @@ public class Primary1Controller implements Initializable {
             }
         });
         
+        btnCitas.setOnAction(eh -> {
+            try {
+                App.setRoot("Citas");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        
         iconSalir.setOnMouseClicked(eh -> {
             Node source = (Node) eh.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
@@ -100,27 +108,27 @@ public class Primary1Controller implements Initializable {
         InputStream input = null;
         Image image = null;
         try {
-            input = new FileInputStream(App.pathImg + "iconServicios.png");
+            input = App.class.getResource(App.pathImg + "iconServicios.png").openStream();
             image = new Image(input, 100, 100, false, false);
             iconSrv.setImage(image);
             
-            input = new FileInputStream(App.pathImg + "iconCitas.png");
+            input = App.class.getResource(App.pathImg + "iconCitas.png").openStream();
             image = new Image(input, 100, 100, false, false);
             iconCitas.setImage(image);
             
-            input = new FileInputStream(App.pathImg + "iconAtenciones.png");
+            input = App.class.getResource(App.pathImg + "iconAtenciones.png").openStream();
             image = new Image(input, 100, 100, false, false);
             iconAtens.setImage(image);
             
-            input = new FileInputStream(App.pathImg + "iconEmpleados.png");
+            input = App.class.getResource(App.pathImg + "iconEmpleados.png").openStream();
             image = new Image(input, 100, 100, false, false);
             iconEmpl.setImage(image);
             
-            input = new FileInputStream(App.pathImg + "iconClientes.png");
+            input = App.class.getResource(App.pathImg + "iconClientes.png").openStream();
             image = new Image(input, 100, 100, false, false);
             iconClientes.setImage(image);
             
-            input = new FileInputStream(App.pathImg + "iconSalir.png");
+            input = App.class.getResource(App.pathImg + "iconSalir.png").openStream();
             image = new Image(input, 100, 100, false, false);
             iconSalir.setImage(image);
         } catch (IOException ex) {

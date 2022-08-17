@@ -36,7 +36,7 @@ public class Cliente extends Persona {
     //metodo toString para mostrar informacion
     @Override
     public String toString() {
-        return super.toString()+"\nDatos del representante:\n"+datosRepresentante+"\n";
+        return super.toString();
     }
     
     //Getters
