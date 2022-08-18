@@ -279,12 +279,12 @@ public class GameController implements Initializable, Serializable {
         int a;
         if (numEjercicios<=5){
           for(int b=0;b<numEjercicios;b++){
-            a= (int)Math.floor(Math.random()*3)+2;
+            a= (int)Math.floor(Math.random()*4)+1;
             imagesPerQ.add(a);}
           
         } else if (numEjercicios<=10){
             for(int b=0;b<4;b++){
-              a= (int)Math.floor(Math.random()*3)+2;
+              a= (int)Math.floor(Math.random()*4)+1;
               imagesPerQ.add(a);}
             
             for(int b=0;b<numEjercicios-4;b++){
@@ -293,7 +293,7 @@ public class GameController implements Initializable, Serializable {
         
         } else if (numEjercicios>10){
             for(int b=0;b<4;b++){
-              a= (int)Math.floor(Math.random()*3)+2;
+              a= (int)Math.floor(Math.random()*4)+1;
               imagesPerQ.add(a);}
             
             for(int b=0;b<4;b++){
