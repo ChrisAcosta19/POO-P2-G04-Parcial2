@@ -1,7 +1,8 @@
 
 package espol.edu.ec.borradorproyectofx;
-
+import modelo.*;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -45,6 +46,7 @@ public class GameController implements Initializable, Serializable {
     @FXML private transient ImageView btnRetroceder;
     @FXML private transient ImageView respuestaVisual;
     @FXML private transient Button btnVerificarRespuesta;
+    @FXML private transient ImageView respuestaVisualMal;
     
     String[] images={"cow","cowg","cowh","duck","horse","horsea","horseb","pig","pigb","rooster","roosterb","sheep"};
     transient ImageView[] imagesLocation={img01,img02,img11,img12,img03,img13,img00,img10};
@@ -52,12 +54,14 @@ public class GameController implements Initializable, Serializable {
     private Boolean[] ToF={true,false};
     private int ejercicio=0;
     ArrayList<Ejercicio> ejercicios=new ArrayList<>();
-    @FXML
-    private transient ImageView respuestaVisualMal;
+    ArrayList<Game> actividades = new ArrayList<>();
+    ArrayList<Game> resultados = new ArrayList<>();
+    
     public static int timePromedio;
     public static int timeTotal;
+    public static int fallosTotal;
     public String infoPorPregunta="";
-    
+    public Atencion a;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,34 +76,57 @@ public class GameController implements Initializable, Serializable {
                 ex.printStackTrace();
             }} else{ejercicio--;}
         });
-        //asumiendo que este es el numero ingresado en el text field del main controller
+        
+        /*la atencion a partir de la cual se ejecuta el juego
+        String fecha=a.getCita().getFecha();
+        String cliente=a.getCita().getCliente().getCedula(); */
+        
+        String fecha="a";
+        String cliente="0832834824";
         
         ArrayList <Ejercicio> ejerciciosVacio= new ArrayList<>();
         Game g1=new Game(GameMainController.numEjercicios,ejerciciosVacio);
         numImagenesXEjercicio=imagesPerQuestion(GameMainController.numEjercicios);
-        Thread t = new Thread( () ->
-        {
-            while (true){
-                g1.time();
-                try {
-                    Thread.sleep(1000); //dormir 5 min, por ahora 1 para probar
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-                 );
         
-        t.setDaemon(true);
-        t.start();
+        
+        
         for(int x:numImagenesXEjercicio){
             ArrayList <String> imagenesModelo= new ArrayList <>();
             int j=(int) Math.floor(Math.random()*2); boolean bool=false;
             if (j==1){bool=true;}
             imagesSelection(x,bool,imagenesModelo);
-            Ejercicio lista=new Ejercicio(x,imagenesModelo,1,false);
-            g1.ejercicios.add(lista); 
+            Ejercicio ejercicio=new Ejercicio(x,imagenesModelo,0,false);
+            g1.getEjercicios().add(ejercicio);
         }        
+        
+        File directorioCliente = new File("archivos/"+cliente);
+        if(directorioCliente.exists()){
+        actividades=Game.cargarActividades(cliente);
+        resultados= Game.cargarResultados(cliente);
+                try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/"+cliente+"/Games.bin"))) {
+                actividades.add(g1);
+                out.writeObject(actividades);
+                out.flush();
+                System.out.println("GUARDADO DE JUEGO EXITOSO");
+                }catch (Exception e){System.out.println("No se pudo guardar la sesión");
+                e.printStackTrace();}
+        } else {
+           try{
+            directorioCliente.mkdir();
+            try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/"+cliente+"/Games.bin"))) {
+                actividades.add(g1);
+                out.writeObject(actividades);
+                out.flush();
+                System.out.println("GUARDADO DE JUEGO EXITOSO");
+                }catch (Exception e){System.out.println("No se pudo guardar la sesión");
+                e.printStackTrace();}
+            } catch (Exception e){
+            e.printStackTrace();
+        } 
+        }
+        
+        
+        
         
         try {
             ejercicio(g1,ejercicio);
@@ -109,14 +136,14 @@ public class GameController implements Initializable, Serializable {
         
         try{
         btnVerificarRespuesta.setOnMouseClicked(eh -> {
-            if(Integer.valueOf(fieldRespuesta.getText())==g1.ejercicios.get(ejercicio).respuesta){
+            if(Integer.valueOf(fieldRespuesta.getText())==g1.getEjercicios().get(ejercicio).getRespuesta()){
             setImage("happy",respuestaVisual);
-            if(!g1.ejercicios.get(ejercicio).done){
-                g1.ejercicios.get(ejercicio).done();
+            if(!g1.getEjercicios().get(ejercicio).isDone()){
+                g1.getEjercicios().get(ejercicio).done();
             }
             } else{setGif("globoe",respuestaVisual);
-            if(!g1.ejercicios.get(ejercicio).done){
-               g1.ejercicios.get(ejercicio).intentosAumentar();
+            if(!g1.getEjercicios().get(ejercicio).isDone()){
+               g1.getEjercicios().get(ejercicio).intentosAumentar();
             }
             }
             });
@@ -134,29 +161,31 @@ public class GameController implements Initializable, Serializable {
                 ex.printStackTrace();
             } catch (IndexOutOfBoundsException ex){
                 try {
-                for(Ejercicio e:g1.ejercicios){
-                String xd=";"+e.respuesta+","+e.intentos+","+e.time;
+                for(Ejercicio e:g1.getEjercicios()){
+                String xd=";"+e.getRespuesta()+","+e.getFallos()+","+e.getTime();
                 infoPorPregunta+=xd;
-                timePromedio+=e.time;}
+                fallosTotal+=e.getFallos();
+                timePromedio+=e.getTime();}
+                timeTotal=timePromedio;
                 timePromedio/=GameMainController.numEjercicios;
-                timeTotal=g1.time;
-                try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/Games.bin"))) {
-                out.writeObject(g1);
+                String tiempo= Game.timeFormat(timeTotal);
+                Game g2= new Game("¿Cuantos hay?",cliente,fecha,GameMainController.numEjercicios,fallosTotal,tiempo);
+                System.out.println(g2);
+                resultados.add(g2);
+                
+                try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/"+cliente+"/GamesResults.bin"))) {
+                out.writeObject(resultados);
                 out.flush();
-                }catch (Exception e){System.out.println("No se pudo guardar la sesión");
+                    System.out.println("GUARDADO DE JUEGO EXITOSO");
+                }catch (Exception e){System.out.println("NO SE PUDO GUARDAR LA SESIÓN");
                 e.printStackTrace();}
-                
-                
-                
-                try(BufferedWriter writer = new BufferedWriter(new FileWriter("archivos/GameResultados.txt",true))){
-                    
-                    System.out.println(timeTotal);
-                    String registro=g1.numEjercicios+","+timeTotal+infoPorPregunta+"\n";
+                               
+                try(BufferedWriter writer = new BufferedWriter(new FileWriter("archivos/"+cliente+"/GamesDetalles.txt",true))){
+                    String registro=g2.getCliente()+","+g2.getFecha()+","+g2.getNumEjercicios()+","+g2.getFallos()+","+g2.getTiempoEnFormato()+infoPorPregunta+"\n";
                     writer.write(registro);
                     writer.close();
-                    
-                                       
-                }catch(Exception e){System.out.println("No se pudo registrar los resultados de la sesión");
+                    System.out.println("GUARDADO DE RESULTADOS EXITOSO");                     
+                }catch(Exception e){System.out.println("NO SE PUDO REGISTRAR LOS RESULTADOS DE LA SESION");
                 e.printStackTrace();}
                 
                 App.setRoot("gameEnd");
@@ -193,13 +222,13 @@ public class GameController implements Initializable, Serializable {
         img03.imageProperty().set(null);img10.imageProperty().set(null);img11.imageProperty().set(null);
         img12.imageProperty().set(null);img13.imageProperty().set(null);
         ArrayList<String> imgs=new ArrayList<>();
-        imagesLocation(g.ejercicios.get(ejercicio).imagenes);
+        imagesLocation(g.getEjercicios().get(ejercicio).getImagenes());
         //cronometro por ejercicio
         Thread t = new Thread( () ->
         {
-            while (!g.ejercicios.get(ejercicio).done){ //solo continua el contador si el parametro done es falso
+            while (!g.getEjercicios().get(ejercicio).isDone()){ //solo continua el contador si el parametro done es falso
                                                        //(el ejercicio no ha sido respondida correctamente)
-                g.ejercicios.get(ejercicio).time();
+                g.getEjercicios().get(ejercicio).time();
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
@@ -344,65 +373,5 @@ public class GameController implements Initializable, Serializable {
         }
     }
    
-    class Game implements Serializable{
-
-    int numEjercicios;
-    ArrayList<Ejercicio> ejercicios;
-    int time=0;
-
-    public Game(int numEjercicios){
-        this.numEjercicios = numEjercicios;
-    }
-
-    public Game(int numEjercicios, ArrayList<Ejercicio> ejercicios) {
-        this.numEjercicios = numEjercicios;
-        this.ejercicios = ejercicios;
-    }
-
-    public void time(){
-            time++;
-                }
     
-    
-    
-    }
-
- 
-    class Ejercicio implements Serializable{
-        int respuesta;
-        ArrayList<String> imagenes;
-        int intentos;
-        boolean done;
-        int time=0;
-        
-
-        public Ejercicio(int respuesta, ArrayList<String> imagenes, int intentos, boolean done) {
-            this.respuesta = respuesta;
-            this.imagenes = imagenes;
-            this.intentos = intentos;
-            this.done= done;
-        }
-        
-        public void intentosAumentar(){
-            intentos++;
-        }
-        
-        public void done(){
-            done=true;
-        }
-        
-        public void time(){
-            time++;
-                }
-
-        @Override
-        public String toString() {
-            return "Ejercicio{" + "respuesta=" + respuesta + ", intentos=" + intentos + ", time=" + time + "s}";
-        }
-
-
-        
-        
-        
-    }  
 }

@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import modelo.Cliente;
 
@@ -33,6 +34,9 @@ public class ClientesController implements Initializable {
     @FXML private TableColumn colEmail;
     @FXML private TableColumn<Cliente, Void> colRepresentante;
     @FXML  private Button btnRegresar;
+    @FXML
+    private ImageView regresar;
+    public static Cliente cl;
     /**
      * Initializes the controller class.
      */
@@ -45,7 +49,7 @@ public class ClientesController implements Initializable {
         colRepresentante.setCellValueFactory(new PropertyValueFactory<>("datosRepresentante"));
         tvClientes.getItems().setAll(Cliente.cargarClientes(App.pathClientes));
         
-        btnRegresar.setOnAction(eh -> {
+        regresar.setOnMouseClicked(eh -> {
             try {
                 App.setRoot("primary1");
             } catch (IOException ex) {
@@ -67,8 +71,8 @@ public class ClientesController implements Initializable {
         Cliente cl = (Cliente) tvClientes.getSelectionModel().getSelectedItem();
         if(cl == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un cliente");
             alert.showAndWait();
         }else{
@@ -78,6 +82,21 @@ public class ClientesController implements Initializable {
             NuevoClienteController ct = (NuevoClienteController) fxmlLoader.getController();
             ct.llenarCampos(cl);
             App.changeRoot(root);
+        }
+    }
+
+    @FXML
+    private void mostrarActividades(ActionEvent event) throws IOException{
+        Cliente cl = (Cliente) tvClientes.getSelectionModel().getSelectedItem();
+        if(cl == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Debe seleccionar un cliente");
+            alert.showAndWait();
+        }else{
+            clienteSeleccionado=cl;
+            App.setRoot("actividades");
         }
     }
 }
