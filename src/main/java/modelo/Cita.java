@@ -12,7 +12,7 @@ import espol.edu.ec.borradorproyectofx.App;
  * @author chris
  */
 public class Cita implements Serializable {
-        //Atributos de clase Cita
+
     private String fecha;
     private String hora;
     private Cliente cliente;

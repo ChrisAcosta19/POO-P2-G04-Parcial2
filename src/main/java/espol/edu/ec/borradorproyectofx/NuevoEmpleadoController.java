@@ -30,42 +30,24 @@ import javafx.scene.control.Label;
  */
 public class NuevoEmpleadoController implements Initializable {
 
-    @FXML
-    private TextField txtCedula;
-    @FXML
-    private TextField txtNombre;
-    @FXML
-    private TextField txtTelefono;
-    @FXML
-    private TextField txtEmail;
-    @FXML
-    private RadioButton rbA;
-    @FXML
-    private ToggleGroup estado;
-    @FXML
-    private RadioButton rbI;
-    @FXML
-    private ComboBox<Servicio> cmbServicios;
-    @FXML
-    private Button btnAgregarServicio;
-    @FXML
-    private Button btnEliminarServicio;
-    @FXML
-    private Button btnGuardar;
-    @FXML
-    private Button btnCancelar;
-    @FXML
-    private TableView<Servicio> tvServicios;
-    @FXML
-    private TableColumn colNombre;
-    @FXML
-    private TableColumn colDuracion;
-    @FXML
-    private TableColumn colPrecio;
-    @FXML
-    private TableColumn colEstado;
-    @FXML
-    private Label lblTitulo;
+    @FXML private TextField txtCedula;
+    @FXML private TextField txtNombre;
+    @FXML private TextField txtTelefono;
+    @FXML private TextField txtEmail;
+    @FXML private RadioButton rbA;
+    @FXML private ToggleGroup estado;
+    @FXML private RadioButton rbI;
+    @FXML private ComboBox<Servicio> cmbServicios;
+    @FXML private Button btnAgregarServicio;
+    @FXML private Button btnEliminarServicio;
+    @FXML private Button btnGuardar;
+    @FXML private Button btnCancelar;
+    @FXML private TableView<Servicio> tvServicios;
+    @FXML private TableColumn colNombre;
+    @FXML private TableColumn colDuracion;
+    @FXML private TableColumn colPrecio;
+    @FXML private TableColumn colEstado;
+    @FXML private Label lblTitulo;
     
     private ArrayList<Servicio> servicios;
     public static Empleado empleado;

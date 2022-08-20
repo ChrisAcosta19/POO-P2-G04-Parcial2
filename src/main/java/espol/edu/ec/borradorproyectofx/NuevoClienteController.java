@@ -26,30 +26,18 @@ import modelo.*;
 public class NuevoClienteController implements Initializable {
 
 
-    @FXML
-    private Label lblCliente;
-    @FXML
-    private TextField txtCedulaCliente;
-    @FXML
-    private TextField txtNombreCliente;
-    @FXML
-    private TextField txtTelefonoCliente;
-    @FXML
-    private TextField txtEmailCliente;
-    @FXML
-    private Label lblRepresentante;
-    @FXML
-    private TextField txtCedulaRepresentante;
-    @FXML
-    private TextField txtNombreRepresentante;
-    @FXML
-    private TextField txtTelefonoRepresentante;
-    @FXML
-    private TextField txtEmailRepresentante;
-    @FXML
-    private Button btnGuardar;
-    @FXML
-    private Button btnCancelar;
+    @FXML private Label lblCliente;
+    @FXML private TextField txtCedulaCliente;
+    @FXML private TextField txtNombreCliente;
+    @FXML private TextField txtTelefonoCliente;
+    @FXML private TextField txtEmailCliente;
+    @FXML private Label lblRepresentante;
+    @FXML private TextField txtCedulaRepresentante;
+    @FXML private TextField txtNombreRepresentante;
+    @FXML private TextField txtTelefonoRepresentante;
+    @FXML private TextField txtEmailRepresentante;
+    @FXML private Button btnGuardar;
+    @FXML private Button btnCancelar;
     
     public static Cliente cliente;
     /**

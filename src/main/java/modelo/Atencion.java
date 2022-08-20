@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author chris
  */
 public class Atencion implements Serializable {
+
     private Cita cita;
     private int duracion;
     private Empleado empleadoAtencion;

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package espol.edu.ec.borradorproyectofx;
 
 import static espol.edu.ec.borradorproyectofx.GameMainController.numEjercicios;
@@ -20,19 +17,16 @@ import javafx.scene.layout.BorderPane;
 /**
  * FXML Controller class
  *
- * @author Usuario
+ * @author Juan Pablo Plúas
  */
 public class GameEndController implements Initializable {
 
 
-    @FXML
-    private BorderPane mainPane;
-    @FXML
-    private ImageView btnHome;
-    @FXML
-    private ImageView aplausos;
-    @FXML
-    private Label lblTiempo;
+    @FXML private BorderPane mainPane;
+    @FXML private ImageView btnHome;
+    @FXML private ImageView aplausos;
+    @FXML private Label lblTiempoMedio;
+    @FXML private Label lblTiempoTotal;
     /**
      * Initializes the controller class.
      */
@@ -47,8 +41,24 @@ public class GameEndController implements Initializable {
                 ex.printStackTrace();
             }
         });
-        
-        
+        int tiempoSec=GameController.timeTotal;
+        if(tiempoSec<60){
+            lblTiempoTotal.setText(String.valueOf(tiempoSec)+"s");
+        } else{
+            int min=0; int sec=0;
+            min=tiempoSec/60;
+            sec=tiempoSec%60;
+            lblTiempoTotal.setText(String.valueOf(min)+" min "+String.valueOf(sec)+" seg");
+        }
+        int tiempoMedioSec=GameController.timePromedio;
+        if(tiempoMedioSec<60){
+            lblTiempoMedio.setText(String.valueOf(tiempoMedioSec)+"s");
+        } else{
+            int min=0; int sec=0;
+            min=tiempoMedioSec/60;
+            sec=tiempoMedioSec%60;
+            lblTiempoMedio.setText(String.valueOf(min)+" min "+String.valueOf(sec)+" seg");
+        }
         
         
     }

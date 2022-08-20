@@ -27,24 +27,15 @@ import modelo.Validacion;
 public class NuevoServicioController implements Initializable {
 
 
-    @FXML
-    private TextField txtNombre;
-    @FXML
-    private TextField txtDuracion;
-    @FXML
-    private TextField txtPrecio;
-    @FXML
-    private RadioButton rbI;
-    @FXML
-    private Button btnGuardar;
-    @FXML
-    private Button btnCancelar;
-    @FXML
-    private ToggleGroup estado;
-    @FXML
-    private Label lblTitulo;
-    @FXML
-    private RadioButton rbA;
+    @FXML private TextField txtNombre;
+    @FXML private TextField txtDuracion;
+    @FXML private TextField txtPrecio;
+    @FXML private RadioButton rbI;
+    @FXML private Button btnGuardar;
+    @FXML private Button btnCancelar;
+    @FXML private ToggleGroup estado;
+    @FXML private Label lblTitulo;
+    @FXML private RadioButton rbA;
     
     public static Servicio servicio;
     /**

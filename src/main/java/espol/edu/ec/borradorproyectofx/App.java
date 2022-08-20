@@ -21,6 +21,7 @@ public class App extends Application {
     public static String pathAtenciones = "archivos/Atenciones.bin";
     public static String pathImg = "images/";
     public static String pathImgGame = "src/main/resources/images/game/";
+    
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -42,8 +43,8 @@ public class App extends Application {
         Servicio.crearArchivo(pathServicios);
         Empleado.crearArchivo(pathEmpleados, pathServicios);
         Cliente.crearArchivo(pathClientes);
-        Cita.crearArchivo(pathCitas);
-        Atencion.crearArchivo(pathAtenciones);
+        //Cita.crearArchivo(pathCitas);
+        //Atencion.crearArchivo(pathAtenciones);
         launch();
     }
 

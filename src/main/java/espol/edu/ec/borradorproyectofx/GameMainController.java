@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package espol.edu.ec.borradorproyectofx;
 
 import java.io.FileInputStream;
@@ -11,6 +8,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
@@ -19,19 +17,15 @@ import javafx.scene.layout.BorderPane;
 /**
  * FXML Controller class
  *
- * @author Usuario
+ * @author Juan Pablo Plúas
  */
 public class GameMainController implements Initializable {
 
 
-    @FXML
-    private BorderPane mainPane;
-    @FXML
-    private ImageView btnAvanzar;
-    @FXML
-    private ImageView btnHome;
-    @FXML
-    private TextField fieldNumEjercicios;
+    @FXML private BorderPane mainPane;
+    @FXML private ImageView btnAvanzar;
+    @FXML private ImageView btnHome;
+    @FXML private TextField fieldNumEjercicios;
     public static int numEjercicios;
     
     /*private int numEjercicio=Integer.valueOf(fieldNumEjercicios.getText());
@@ -48,8 +42,14 @@ public class GameMainController implements Initializable {
             try {
                 numEjercicios=Integer.valueOf(fieldNumEjercicios.getText());
                 App.setRoot("game");
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            } catch (Exception ex) {
+                fieldNumEjercicios.clear();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error al ingresar número");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Ingrese un número válido");
+                    alert.showAndWait();
+                    
             }
         });
 

@@ -36,22 +36,14 @@ import modelo.*;
 public class EmpleadosController implements Initializable {
 
 
-    @FXML
-    private TableView<Empleado> tvEmpleados;
-    @FXML
-    private TableColumn colCedula;
-    @FXML
-    private TableColumn colNombre;
-    @FXML
-    private TableColumn colTelefono;
-    @FXML
-    private TableColumn colEmail;
-    @FXML
-    private TableColumn colEstado;
-    @FXML
-    private Button btnRegresar;
-    @FXML
-    private TableColumn<Empleado, Void> colServicios;
+    @FXML private TableView<Empleado> tvEmpleados;
+    @FXML private TableColumn colCedula;
+    @FXML private TableColumn colNombre;
+    @FXML private TableColumn colTelefono;
+    @FXML private TableColumn colEmail;
+    @FXML private TableColumn colEstado;
+    @FXML private Button btnRegresar;
+    @FXML private TableColumn<Empleado, Void> colServicios;
     /**
      * Initializes the controller class.
      */
