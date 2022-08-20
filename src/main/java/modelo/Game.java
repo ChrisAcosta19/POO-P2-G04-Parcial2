@@ -8,6 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Juan Pablo Plúas
+ */
 public class Game implements Serializable{
         
     private static final long serialVersionUID = 1;
@@ -59,7 +63,7 @@ public class Game implements Serializable{
         ArrayList<Game> games = new ArrayList<>();
         System.out.println("xxxxxxxxxxxxx");
         //leer la lista de personas del archivo serializado
-        try ( ObjectInputStream oi = new ObjectInputStream(new FileInputStream("archivos/"+cedulaCliente+"/Games.bin"))) {
+        try ( ObjectInputStream oi = new ObjectInputStream(new FileInputStream("archivos/registro/"+cedulaCliente+"/Games.bin"))) {
             games = (ArrayList<Game>) oi.readObject();
             System.out.println("=============");
         } catch (FileNotFoundException ex) {
@@ -76,7 +80,7 @@ public class Game implements Serializable{
         ArrayList<Game> games = new ArrayList<>();
         System.out.println("xxxxxxxxxxxxx");
         //leer la lista de personas del archivo serializado
-        try ( ObjectInputStream oi = new ObjectInputStream(new FileInputStream("archivos/"+cedulaCliente+"/GamesResults.bin"))) {
+        try ( ObjectInputStream oi = new ObjectInputStream(new FileInputStream("archivos/registro/"+cedulaCliente+"/GamesResults.bin"))) {
             games = (ArrayList<Game>) oi.readObject();
             System.out.println("=============");
         } catch (FileNotFoundException ex) {

@@ -33,10 +33,9 @@ public class ClientesController implements Initializable {
     @FXML private TableColumn colTelefono;
     @FXML private TableColumn colEmail;
     @FXML private TableColumn<Cliente, Void> colRepresentante;
-    @FXML  private Button btnRegresar;
-    @FXML
-    private ImageView regresar;
-    public static Cliente cl;
+    @FXML private Button btnRegresar;
+    @FXML private ImageView regresar;
+    public static Cliente clienteSeleccionado;
     /**
      * Initializes the controller class.
      */
@@ -48,6 +47,8 @@ public class ClientesController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colRepresentante.setCellValueFactory(new PropertyValueFactory<>("datosRepresentante"));
         tvClientes.getItems().setAll(Cliente.cargarClientes(App.pathClientes));
+        
+        GameController.setImage("regresar",App.pathImgGame,regresar);
         
         regresar.setOnMouseClicked(eh -> {
             try {

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package espol.edu.ec.borradorproyectofx;
 
 import static espol.edu.ec.borradorproyectofx.GameMainController.numEjercicios;
@@ -20,7 +17,7 @@ import javafx.scene.layout.BorderPane;
 /**
  * FXML Controller class
  *
- * @author Usuario
+ * @author Juan Pablo Plúas
  */
 public class GameEndController implements Initializable {
 
