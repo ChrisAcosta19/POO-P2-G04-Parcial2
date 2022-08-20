@@ -40,11 +40,24 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        Servicio.crearArchivo(pathServicios);
-        Empleado.crearArchivo(pathEmpleados, pathServicios);
-        Cliente.crearArchivo(pathClientes);
-        //Cita.crearArchivo(pathCitas);
-        //Atencion.crearArchivo(pathAtenciones);
+        try(BufferedReader br = new BufferedReader(new FileReader("archivos/Iniciar.txt"))){
+            String linea = br.readLine();
+            if(linea.equalsIgnoreCase("false")){
+                Servicio.crearArchivo(pathServicios);
+                Empleado.crearArchivo(pathEmpleados, pathServicios);
+                Cliente.crearArchivo(pathClientes);
+                Cita.crearArchivo(pathCitas);
+                Atencion.crearArchivo(pathAtenciones);
+                try(BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/Iniciar.txt"))){
+                    bw.write("true");
+                }catch(IOException e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        
         launch();
     }
 
