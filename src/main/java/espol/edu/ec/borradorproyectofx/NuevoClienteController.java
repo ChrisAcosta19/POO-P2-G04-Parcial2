@@ -24,8 +24,6 @@ import modelo.*;
  * @author chris
  */
 public class NuevoClienteController implements Initializable {
-
-
     @FXML private Label lblCliente;
     @FXML private TextField txtCedulaCliente;
     @FXML private TextField txtNombreCliente;
@@ -67,59 +65,71 @@ public class NuevoClienteController implements Initializable {
         Validacion.validarEntero("Telefono Cliente", telefonoCl);
         String emailCl = txtEmailCliente.getText();
         Validacion.validarEmail("Cliente", emailCl);
+        Persona c = new Persona(cedulaCl,nombreCl,telefonoCl,emailCl);
         
-        Validacion.validarEntero("Cedula Representante", txtCedulaRepresentante.getText());
-        Validacion.validarNombre("Representante", txtNombreRepresentante.getText());
-        Validacion.validarEntero("Telefono Representante", txtTelefonoRepresentante.getText());
-        Validacion.validarEmail("Representante", txtEmailRepresentante.getText());
+        String cedulaR = txtCedulaRepresentante.getText();
+        Validacion.validarEntero("Cedula Representante", cedulaR);
+        String nombreR = txtNombreRepresentante.getText();
+        Validacion.validarNombre("Representante", nombreR);
+        String telefonoR = txtTelefonoRepresentante.getText();
+        Validacion.validarEntero("Telefono Representante", telefonoR);
+        String emailR = txtEmailRepresentante.getText();
+        Validacion.validarEmail("Representante", emailR);
+        Persona representante = new Persona(cedulaR, nombreR, telefonoR, emailR);
+        Cliente cl = new Cliente(cedulaCl,nombreCl,telefonoCl,emailCl,representante);
         
-        if(Validacion.mensaje.equals("")){
-            Persona representante = new Persona(txtCedulaRepresentante.getText(),
-                    txtNombreRepresentante.getText(),
-                    txtTelefonoRepresentante.getText(),
-                    txtEmailRepresentante.getText());
-            Cliente cl = new Cliente(cedulaCl,nombreCl,telefonoCl,emailCl,representante);
-            if (cliente == null) {
-                clientes.add(cl);//agregar cliente a la lista
-                System.out.println("Nuevo Cliente:" + cl);
-                
-                //serializar la lista
-                try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathClientes))) {
-                    out.writeObject(clientes);
-                    out.flush();
+        if(cliente == null){
+            Validacion.validarPersona("Cliente",c, null);
+            Validacion.validarPersona("Representante",representante, null);
+        }else{
+            Validacion.validarPersona("Cliente",c, cliente);
+            Validacion.validarPersona("Representante",representante, cliente.getDatosRepresentante());
+        }
+        
+        if(c.equals(representante)){
+            Validacion.mensaje += "Alguno de los datos del cliente coincide con los de su representante\n";
+        }
+        
+        if(Validacion.mensaje.equals("") && cliente == null){
+            clientes.add(cl);//agregar cliente a la lista
+            System.out.println("Nuevo Cliente:" + cl);
 
-                    //mostrar informacion
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Resultado de la operación");
-                    alert.setContentText("Nuevo cliente agregado exitosamente");
-                    alert.showAndWait();
-                    App.setRoot("Clientes");
-                } catch (IOException ex) {
-                    System.out.println("IOException:" + ex.getMessage());
-                }
-            } else {
-                int indice = clientes.indexOf(cliente);
-                clientes.set(indice, cl);
+            //serializar la lista
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathClientes))) {
+                out.writeObject(clientes);
+                out.flush();
 
-                try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathClientes))) {
-                    out.writeObject(clientes);
-                    out.flush();
-
-                    //mostrar informacion
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Resultado de la operación");
-                    alert.setContentText("Cliente editado exitosamente");
-
-                    alert.showAndWait();
-                    App.setRoot("Clientes");
-
-                } catch (IOException ex) {
-                    System.out.println("IOException:" + ex.getMessage());
-                }
-                cliente = null;
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Nuevo cliente agregado exitosamente");
+                alert.showAndWait();
+                App.setRoot("Clientes");
+            } catch (IOException ex) {
+                System.out.println("IOException:" + ex.getMessage());
             }
+        } else if (Validacion.mensaje.equals("") && cliente != null){
+            int indice = clientes.indexOf(cliente);
+            clientes.set(indice, cl);
+
+            try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathClientes))) {
+                out.writeObject(clientes);
+                out.flush();
+
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Cliente editado exitosamente");
+
+                alert.showAndWait();
+                App.setRoot("Clientes");
+
+            } catch (IOException ex) {
+                System.out.println("IOException:" + ex.getMessage());
+            }
+            cliente = null;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");

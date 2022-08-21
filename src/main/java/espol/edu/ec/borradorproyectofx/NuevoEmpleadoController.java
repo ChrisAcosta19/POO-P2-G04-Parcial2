@@ -122,61 +122,64 @@ public class NuevoEmpleadoController implements Initializable {
             Validacion.mensaje = "Debe seleccionar un estado\n";
         }
         boolean estadoBoolean = estado.equals("Activo");
-        Validacion.validarEntero("Cedula",txtCedula.getText());
-        Validacion.validarNombre("Empleado",txtNombre.getText());
-        Validacion.validarEntero("Telefono",txtTelefono.getText());
-        Validacion.validarEmail("Empleado",txtEmail.getText());
+        String cedula = txtCedula.getText();
+        Validacion.validarEntero("Cedula",cedula);
+        String nombre = txtNombre.getText();
+        Validacion.validarNombre("Empleado",nombre);
+        String telefono = txtTelefono.getText();
+        Validacion.validarEntero("Telefono",telefono);
+        String email = txtEmail.getText();
+        Validacion.validarEmail("Empleado",email);
+        Empleado e = new Empleado(cedula,nombre,telefono,email,estadoBoolean);
+        e.setListaServicios(servicios);
         
-        if(Validacion.mensaje.equals("")){
-            Empleado e = new Empleado(txtCedula.getText(),
-                    txtNombre.getText(),
-                    txtTelefono.getText(),
-                    txtEmail.getText(),
-                    estadoBoolean);
-            e.setListaServicios(servicios);
+        if(empleado == null){
+            Validacion.validarPersona("Empleado",e, null);
+        }else{
+            Validacion.validarPersona("Empleado",e, empleado); 
+        }
+        
+        if(Validacion.mensaje.equals("") && empleado == null){
+            empleados.add(e);
+            System.out.println("Nuevo Empleado:" + e);
+            //serializar la lista
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))) {
+                out.writeObject(empleados);
+                out.flush();
 
-            if (empleado == null) {
-                empleados.add(e);
-                System.out.println("Nuevo Empleado:" + e);
-                //serializar la lista
-                try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))) {
-                    out.writeObject(empleados);
-                    out.flush();
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Nuevo empleado agregado exitosamente");
 
-                    //mostrar informacion
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Resultado de la operación");
-                    alert.setContentText("Nuevo empleado agregado exitosamente");
+                alert.showAndWait();
+                App.setRoot("Empleados");
 
-                    alert.showAndWait();
-                    App.setRoot("Empleados");
-
-                } catch (IOException ex) {
-                    System.out.println("IOException:" + ex.getMessage());
-                }
-            } else {
-                int indice = empleados.indexOf(empleado);
-                empleados.set(indice, e);
-
-                try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))) {
-                    out.writeObject(empleados);
-                    out.flush();
-
-                    //mostrar informacion
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Resultado de la operación");
-                    alert.setContentText("Empleado editado exitosamente");
-
-                    alert.showAndWait();
-                    App.setRoot("Empleados");
-
-                } catch (IOException ex) {
-                    System.out.println("IOException:" + ex.getMessage());
-                }
-                empleado = null;
+            } catch (IOException ex) {
+                System.out.println("IOException:" + ex.getMessage());
             }
+        } else if (Validacion.mensaje.equals("") && empleado != null) {
+            int indice = empleados.indexOf(empleado);
+            empleados.set(indice, e);
+
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))) {
+                out.writeObject(empleados);
+                out.flush();
+
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Empleado editado exitosamente");
+
+                alert.showAndWait();
+                App.setRoot("Empleados");
+
+            } catch (IOException ex) {
+                System.out.println("IOException:" + ex.getMessage());
+            }
+            empleado = null;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");

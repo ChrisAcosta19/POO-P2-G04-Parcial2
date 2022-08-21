@@ -48,7 +48,6 @@
             <Button mnemonicParsing="false" text="Crear Cita" />
             <Button mnemonicParsing="false" text="Eliminar Cita" />
             <Button fx:id="btnBorrarFiltros" mnemonicParsing="false" text="Borrar Filtros" />
-            <Button mnemonicParsing="false" text="Consultar Actividades" />
             <Button fx:id="btnRegresar" mnemonicParsing="false" text="Regresar" />
          </children>
       </HBox>

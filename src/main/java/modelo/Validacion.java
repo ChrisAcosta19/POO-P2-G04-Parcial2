@@ -7,6 +7,7 @@ package modelo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import espol.edu.ec.borradorproyectofx.App;
 
 /**
  *
@@ -115,6 +116,33 @@ public class Validacion {
         else {
             mensaje+="Correo de "+objeto+" no válido, falta el @\n";
             return false;
+        }
+    }
+    
+    public static boolean validarPersona(String tipo, Persona persona, Persona per){
+        ArrayList<Persona> personas = new ArrayList<>();
+        ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);
+        ArrayList<Cliente> clientes = Cliente.cargarClientes(App.pathClientes);
+        for(Empleado e: empleados){
+            personas.add(e);
+        }
+        for(Cliente c: clientes){
+            personas.add(c);
+            personas.add(c.getDatosRepresentante());
+        }
+        
+        if(per != null){
+            personas.remove(per);
+        }
+        
+        if(personas.contains(persona)){
+            int indice = personas.indexOf(persona);
+            Persona p = personas.get(indice);
+            mensaje += "Alguno de los datos del "+tipo+" coincide con los de esta persona:\n" + p + "\n";
+            return false;
+        }
+        else {
+            return true;
         }
     }
 }
