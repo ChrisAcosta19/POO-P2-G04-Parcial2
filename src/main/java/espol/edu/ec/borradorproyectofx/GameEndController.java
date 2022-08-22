@@ -36,7 +36,7 @@ public class GameEndController implements Initializable {
         
         btnHome.setOnMouseClicked(eh -> {
             try {
-                App.setRoot("primary1");
+                App.setRoot("primary");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

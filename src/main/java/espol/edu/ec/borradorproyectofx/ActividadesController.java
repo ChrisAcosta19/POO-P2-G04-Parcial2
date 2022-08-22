@@ -71,8 +71,9 @@ public class ActividadesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+                
         lblSelected.setText(ClientesController.clienteSeleccionado.getNombre());
-        GameController.setImage("regresar",App.pathImgGame,regresar);
+        App.setImage("regresar",App.pathImgGame,regresar);
         
         for(Game g:listaResultados){
             System.out.println(g);

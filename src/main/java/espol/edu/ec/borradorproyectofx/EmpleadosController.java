@@ -22,7 +22,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -42,8 +45,12 @@ public class EmpleadosController implements Initializable {
     @FXML private TableColumn colTelefono;
     @FXML private TableColumn colEmail;
     @FXML private TableColumn colEstado;
-    @FXML private Button btnRegresar;
     @FXML private TableColumn<Empleado, Void> colServicios;
+    @FXML private ImageView regresar;
+    @FXML private ImageView agregar;
+    @FXML private ImageView editar;
+    @FXML private ImageView eliminar;
+    @FXML private ImageView icon;
     /**
      * Initializes the controller class.
      */
@@ -57,9 +64,14 @@ public class EmpleadosController implements Initializable {
         cargarServicios();
         tvEmpleados.getItems().setAll(Empleado.cargarEmpleados(App.pathEmpleados));
         
-        btnRegresar.setOnAction(eh -> {
+        App.setImage("iconEmpleados",App.pathImg,icon);
+        App.setImage("regresar",App.pathImg,regresar);
+        App.setImage("agregarPersona",App.pathImg,agregar);
+        App.setImage("editarPersona",App.pathImg,editar);
+        App.setImage("eliminarPersona",App.pathImg,eliminar);
+        regresar.setOnMouseClicked(eh -> {
             try {
-                App.setRoot("primary1");
+                App.setRoot("primary");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -100,7 +112,7 @@ public class EmpleadosController implements Initializable {
     }
     
     @FXML
-    private void mostrarVentana(ActionEvent event) throws IOException {
+    private void agregarEmpleado(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevoEmpleado.fxml"));//no tiene el controlador especificado
         VBox root = (VBox) fxmlLoader.load();
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios}
@@ -108,12 +120,12 @@ public class EmpleadosController implements Initializable {
     }
 
     @FXML
-    private void editarEmpleado(ActionEvent event) throws IOException {
+    private void editarEmpleado(MouseEvent event) throws IOException {
         Empleado e = (Empleado) tvEmpleados.getSelectionModel().getSelectedItem();
         if(e == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar editar empleado");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un empleado");
             alert.showAndWait();
         }else{
@@ -127,18 +139,18 @@ public class EmpleadosController implements Initializable {
     }
 
     @FXML
-    private void eliminarEmpleado(ActionEvent event) {
+    private void eliminarEmpleado(MouseEvent event) throws IOException {
         Empleado e = (Empleado) tvEmpleados.getSelectionModel().getSelectedItem();
         if(e == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar eliminar empleado");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un empleado");
             alert.showAndWait();
         }else{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Eliminar Servicio");
+            alert.setTitle("Eliminar Empleado");
+            alert.setHeaderText(null);
             alert.setContentText("¿Está seguro de que desea eliminar este empleado?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
@@ -150,8 +162,8 @@ public class EmpleadosController implements Initializable {
 
                     //mostrar informacion
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Resultado de la operación");
+                    alert.setTitle("Eliminar Empleado");
+                    alert.setHeaderText(null);
                     alert.setContentText("Empleado eliminado exitosamente");
                     alert.showAndWait();
                     App.setRoot("Empleados");

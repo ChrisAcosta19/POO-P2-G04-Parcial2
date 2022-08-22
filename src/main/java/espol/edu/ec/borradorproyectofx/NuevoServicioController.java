@@ -86,8 +86,8 @@ public class NuevoServicioController implements Initializable {
 
                     //mostrar informacion
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Resultado de la operación");
+                    alert.setTitle("Agregar nuevo servicio");
+                    alert.setHeaderText(null);
                     alert.setContentText("Nuevo servicio agregado exitosamente");
                     alert.showAndWait();
                     App.setRoot("Servicios");
@@ -104,8 +104,8 @@ public class NuevoServicioController implements Initializable {
 
                     //mostrar informacion
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Resultado de la operación");
+                    alert.setTitle("Editar Servicio");
+                    alert.setHeaderText(null);
                     alert.setContentText("Servicio editado exitosamente");
 
                     alert.showAndWait();
@@ -118,8 +118,8 @@ public class NuevoServicioController implements Initializable {
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar guardar el servicio");
+            alert.setHeaderText(null);
             alert.setContentText(Validacion.mensaje);
             alert.showAndWait();
             Validacion.mensaje = "";

@@ -101,8 +101,8 @@ public class NuevoClienteController implements Initializable {
 
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Resultado de la operación");
+                alert.setTitle("Agregar cliente");
+                alert.setHeaderText(null);
                 alert.setContentText("Nuevo cliente agregado exitosamente");
                 alert.showAndWait();
                 App.setRoot("Clientes");
@@ -119,8 +119,8 @@ public class NuevoClienteController implements Initializable {
 
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Resultado de la operación");
+                alert.setTitle("Editar Cliente");
+                alert.setHeaderText(null);
                 alert.setContentText("Cliente editado exitosamente");
 
                 alert.showAndWait();
@@ -132,8 +132,8 @@ public class NuevoClienteController implements Initializable {
             cliente = null;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar guardar el cliente");
+            alert.setHeaderText(null);
             alert.setContentText(Validacion.mensaje);
             alert.showAndWait();
             Validacion.mensaje = "";

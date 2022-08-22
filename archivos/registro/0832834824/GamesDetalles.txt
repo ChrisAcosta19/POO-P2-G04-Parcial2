@@ -1,0 +1,1 @@
+Fecha: a,Número de ejercicios: 1,Número de fallos: 0,Tiempo total: 04 seg;Número de imágenes: 2,Número de fallos: 0,Tiempo: 02 seg

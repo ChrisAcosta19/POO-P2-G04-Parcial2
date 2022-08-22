@@ -16,6 +16,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import modelo.Atencion;
 import modelo.Cita;
 import modelo.Cliente;
@@ -27,30 +29,21 @@ import modelo.Cliente;
 public class CitasController implements Initializable {
 
 
-    @FXML
-    private TableView<Cita> tvCitas;
-    @FXML
-    private TableColumn colCliente;
-    @FXML
-    private TableColumn colTerapista;
-    @FXML
-    private TableColumn colServicio;
-    @FXML
-    private TableColumn colFecha;
-    @FXML
-    private TableColumn colHora;
-    @FXML
-    private Button btnRegresar;
-    @FXML
-    private TextField txtCedCliente;
-    @FXML
-    private TextField txtFecha;
-    @FXML
-    private Button btnConsCliente;
-    @FXML
-    private Button btnConsFecha;
-    @FXML
-    private Button btnBorrarFiltros;
+    @FXML private TableView<Cita> tvCitas;
+    @FXML private TableColumn colCliente;
+    @FXML private TableColumn colTerapista;
+    @FXML private TableColumn colServicio;
+    @FXML private TableColumn colFecha;
+    @FXML private TableColumn colHora;
+    @FXML private TextField txtCedCliente;
+    @FXML private TextField txtFecha;
+    @FXML private Button btnConsCliente;
+    @FXML private Button btnConsFecha;
+    @FXML private Button btnBorrarFiltros;
+    @FXML private ImageView regresar;
+    @FXML private ImageView icon;
+    @FXML private ImageView agregar;
+    @FXML private ImageView registrar;
     /**
      * Initializes the controller class.
      */
@@ -63,9 +56,13 @@ public class CitasController implements Initializable {
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         tvCitas.getItems().setAll(cargarCitasPendientes());
         
-        btnRegresar.setOnAction(eh -> {
+        App.setImage("iconCitas",App.pathImg,icon);
+        App.setImage("regresar",App.pathImg,regresar);
+        App.setImage("agregarCita",App.pathImg,agregar);
+        App.setImage("registrar",App.pathImg,registrar);
+        regresar.setOnMouseClicked(eh -> {
             try {
-                App.setRoot("primary1");
+                App.setRoot("primary");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -119,5 +116,13 @@ public class CitasController implements Initializable {
             }
         }
         return pendientes;
+    }
+
+    @FXML
+    private void agregarCita(MouseEvent event) {
+    }
+
+    @FXML
+    private void registrarAtencion(MouseEvent event) {
     }
 }

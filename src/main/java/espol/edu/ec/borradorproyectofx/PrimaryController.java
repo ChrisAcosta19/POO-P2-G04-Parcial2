@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  *
  * @author Usuario
  */
-public class Primary1Controller implements Initializable {
+public class PrimaryController implements Initializable {
 
     @FXML private BorderPane mainPane;
     @FXML private ImageView iconSalir;
@@ -42,7 +42,12 @@ public class Primary1Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cargarImagenes();
+        App.setImage("iconServicios",App.pathImg,iconSrv);
+        App.setImage("iconCitas",App.pathImg,iconCitas);
+        App.setImage("iconAtenciones",App.pathImg,iconAtens);
+        App.setImage("iconEmpleados",App.pathImg,iconEmpl);
+        App.setImage("iconClientes",App.pathImg,iconClientes);
+        App.setImage("iconSalir",App.pathImg,iconSalir);
         btnServicios.setOnAction(eh -> {
             try {
                 App.setRoot("Servicios");
@@ -90,43 +95,5 @@ public class Primary1Controller implements Initializable {
         });
     }
 
-    private void cargarImagenes(){
-        InputStream input = null;
-        Image image = null;
-        try {
-            input = App.class.getResource(App.pathImg + "iconServicios.png").openStream();
-            image = new Image(input, 100, 100, false, false);
-            iconSrv.setImage(image);
-            
-            input = App.class.getResource(App.pathImg + "iconCitas.png").openStream();
-            image = new Image(input, 100, 100, false, false);
-            iconCitas.setImage(image);
-            
-            input = App.class.getResource(App.pathImg + "iconAtenciones.png").openStream();
-            image = new Image(input, 100, 100, false, false);
-            iconAtens.setImage(image);
-            
-            input = App.class.getResource(App.pathImg + "iconEmpleados.png").openStream();
-            image = new Image(input, 100, 100, false, false);
-            iconEmpl.setImage(image);
-            
-            input = App.class.getResource(App.pathImg + "iconClientes.png").openStream();
-            image = new Image(input, 100, 100, false, false);
-            iconClientes.setImage(image);
-            
-            input = App.class.getResource(App.pathImg + "iconSalir.png").openStream();
-            image = new Image(input, 100, 100, false, false);
-            iconSalir.setImage(image);
-        } catch (IOException ex) {
-            System.out.println("No se pudo cargar imagen");
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException ex) {
-                    System.out.println("Error al cerrar el recurso");
-                }
-            }
-        }
-    }
+    
 }
