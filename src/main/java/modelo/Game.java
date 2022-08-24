@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Juan Pablo Plúas
  */
-public class Game implements Serializable{
+public class Game implements Serializable, Cloneable{
         
     private static final long serialVersionUID = 1;
     int numEjercicios;
@@ -92,6 +92,11 @@ public class Game implements Serializable{
         }
         return games;
     }
+    
+    public Object clone() throws CloneNotSupportedException 
+   {
+      return (Game)super.clone();
+   }
     
         public int getNumEjercicios() {
             return numEjercicios;

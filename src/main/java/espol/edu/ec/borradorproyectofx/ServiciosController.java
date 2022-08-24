@@ -21,6 +21,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -34,14 +36,12 @@ public class ServiciosController implements Initializable {
     @FXML private TableColumn colDuracion;
     @FXML private TableColumn colPrecio;
     @FXML private TableColumn colEstado;
-    
-    @FXML
-    private Button btnRegresar;
-
-    /**
-     * Initializes the controller class.
-     */
-    
+    @FXML private ImageView regresar;
+    @FXML private ImageView agregar;
+    @FXML private ImageView editar;
+    @FXML private ImageView eliminar;
+    @FXML private ImageView icon;
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -50,9 +50,14 @@ public class ServiciosController implements Initializable {
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         tvServicios.getItems().setAll(Servicio.cargarServicios(App.pathServicios));
         
-        btnRegresar.setOnAction(eh -> {
+        App.setImage("iconServicios",App.pathImg,icon);
+        App.setImage("regresar",App.pathImg,regresar);
+        App.setImage("agregar",App.pathImg,agregar);
+        App.setImage("editar",App.pathImg,editar);
+        App.setImage("eliminar",App.pathImg,eliminar);
+        regresar.setOnMouseClicked(eh -> {
             try {
-                App.setRoot("primary1");
+                App.setRoot("primary");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -60,7 +65,7 @@ public class ServiciosController implements Initializable {
     }
 
     @FXML
-    private void mostrarVentana(ActionEvent event) throws IOException {
+    private void agregarServicio(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevoServicio.fxml"));//no tiene el controlador especificado
         VBox root = (VBox) fxmlLoader.load();
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios}
@@ -68,12 +73,12 @@ public class ServiciosController implements Initializable {
     }
 
     @FXML
-    private void editarServicio(ActionEvent event) throws IOException {
+    private void editarServicio(MouseEvent event) throws IOException {
         Servicio s = (Servicio) tvServicios.getSelectionModel().getSelectedItem();
         if(s == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar editar un servicio");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un servicio");
             alert.showAndWait();
         }else{
@@ -87,18 +92,18 @@ public class ServiciosController implements Initializable {
     }
 
     @FXML
-    private void eliminarServicio(ActionEvent event) {
+    private void eliminarServicio(MouseEvent event) {
         Servicio s = (Servicio) tvServicios.getSelectionModel().getSelectedItem();
         if(s == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar eliminar un servicio");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un servicio");
             alert.showAndWait();
         }else{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Eliminar Servicio");
+            alert.setTitle("Eliminar Servicio");
+            alert.setHeaderText(null);
             alert.setContentText("¿Está seguro de que desea eliminar este servicio?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
@@ -110,8 +115,8 @@ public class ServiciosController implements Initializable {
 
                     //mostrar informacion
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Resultado de la operación");
+                    alert.setTitle("Eliminar Servicio");
+                    alert.setHeaderText(null);
                     alert.setContentText("Servicio eliminado exitosamente");
                     alert.showAndWait();
                     App.setRoot("Servicios");
@@ -123,4 +128,5 @@ public class ServiciosController implements Initializable {
             }
         }
     }
+
 }

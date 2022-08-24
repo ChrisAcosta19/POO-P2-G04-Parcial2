@@ -6,6 +6,7 @@ package espol.edu.ec.borradorproyectofx;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import modelo.Cliente;
 
@@ -33,9 +35,14 @@ public class ClientesController implements Initializable {
     @FXML private TableColumn colTelefono;
     @FXML private TableColumn colEmail;
     @FXML private TableColumn<Cliente, Void> colRepresentante;
-    @FXML private Button btnRegresar;
     @FXML private ImageView regresar;
     public static Cliente clienteSeleccionado;
+    @FXML private ImageView agregar;
+    @FXML private ImageView editar;
+    @FXML private ImageView actividades;
+    @FXML private ImageView icon;
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -48,31 +55,33 @@ public class ClientesController implements Initializable {
         colRepresentante.setCellValueFactory(new PropertyValueFactory<>("datosRepresentante"));
         tvClientes.getItems().setAll(Cliente.cargarClientes(App.pathClientes));
         
-        GameController.setImage("regresar",App.pathImgGame,regresar);
-        
+        App.setImage("iconClientes",App.pathImg,icon);
+        App.setImage("regresar",App.pathImg,regresar);
+        App.setImage("agregarPersona",App.pathImg,agregar);
+        App.setImage("editarPersona",App.pathImg,editar);
+        App.setImage("actividades",App.pathImg,actividades);
         regresar.setOnMouseClicked(eh -> {
             try {
-                App.setRoot("primary1");
+                App.setRoot("primary");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
     }
-    
     @FXML
-    private void mostrarVentana(ActionEvent event) throws IOException {
+    private void agregarCliente(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevoCliente.fxml"));//no tiene el controlador especificado
         VBox root = (VBox) fxmlLoader.load();
         //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios}
         App.changeRoot(root);
     }
-
+    
     @FXML
-    private void editarCliente(ActionEvent event) throws IOException {
+    private void editarCliente(MouseEvent event) throws IOException {
         Cliente cl = (Cliente) tvClientes.getSelectionModel().getSelectedItem();
         if(cl == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
+            alert.setTitle("Error al intentar editar cliente");
             alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un cliente");
             alert.showAndWait();
@@ -85,13 +94,13 @@ public class ClientesController implements Initializable {
             App.changeRoot(root);
         }
     }
-
+    
     @FXML
-    private void mostrarActividades(ActionEvent event) throws IOException{
+    private void mostrarActividades(MouseEvent event) throws IOException{
         Cliente cl = (Cliente) tvClientes.getSelectionModel().getSelectedItem();
         if(cl == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
+            alert.setTitle("Error al intentar consultar actividades");
             alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un cliente");
             alert.showAndWait();
@@ -100,4 +109,5 @@ public class ClientesController implements Initializable {
             App.setRoot("actividades");
         }
     }
+
 }

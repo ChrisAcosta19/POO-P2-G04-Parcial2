@@ -82,9 +82,9 @@ public class NuevoEmpleadoController implements Initializable {
         Servicio s = cmbServicios.getValue();
         if(s == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
-            alert.setContentText("Debe seleccionar un servicio del ComboBox");
+            alert.setTitle("Error al intentar agregar servicio");
+            alert.setHeaderText(null);
+            alert.setContentText("Debe seleccionar un servicio de la lista");
             alert.showAndWait();
         } else {
             if(!servicios.contains(s)){
@@ -99,8 +99,8 @@ public class NuevoEmpleadoController implements Initializable {
         Servicio s = (Servicio) tvServicios.getSelectionModel().getSelectedItem();
         if(s == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar editar servicio");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un servicio de la tabla");
             alert.showAndWait();
         }else{
@@ -149,8 +149,8 @@ public class NuevoEmpleadoController implements Initializable {
 
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Resultado de la operación");
+                alert.setTitle("Agregar Empleado");
+                alert.setHeaderText(null);
                 alert.setContentText("Nuevo empleado agregado exitosamente");
 
                 alert.showAndWait();
@@ -169,8 +169,8 @@ public class NuevoEmpleadoController implements Initializable {
 
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Resultado de la operación");
+                alert.setTitle("Editar Empleado");
+                alert.setHeaderText(null);
                 alert.setContentText("Empleado editado exitosamente");
 
                 alert.showAndWait();
@@ -182,8 +182,8 @@ public class NuevoEmpleadoController implements Initializable {
             empleado = null;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar guardar empleado");
+            alert.setHeaderText(null);
             alert.setContentText(Validacion.mensaje);
             alert.showAndWait();
             Validacion.mensaje = "";

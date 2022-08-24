@@ -6,7 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.*;
+import java.util.ArrayList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import modelo.*;
+
 
 /**
  * JavaFX App
@@ -19,13 +23,13 @@ public class App extends Application {
     public static String pathClientes = "archivos/Clientes.bin";
     public static String pathCitas = "archivos/Citas.bin";
     public static String pathAtenciones = "archivos/Atenciones.bin";
-    public static String pathImg = "images/";
-    public static String pathImgGame = "src/main/resources/images/game/";
-    
+    public static String pathImg = "src/main/resources/media/";
+    public static String pathImgGame = "src/main/resources/game/";
+    public static ArrayList<String> clientesCedulas=new ArrayList<>();
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary1"), 640, 480);
+        scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
@@ -38,8 +42,29 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+    
+    public static void setImage(String name,String path,ImageView iView){
+        InputStream input = null;
+           Image image = null;
+            try {
+                input = new FileInputStream(path + name +".png");
+                image = new Image(input, 100, 100, false, false);
+                iView.setImage(image);
 
-    public static void main(String[] args) {
+            } catch (Exception ex) {
+                System.out.println("No se pudo cargar imagen");
+            } finally {
+                if (input != null) {
+                    try {
+                        input.close();
+                    } catch (Exception ex) {
+                        System.out.println("Error al cerrar el recurso");
+                    }
+                }
+            }
+    }
+    
+    public static void main(String[] args) {        
         try(BufferedReader br = new BufferedReader(new FileReader("archivos/Iniciar.txt"))){
             String linea = br.readLine();
             if(linea.equalsIgnoreCase("false")){
@@ -57,6 +82,11 @@ public class App extends Application {
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
+        
+        ArrayList<Cliente> clientes1= Cliente.cargarClientes(App.pathClientes);
+        for(Cliente c:clientes1){
+        clientesCedulas.add(c.getCedula());
+    }
         
         launch();
     }

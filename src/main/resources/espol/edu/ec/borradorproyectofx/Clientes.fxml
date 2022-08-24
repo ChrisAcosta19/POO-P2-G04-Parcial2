@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,14 +12,15 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.ClientesController">
    <children>
-      <AnchorPane prefHeight="91.0" prefWidth="640.0">
+      <AnchorPane prefHeight="90.0" prefWidth="640.0">
          <children>
-            <Label layoutX="268.0" layoutY="23.0" text="CLIENTES">
+            <Label layoutX="268.0" layoutY="19.0" text="CLIENTES">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <ImageView fx:id="regresar" fitHeight="60.0" fitWidth="60.0" layoutX="22.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="regresar" fitHeight="45.0" fitWidth="45.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="icon" fitHeight="45.0" fitWidth="45.0" layoutX="573.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
       <TableView fx:id="tvClientes" prefHeight="330.0" prefWidth="640.0">
@@ -28,18 +28,18 @@
           <TableColumn fx:id="colCedula" prefWidth="99.0" text="Cédula" />
           <TableColumn fx:id="colNombre" prefWidth="82.0" text="Nombre" />
             <TableColumn fx:id="colTelefono" prefWidth="89.0" text="Teléfono" />
-            <TableColumn fx:id="colEmail" minWidth="20.0" prefWidth="101.0" text="E-mail" />
-            <TableColumn fx:id="colRepresentante" prefWidth="268.0" text="Representante" />
+            <TableColumn fx:id="colEmail" minWidth="20.0" prefWidth="122.0" text="E-mail" />
+            <TableColumn fx:id="colRepresentante" prefWidth="247.0" text="Representante" />
         </columns>
          <VBox.margin>
             <Insets left="20.0" right="20.0" />
          </VBox.margin>
       </TableView>
-      <HBox alignment="CENTER" prefHeight="87.0" prefWidth="640.0" spacing="10.0">
+      <HBox alignment="CENTER" prefHeight="110.0" prefWidth="640.0" spacing="30.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#mostrarVentana" text="Agregar Cliente" />
-            <Button mnemonicParsing="false" onAction="#editarCliente" text="Editar Cliente" />
-            <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#mostrarActividades" text="Consultar actividades" />
+            <ImageView fx:id="agregar" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#agregarCliente" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="editar" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#editarCliente" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="actividades" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#mostrarActividades" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
    </children>
