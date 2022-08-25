@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,6 +42,7 @@ public class ClientesController implements Initializable {
     @FXML private ImageView editar;
     @FXML private ImageView actividades;
     @FXML private ImageView icon;
+    @FXML private Label lblTitulo;
     
     
     /**

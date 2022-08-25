@@ -1,4 +1,3 @@
-
 package espol.edu.ec.borradorproyectofx;
 
 import java.net.URL;
@@ -8,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import java.io.*;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;

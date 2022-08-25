@@ -9,9 +9,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 /**
  * FXML Controller class
@@ -21,11 +23,12 @@ import javafx.scene.layout.BorderPane;
 public class GameMainController implements Initializable {
 
 
-    @FXML private BorderPane mainPane;
     @FXML private ImageView btnAvanzar;
     @FXML private ImageView btnHome;
     @FXML private TextField fieldNumEjercicios;
     public static int numEjercicios;
+    @FXML private Label lblEjercicios;
+    @FXML private BorderPane mainPane;
     
     /*private int numEjercicio=Integer.valueOf(fieldNumEjercicios.getText());
     

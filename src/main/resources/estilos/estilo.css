@@ -1,0 +1,27 @@
+Label { -fx-font-family: "Hervetica";
+         -fx-font-size: 36px;
+         -fx-text-fill: #008287;
+}
+
+BorderPane { -fx-background-color: #D5FFF7; }
+AnchorPane { -fx-background-color: #D5FFF7; }
+
+Button { -fx-background-color: #008287;
+         -fx-border-color: #FFFFFF;
+         -fx-border-width: 2;
+         -fx-text-fill: #FFFFFF;
+         -fx-font-family: "Times New Roman";
+         -fx-font-style: italic;
+         -fx-font-size: 14px;
+         -fx-background-radius: 10 10 10 10;
+         -fx-border-radius: 10 10 10 10;
+}
+
+Button:hover { -fx-background-color: #333333;
+               -fx-font-size: 14px;
+}
+
+Button:pressed { -fx-background-color: #FFFFFF;
+	-fx-text-fill: #000000;
+	-fx-font-weight: bold;
+}

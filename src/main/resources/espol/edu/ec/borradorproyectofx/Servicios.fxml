@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.ServiciosController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../estilos/estiloSubmenus.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.ServiciosController">
    <children>
       <AnchorPane prefHeight="90.0" prefWidth="640.0">
          <children>
-            <Label layoutX="261.0" layoutY="20.0" text="SERVICIOS">
+            <Label fx:id="lblTitulo" layoutX="261.0" layoutY="20.0" text="SERVICIOS">
                <font>
                   <Font size="25.0" />
                </font></Label>

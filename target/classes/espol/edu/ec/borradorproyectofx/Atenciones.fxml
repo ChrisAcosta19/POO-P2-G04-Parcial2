@@ -13,18 +13,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.AtencionesController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../estilos/estiloSubmenus.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.AtencionesController">
    <children>
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="640.0">
          <children>
-            <Label text="Atenciones">
+            <Label stylesheets="@../../../../estilos/estilo.css" text="Atenciones">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
          </children>
       </HBox>
+<<<<<<< HEAD
       <GridPane maxWidth="550.0">
+=======
+      <GridPane stylesheets="@../../../../estilos/estiloSubmenus.css">
+>>>>>>> 31fe0810206eb73af1d1afd707bc665ee27954a6
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,7 +41,7 @@
          <children>
             <TextField fx:id="txtCedCliente" GridPane.columnIndex="1" />
             <Label text="Cédula Cliente:" />
-            <Label text="Cédula Empleado:" GridPane.rowIndex="1" />
+            <Label stylesheets="@../../../../estilos/estiloSubmenus.css" text="Cédula Empleado:" GridPane.rowIndex="1" />
             <TextField fx:id="txtCedEmpleado" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label layoutX="10.0" layoutY="24.0" text="Fecha YYYY-MM-DD:" GridPane.rowIndex="2" />
             <TextField fx:id="txtFecha" layoutX="110.0" layoutY="20.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -47,13 +51,13 @@
          <children>
             <BorderPane prefHeight="54.0" prefWidth="447.0">
                <left>
-                  <Button fx:id="btnConsFecha" mnemonicParsing="false" prefWidth="128.0" text="Consultar por Fecha" BorderPane.alignment="CENTER" />
+                  <Button fx:id="btnConsFecha" mnemonicParsing="false" prefWidth="128.0" stylesheets="@../../../../estilos/estiloSubmenus.css" text="Consultar por Fecha" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Button fx:id="btnConsCliente" mnemonicParsing="false" text="Consultar por Cliente" BorderPane.alignment="CENTER" />
+                  <Button fx:id="btnConsCliente" mnemonicParsing="false" stylesheets="@../../../../estilos/estiloSubmenus.css" text="Consultar por Cliente" BorderPane.alignment="CENTER" />
                </right>
                <center>
-                  <Button fx:id="btnConsEmpleado" mnemonicParsing="false" text="Consultar por Empleado" BorderPane.alignment="CENTER" />
+                  <Button fx:id="btnConsEmpleado" mnemonicParsing="false" stylesheets="@../../../../estilos/estiloSubmenus.css" text="Consultar por Empleado" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </children>
@@ -69,8 +73,8 @@
       </TableView>
       <HBox alignment="CENTER" prefHeight="86.0" prefWidth="640.0" spacing="10.0">
          <children>
-            <Button fx:id="btnBorrarFiltros" mnemonicParsing="false" text="Borrar Filtros" />
-            <Button fx:id="btnRegresar" mnemonicParsing="false" text="Regresar" />
+            <Button fx:id="btnBorrarFiltros" mnemonicParsing="false" stylesheets="@../../../../estilos/estiloSubmenus.css" text="Borrar Filtros" />
+            <Button fx:id="btnRegresar" mnemonicParsing="false" stylesheets="@../../../../estilos/estiloSubmenus.css" text="Regresar" />
          </children>
       </HBox>
    </children>

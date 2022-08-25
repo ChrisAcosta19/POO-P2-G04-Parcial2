@@ -25,7 +25,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.*;
-
 /**
  * FXML Controller class
  *
@@ -105,9 +104,7 @@ public class GameController implements Initializable, Serializable {
         //
         boolean guardar=false;
         if (ActividadesController.replayGame==null){
-        
-            jugar(g,true);
-            
+            jugar(g,true);  
         } else{
             Alert alert=new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Guardado de Resultados");
@@ -126,37 +123,37 @@ public class GameController implements Initializable, Serializable {
     }
     
     void jugar(Game g, boolean guardarResultados){
-        
         try {
             ejercicio(g,ejercicio);
         } catch (Exception ex) {}
         
         try{
-        btnVerificarRespuesta.setOnMouseClicked(eh -> {
-            int respuesta;
-            try {
-                respuesta=Integer.valueOf(fieldRespuesta.getText());
-            } catch (Exception ex) {
-                fieldRespuesta.clear();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+            btnVerificarRespuesta.setOnMouseClicked(eh -> {
+                int respuesta;
+                try {
+                    respuesta = Integer.valueOf(fieldRespuesta.getText());
+                    if (respuesta == g.getEjercicios().get(ejercicio).getRespuesta()) {
+                        App.setImage("happy", App.pathImgGame, respuestaVisual);
+                        sonido(true);
+                        if (!g.getEjercicios().get(ejercicio).isDone()) {
+                            g.getEjercicios().get(ejercicio).done();
+                        }
+                    } else {
+                        setGif("globoe", respuestaVisual);
+                        sonido(false);
+                        if (!g.getEjercicios().get(ejercicio).isDone()) {
+                            g.getEjercicios().get(ejercicio).intentosAumentar();
+                        }
+                    }
+                } catch (Exception ex) {
+                    fieldRespuesta.clear();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error al ingresar número");
                     alert.setHeaderText(null);
                     alert.setContentText("Ingrese un número válido");
                     alert.showAndWait();
-                    
-            }
-            if(Integer.valueOf(fieldRespuesta.getText())==g.getEjercicios().get(ejercicio).getRespuesta()){
-            App.setImage("happy",App.pathImgGame,respuestaVisual);
-            sonido(true);
-            if(!g.getEjercicios().get(ejercicio).isDone()){
-                g.getEjercicios().get(ejercicio).done();
-            }
-            } else{setGif("globoe",respuestaVisual);
-            sonido(false);
-            if(!g.getEjercicios().get(ejercicio).isDone()){
-               g.getEjercicios().get(ejercicio).intentosAumentar();
-            }
-            }
+
+                }
             });
         }catch (Exception ex) {}
         
@@ -165,7 +162,7 @@ public class GameController implements Initializable, Serializable {
                Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("D:");
                     alert.setHeaderText(null);
-                    alert.setContentText("La pregunta no ha sido respondida");
+                    alert.setContentText("La pregunta aún no ha sido respondida correctamente");
                     alert.showAndWait(); 
             }else{
             respuestaVisual.imageProperty().set(null);
@@ -264,7 +261,7 @@ public class GameController implements Initializable, Serializable {
                 Alert alert=new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("¡OJO!");
                 alert.setHeaderText(null);
-                alert.setContentText("Si sales ahora, no se guardará el juego ni sus resultados, ¿desea continuar?");
+                alert.setContentText("Si sales ahora, no se guardará el juego ni sus resultados, ¿desea salir?");
                 Optional<ButtonType> result= alert.showAndWait();
                 if(result.get()==ButtonType.OK){
             try {
@@ -286,12 +283,12 @@ public class GameController implements Initializable, Serializable {
         
     } 
     
-    void sonido(boolean respuesta){ 
+    void sonido(boolean respuesta) {
         Media media;
         MediaPlayer mp;
-        File file; 
-            
-        try{
+        File file;
+
+        try {
             if (respuesta) {
                 file = new File(App.pathImgGame + "sonidoBien.wav");
                 media = new Media(file.toURI().toString());
@@ -305,13 +302,13 @@ public class GameController implements Initializable, Serializable {
                 mp.play();
                 System.out.println("REPRODUCIENDO");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("\nError en lectura de archivo:" + e.getMessage() );
+            System.out.println("\nError en lectura de archivo:" + e.getMessage());
         }
     }
     
-    void ejercicio(Game g, int ejercicio)throws IOException {
+    void ejercicio(Game g, int ejercicio) throws IOException {
         img00.imageProperty().set(null);img01.imageProperty().set(null);img02.imageProperty().set(null);
         img03.imageProperty().set(null);img10.imageProperty().set(null);img11.imageProperty().set(null);
         img12.imageProperty().set(null);img13.imageProperty().set(null);
@@ -339,23 +336,23 @@ public class GameController implements Initializable, Serializable {
     
     void setGif(String name,ImageView iView){
         InputStream input = null;
-           Image image = null;
-            try {
-                input = new FileInputStream(App.pathImgGame + name +".gif");
-                image = new Image(input, 100, 100, false, false);
-                iView.setImage(image);
+        Image image = null;
+        try {
+            input = new FileInputStream(App.pathImgGame + name + ".gif");
+            image = new Image(input, 100, 100, false, false);
+            iView.setImage(image);
 
-            } catch (Exception ex) {
-                System.out.println("No se pudo cargar imagen");
-            } finally {
-                if (input != null) {
-                    try {
-                        input.close();
-                    } catch (Exception ex) {
-                        System.out.println("Error al cerrar el recurso");
-                    }
+        } catch (Exception ex) {
+            System.out.println("No se pudo cargar imagen");
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (Exception ex) {
+                    System.out.println("Error al cerrar el recurso");
                 }
             }
+        }
     }
     
     void respuesta(Ejercicio e,boolean a){
@@ -376,40 +373,41 @@ public class GameController implements Initializable, Serializable {
     }
     
     ArrayList <Integer> imagesPerQuestion(int numEjercicios){
-    ArrayList <Integer> imagesPerQ=new ArrayList<>();
+        ArrayList<Integer> imagesPerQ = new ArrayList<>();
         int a;
-        if (numEjercicios<=5){
-          for(int b=0;b<numEjercicios;b++){
-            a= (int)Math.floor(Math.random()*4)+1;
-            imagesPerQ.add(a);}
-          
-        } else if (numEjercicios<=10){
-                       
-            for(int b=0;b<numEjercicios;b++){
-              a= (int)Math.floor(Math.random()*6)+1;
-              imagesPerQ.add(a);}
-        
-        } else if (numEjercicios>10){
-            for(int b=0;b<5;b++){
-                a= (int)Math.floor(Math.random()*5)+1;
-                imagesPerQ.add(a);}
-            
-            for(int b=0;b<numEjercicios-6;b++){
-                a= (int)Math.floor(Math.random()*8);
-                imagesPerQ.add(a);}
-            
- 
+        if (numEjercicios <= 5) {
+            for (int b = 0; b < numEjercicios; b++) {
+                a = (int) Math.floor(Math.random() * 4) + 1;
+                imagesPerQ.add(a);
+            }
+
+        } else if (numEjercicios <= 10) {
+            for (int b = 0; b < numEjercicios; b++) {
+                a = (int) Math.floor(Math.random() * 6) + 1;
+                imagesPerQ.add(a);
+            }
+
+        } else if (numEjercicios > 10) {
+            for (int b = 0; b < 5; b++) {
+                a = (int) Math.floor(Math.random() * 5) + 1;
+                imagesPerQ.add(a);
+            }
+
+            for (int b = 0; b < numEjercicios - 6; b++) {
+                a = (int) Math.floor(Math.random() * 8);
+                imagesPerQ.add(a);
+            }
         }
         return imagesPerQ;
     }
     
     void imagesLocation(ArrayList <String> imagenes){
-        int n=imagenes.size();
-            for(int r=0;r<=(n-1);r++){
-                String imagenElegida= imagenes.get(r);
-                ImageView iv=getIView(r);
-                App.setImage(imagenElegida,App.pathImgGame,iv);
-            }
+        int n = imagenes.size();
+        for (int r = 0; r <= (n - 1); r++) {
+            String imagenElegida = imagenes.get(r);
+            ImageView iv = getIView(r);
+            App.setImage(imagenElegida, App.pathImgGame, iv);
+        }
     }
     
     void imagesSelection(int n, boolean imgDif,ArrayList<String> imagenesElegidas){
@@ -427,5 +425,4 @@ public class GameController implements Initializable, Serializable {
             }
         }
     }
-   
 }

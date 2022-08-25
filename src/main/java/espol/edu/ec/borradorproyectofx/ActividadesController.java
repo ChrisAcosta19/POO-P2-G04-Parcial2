@@ -65,6 +65,8 @@ public class ActividadesController implements Initializable {
     
     ArrayList<Game> listaResultados=Game.cargarResultados(ClientesController.clienteSeleccionado.getCedula());
     public static Game replayGame;
+    @FXML
+    private Label lblTitulo;
     
     
     
@@ -73,7 +75,7 @@ public class ActividadesController implements Initializable {
         
                 
         lblSelected.setText(ClientesController.clienteSeleccionado.getNombre());
-        App.setImage("regresar",App.pathImgGame,regresar);
+        App.setImage("regresar",App.pathImg,regresar);
         
         for(Game g:listaResultados){
             System.out.println(g);
@@ -131,7 +133,7 @@ public class ActividadesController implements Initializable {
         System.out.println(g);
         if(g == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
+            alert.setTitle("Error al intentar consultar detalles de sesión de juego");
             alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar una sesión de juego");
             alert.showAndWait();
@@ -206,7 +208,7 @@ public class ActividadesController implements Initializable {
         Game g = (Game) tableAct.getSelectionModel().getSelectedItem();
         if(g == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
+            alert.setTitle("Error al intentar volver a jugar sesión");
             alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar una sesión de juego");
             alert.showAndWait();

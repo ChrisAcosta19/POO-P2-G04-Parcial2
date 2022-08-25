@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.GameController">
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../estilos/estiloGame.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.GameController">
    <center>
       <GridPane fx:id="buttonsPane" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -50,7 +50,7 @@
       </GridPane>
    </center>
    <top>
-      <Label alignment="CENTER" prefHeight="50.0" prefWidth="300.0" text="¿CUÁNTOS HAY?" textAlignment="JUSTIFY" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" prefHeight="55.0" prefWidth="380.0" stylesheets="@../../../../estilos/estiloGame.css" text="¿CUÁNTOS HAY?" textAlignment="JUSTIFY" BorderPane.alignment="CENTER">
          <font>
             <Font size="39.0" />
          </font>

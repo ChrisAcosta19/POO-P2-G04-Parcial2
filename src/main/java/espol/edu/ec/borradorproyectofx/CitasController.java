@@ -18,11 +18,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import modelo.Atencion;
 import modelo.Cita;
 import modelo.Cliente;
@@ -32,8 +35,6 @@ import modelo.Cliente;
  * @author chris
  */
 public class CitasController implements Initializable {
-
-
     @FXML private TableView<Cita> tvCitas;
     @FXML private TableColumn colCliente;
     @FXML private TableColumn colTerapista;
@@ -45,37 +46,33 @@ public class CitasController implements Initializable {
     @FXML private Button btnConsCliente;
     @FXML private Button btnConsFecha;
     @FXML private Button btnBorrarFiltros;
-    /*@FXML private ImageView regresar;
+    @FXML private ImageView regresar;
     @FXML private ImageView icon;
     @FXML private ImageView agregar;
-    @FXML private ImageView registrar;*/
-    @FXML private Button btnRegresar;
-    @FXML private Button btnCrearCita;
-    @FXML private Button btnEliminarCita;
-    @FXML private Button btnRegistrarAtencion;
-    ArrayList<Cita> citas;
-    ArrayList<Cita> citasPendientes;
+    @FXML private ImageView registrar;
+    @FXML
+    private Label lblTitulo;
     
+    ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
+    ArrayList<Cita> citasPendientes = cargarCitasPendientes();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        citas = Cita.cargarCitas(App.pathCitas);
-        citasPendientes = cargarCitasPendientes();
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colTerapista.setCellValueFactory(new PropertyValueFactory<>("encargadoServicio"));
         colServicio.setCellValueFactory(new PropertyValueFactory<>("servicio"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
-        tvCitas.getItems().setAll(citas);
+        tvCitas.getItems().setAll(cargarCitasPendientes());
         
-        /*App.setImage("iconCitas",App.pathImg,icon);
+        App.setImage("iconCitas",App.pathImg,icon);
         App.setImage("regresar",App.pathImg,regresar);
         App.setImage("agregarCita",App.pathImg,agregar);
-        App.setImage("registrar",App.pathImg,registrar);*/
+        App.setImage("registrar",App.pathImg,registrar);
         
-        btnRegresar.setOnAction(eh -> {
+        regresar.setOnMouseClicked(eh -> {
             try {
                 App.setRoot("primary");
             } catch (IOException ex) {
@@ -111,10 +108,10 @@ public class CitasController implements Initializable {
         btnBorrarFiltros.setOnAction(eh -> {
             txtFecha.setText("");
             txtCedCliente.setText("");
-            tvCitas.getItems().setAll(citas);
+            tvCitas.getItems().setAll(cargarCitasPendientes());
         });
         
-        btnCrearCita.setOnAction(eh -> {
+        agregar.setOnMouseClicked(eh -> {
             try {
                 App.setRoot("nuevaCita");
             } catch (IOException ex) {
@@ -141,6 +138,33 @@ public class CitasController implements Initializable {
         return pendientes;
     }
 
+    @FXML
+    private void agregarCita(MouseEvent event) {
+    }
+
+    @FXML
+    private void registrarAtencion(MouseEvent event) {
+        Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
+        System.out.println("Registrando atención");
+        if(c == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Debe seleccionar una cita de la tabla");
+            alert.showAndWait();
+        } else {
+            try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
+            VBox root = (VBox) fxmlLoader.load();
+            NuevaAtencionController ct = (NuevaAtencionController) fxmlLoader.getController();
+            ct.llenarCampos(c);
+            App.changeRoot(root);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
     @FXML
     private void eliminarCita(ActionEvent event) {
         Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
@@ -188,41 +212,6 @@ public class CitasController implements Initializable {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-            }
-        }
-    }
-
-   @FXML
-    public void registrarAtencion(ActionEvent event) {
-        Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
-        System.out.println("Registrando atención");
-        if(c == null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
-            alert.setContentText("Debe seleccionar una cita de la tabla");
-            alert.showAndWait();
-        } else if (citasPendientes.contains(c)){
-            try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
-            VBox root = (VBox) fxmlLoader.load();
-            NuevaAtencionController ct = (NuevaAtencionController) fxmlLoader.getController();
-            ct.llenarCampos(c);
-            App.changeRoot(root);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        } else {
-            //mostrar informacion
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText("Resultado de la operación");
-            alert.setContentText("Esta cita ya está registrada en una atención");
-            alert.showAndWait();
-            try {
-                App.setRoot("Citas");
-            } catch (IOException ex) {
-                ex.printStackTrace();
             }
         }
     }

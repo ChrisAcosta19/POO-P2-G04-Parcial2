@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -41,6 +42,8 @@ public class ServiciosController implements Initializable {
     @FXML private ImageView editar;
     @FXML private ImageView eliminar;
     @FXML private ImageView icon;
+    @FXML
+    private Label lblTitulo;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
