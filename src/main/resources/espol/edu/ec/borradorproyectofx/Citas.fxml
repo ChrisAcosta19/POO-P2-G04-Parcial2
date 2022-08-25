@@ -55,6 +55,7 @@
       <HBox alignment="CENTER" prefHeight="86.0" prefWidth="640.0" spacing="30.0">
          <children>
             <ImageView fx:id="agregar" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#agregarCita" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnEliminarCita" mnemonicParsing="false" onAction="#eliminarCita" text="Eliminar Cita" />
             <ImageView fx:id="registrar" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#registrarAtencion" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
