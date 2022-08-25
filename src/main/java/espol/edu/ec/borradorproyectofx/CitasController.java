@@ -4,15 +4,20 @@
  */
 package espol.edu.ec.borradorproyectofx;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.TableColumn;
@@ -49,6 +54,9 @@ public class CitasController implements Initializable {
     @FXML private ImageView registrar;
     @FXML
     private Label lblTitulo;
+    
+    ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
+    ArrayList<Cita> citasPendientes = cargarCitasPendientes();
     /**
      * Initializes the controller class.
      */
@@ -155,6 +163,57 @@ public class CitasController implements Initializable {
             App.changeRoot(root);
             } catch (IOException ex) {
                 ex.printStackTrace();
+            }
+        }
+    }
+    
+    @FXML
+    private void eliminarCita(ActionEvent event) {
+        Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
+        if(c == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Debe seleccionar una cita de la tabla");
+            alert.showAndWait();
+        }else{
+            if (citasPendientes.contains(c)){ //si la cita está pendiente, entonces no tiene atención
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText("Eliminar Cita");
+                alert.setContentText("¿Está seguro de que desea eliminar esta cita?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    citas.remove(c);
+                    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathCitas))){
+                        out.writeObject(citas);
+                        out.flush();
+
+                        //mostrar informacion
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Dialog");
+                        alert.setHeaderText("Resultado de la operación");
+                        alert.setContentText("Cita eliminada exitosamente");
+                        alert.showAndWait();
+                        App.setRoot("Citas");
+                    } catch (IOException ex) {
+                        System.out.println("IOException:" + ex.getMessage());
+                    }
+                } else {
+                    // ... user chose CANCEL or closed the dialog
+                }
+            } else {
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("No se puede eliminar una cita con atención registrada");
+                alert.showAndWait();
+                try {
+                    App.setRoot("Citas");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
     }
