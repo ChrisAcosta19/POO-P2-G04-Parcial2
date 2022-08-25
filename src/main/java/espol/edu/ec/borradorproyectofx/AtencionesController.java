@@ -59,7 +59,7 @@ public class AtencionesController implements Initializable {
         
         btnRegresar.setOnAction(eh -> {
             try {
-                App.setRoot("primary1");
+                App.setRoot("primary");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
