@@ -1,4 +1,3 @@
-
 package espol.edu.ec.borradorproyectofx;
 import static espol.edu.ec.borradorproyectofx.GameMainController.numEjercicios;
 import modelo.*;
@@ -311,7 +310,8 @@ public class GameController implements Initializable, Serializable {
             System.out.println("REPRODUCIENDO");
         }
         }catch(Exception e){
-        e.printStackTrace();}
+            e.printStackTrace();
+        }
     }
     void ejercicio(Game g, int ejercicio) throws IOException {
         img00.imageProperty().set(null);img01.imageProperty().set(null);img02.imageProperty().set(null);
