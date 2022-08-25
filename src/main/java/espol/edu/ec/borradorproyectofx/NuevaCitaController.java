@@ -37,7 +37,7 @@ public class NuevaCitaController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         btnCancelar.setOnAction(eh -> {
             try {
-                App.setRoot("primary1");
+                App.setRoot("Citas");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
