@@ -102,6 +102,14 @@ public class CitasController implements Initializable {
             txtCedCliente.setText("");
             tvCitas.getItems().setAll(cargarCitasPendientes());
         });
+        
+        agregar.setOnMouseClicked(eh -> {
+            try {
+                App.setRoot("nuevaCita");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }    
     
     public ArrayList<Cita> cargarCitasPendientes(){
@@ -128,5 +136,24 @@ public class CitasController implements Initializable {
 
     @FXML
     private void registrarAtencion(MouseEvent event) {
+        Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
+        System.out.println("Registrando atención");
+        if(c == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Debe seleccionar una cita de la tabla");
+            alert.showAndWait();
+        } else {
+            try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
+            VBox root = (VBox) fxmlLoader.load();
+            NuevaAtencionController ct = (NuevaAtencionController) fxmlLoader.getController();
+            ct.llenarCampos(c);
+            App.changeRoot(root);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }
