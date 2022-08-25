@@ -1,10 +1,8 @@
 package espol.edu.ec.borradorproyectofx;
-import static espol.edu.ec.borradorproyectofx.GameMainController.numEjercicios;
 import modelo.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,7 +10,6 @@ import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -24,12 +21,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.*;
+
 /**
  * FXML Controller class
  *
@@ -290,29 +286,31 @@ public class GameController implements Initializable, Serializable {
         
     } 
     
-    void sonido(boolean respuesta){
-        InputStream input=null;
-        Media media= null;
-        MediaPlayer mp= null;
-        try{
+    void sonido(boolean respuesta){ 
+        Media media;
+        MediaPlayer mp;
+        File file; 
             
-        if(respuesta){
-            File file = new File(App.pathImgGame + "sonidoBien.mp3");
-            media = new Media(file.toURI().toString());
-            mp = new MediaPlayer(media);
-            mp.play();
-            System.out.println("REPRODUCIENDO");
-        } else{
-            File file = new File(App.pathImgGame + "sonidoMal.mp3");
-            media = new Media(file.toURI().toString());
-            mp = new MediaPlayer(media);
-            mp.play();
-            System.out.println("REPRODUCIENDO");
-        }
+        try{
+            if (respuesta) {
+                file = new File(App.pathImgGame + "sonidoBien.wav");
+                media = new Media(file.toURI().toString());
+                mp = new MediaPlayer(media);
+                mp.play();
+                System.out.println("REPRODUCIENDO");
+            } else {
+                file = new File(App.pathImgGame + "sonidoMal.wav");
+                media = new Media(file.toURI().toString());
+                mp = new MediaPlayer(media);
+                mp.play();
+                System.out.println("REPRODUCIENDO");
+            }
         }catch(Exception e){
             e.printStackTrace();
+            System.out.println("\nError en lectura de archivo:" + e.getMessage() );
         }
     }
+    
     void ejercicio(Game g, int ejercicio)throws IOException {
         img00.imageProperty().set(null);img01.imageProperty().set(null);img02.imageProperty().set(null);
         img03.imageProperty().set(null);img10.imageProperty().set(null);img11.imageProperty().set(null);
@@ -430,5 +428,4 @@ public class GameController implements Initializable, Serializable {
         }
     }
    
-    
 }

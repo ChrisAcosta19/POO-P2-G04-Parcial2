@@ -30,11 +30,12 @@ public class NuevaCitaController implements Initializable{
     @FXML private Label lblTitulo;
     @FXML private Button btnGuardar;
     @FXML private Button btnCancelar;
-    ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);;//cargar la lista del archivo
+    ArrayList<Cita> citas;
     public static Cita cita;
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        citas = Cita.cargarCitas(App.pathCitas);//cargar la lista del archivo
         btnCancelar.setOnAction(eh -> {
             try {
                 App.setRoot("Citas");
@@ -115,20 +116,13 @@ public class NuevaCitaController implements Initializable{
     }
 
     public void llenarCampos(){
-         ArrayList<Servicio> servicios = Servicio.cargarServicios(App.pathServicios);//cargar la lista del archivo
-         ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);//cargar la lista del archivo
-         ArrayList<Cliente> clientes = Cliente.cargarClientes(App.pathClientes);//cargar la lista del archivo
+        ArrayList<Servicio> servicios = Servicio.cargarServicios(App.pathServicios);//cargar la lista del archivo
+        ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);//cargar la lista del archivo
+        ArrayList<Cliente> clientes = Cliente.cargarClientes(App.pathClientes);//cargar la lista del archivo
         
-        for (Servicio S: servicios) {
-            cmbServicio.getItems().add(S);
-           }
-        for (Empleado E: empleados) {
-            cmbTerapista.getItems().add(E);
-        }
-        
-        for (Cliente C: clientes) {
-            cmbCliente.getItems().add(C);
-        }
+        cmbServicio.getItems().setAll(servicios);
+        cmbTerapista.getItems().setAll(empleados);
+        cmbCliente.getItems().setAll(clientes);
     }
 }
 

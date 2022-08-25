@@ -49,7 +49,6 @@
             <Button fx:id="btnEliminarCita" mnemonicParsing="false" onAction="#eliminarCita" text="Eliminar Cita" />
             <Button fx:id="btnRegistrarAtencion" mnemonicParsing="false" onAction="#registrarAtencion" text="Registrar Atención" />
             <Button fx:id="btnBorrarFiltros" mnemonicParsing="false" text="Borrar Filtros" />
-            <Button mnemonicParsing="false" text="Consultar Actividades" />
             <Button fx:id="btnRegresar" mnemonicParsing="false" text="Regresar" />
          </children>
       </HBox>
