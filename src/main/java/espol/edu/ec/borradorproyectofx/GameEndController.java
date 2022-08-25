@@ -27,6 +27,14 @@ public class GameEndController implements Initializable {
     @FXML private ImageView aplausos;
     @FXML private Label lblTiempoMedio;
     @FXML private Label lblTiempoTotal;
+    @FXML
+    private Label lblGracias;
+    @FXML
+    private Label lblTimeP;
+    @FXML
+    private Label lblTimeT;
+    @FXML
+    private Label lblTitulo;
     /**
      * Initializes the controller class.
      */

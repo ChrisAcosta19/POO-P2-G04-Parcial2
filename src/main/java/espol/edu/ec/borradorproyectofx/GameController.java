@@ -170,7 +170,7 @@ public class GameController implements Initializable, Serializable {
                Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("D:");
                     alert.setHeaderText(null);
-                    alert.setContentText("La pregunta no ha sido respondida");
+                    alert.setContentText("La pregunta aún no ha sido respondida correctamente");
                     alert.showAndWait(); 
             }else{
             respuestaVisual.imageProperty().set(null);
@@ -269,7 +269,7 @@ public class GameController implements Initializable, Serializable {
                 Alert alert=new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("¡OJO!");
                 alert.setHeaderText(null);
-                alert.setContentText("Si sales ahora, no se guardará el juego ni sus resultados, ¿desea continuar?");
+                alert.setContentText("Si sales ahora, no se guardará el juego ni sus resultados, ¿desea salir?");
                 Optional<ButtonType> result= alert.showAndWait();
                 if(result.get()==ButtonType.OK){
             try {
@@ -313,7 +313,7 @@ public class GameController implements Initializable, Serializable {
         }catch(Exception e){
         e.printStackTrace();}
     }
-    void ejercicio(Game g, int ejercicio)throws IOException {
+    void ejercicio(Game g, int ejercicio) throws IOException {
         img00.imageProperty().set(null);img01.imageProperty().set(null);img02.imageProperty().set(null);
         img03.imageProperty().set(null);img10.imageProperty().set(null);img11.imageProperty().set(null);
         img12.imageProperty().set(null);img13.imageProperty().set(null);

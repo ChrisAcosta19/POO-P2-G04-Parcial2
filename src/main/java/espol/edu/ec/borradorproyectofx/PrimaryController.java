@@ -42,6 +42,8 @@ public class PrimaryController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
         App.setImage("iconServicios",App.pathImg,iconSrv);
         App.setImage("iconCitas",App.pathImg,iconCitas);
         App.setImage("iconAtenciones",App.pathImg,iconAtens);

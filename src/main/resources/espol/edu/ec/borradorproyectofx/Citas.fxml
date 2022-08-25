@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.CitasController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../estilos/estiloSubmenus.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.CitasController">
    <children>
       <AnchorPane prefHeight="80.0" prefWidth="640.0">
          <children>
-            <Label layoutX="293.0" layoutY="22.0" text="Citas">
+            <Label fx:id="lblTitulo" layoutX="293.0" layoutY="22.0" text="Citas">
                <font>
                   <Font size="25.0" />
                </font>

@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.ActividadesController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../estilos/estiloSubmenus.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.ActividadesController">
    <children>
       <AnchorPane>
          <children>
-            <Label layoutX="172.0" layoutY="23.0" text="ACTIVIDADES REALIZADAS">
+            <Label fx:id="lblTitulo" layoutX="108.0" layoutY="15.0" text="ACTIVIDADES REALIZADAS">
                <font>
                   <Font size="25.0" />
                </font>

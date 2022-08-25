@@ -1,0 +1,47 @@
+
+
+#lblTimeT { -fx-font-family: "Comic Sans MS"; 
+         -fx-border-color: #378700;
+         -fx-font-size: 24px;
+         -fx-text-fill: #000000;
+         -fx-border-radius: 10 10 10 10;
+         -fx-border-width: 2;
+}
+
+#lblTimeP { -fx-font-family: "Comic Sans MS"; 
+         -fx-border-color: #378700;
+         -fx-font-size: 21px;
+         -fx-text-fill: #000000;
+         -fx-border-radius: 10 10 10 10;
+         -fx-border-width: 2;
+}
+
+#lblTiempoTotal { -fx-font-family: "Comic Sans MS"; 
+         -fx-font-size: 29px;
+         -fx-text-fill: #000000;
+}
+
+#lblTiempoMedio { -fx-font-family: "Comic Sans MS"; 
+         -fx-font-size: 29px;
+         -fx-text-fill: #000000;
+}
+
+#lblGracias { -fx-font-family: "Comic Sans MS"; 
+         -fx-border-color: #378700;
+         -fx-font-size: 32px;
+         -fx-text-fill: #000000;
+         -fx-border-radius: 10 10 10 10;
+         -fx-border-width: 2;
+}
+
+
+#lblTitulo { -fx-font-family: "Comic Sans MS"; 
+         -fx-border-color: #378700;
+         -fx-font-size: 36px;
+         -fx-text-fill: #00850F;
+         -fx-border-radius: 10 10 10 10;
+         -fx-border-width: 2;
+}
+
+BorderPane { -fx-background-color: #BDFCC4; }
+AnchorPane { -fx-background-color: #BDFCC4; }
