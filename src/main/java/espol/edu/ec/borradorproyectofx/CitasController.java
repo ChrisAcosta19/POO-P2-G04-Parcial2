@@ -44,6 +44,13 @@ public class CitasController implements Initializable {
     @FXML private ImageView icon;
     @FXML private ImageView agregar;
     @FXML private ImageView registrar;
+    
+    @FXML private Button btnCrearCita;
+    @FXML private Button btnEliminarCita;
+    @FXML private Button btnRegistrarAtencion;
+    ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
+    ArrayList<Cita> citasPendientes = cargarCitasPendientes();
+    
     /**
      * Initializes the controller class.
      */
@@ -54,7 +61,7 @@ public class CitasController implements Initializable {
         colServicio.setCellValueFactory(new PropertyValueFactory<>("servicio"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
-        tvCitas.getItems().setAll(cargarCitasPendientes());
+        tvCitas.getItems().setAll(citas);
         
         App.setImage("iconCitas",App.pathImg,icon);
         App.setImage("regresar",App.pathImg,regresar);
@@ -97,7 +104,15 @@ public class CitasController implements Initializable {
         btnBorrarFiltros.setOnAction(eh -> {
             txtFecha.setText("");
             txtCedCliente.setText("");
-            tvCitas.getItems().setAll(cargarCitasPendientes());
+            tvCitas.getItems().setAll(citas);
+        });
+        
+        btnCrearCita.setOnAction(eh -> {
+            try {
+                App.setRoot("nuevaCita");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
     }    
     
@@ -120,10 +135,76 @@ public class CitasController implements Initializable {
     }
 
     @FXML
-    private void agregarCita(MouseEvent event) {
+    private void eliminarCita(ActionEvent event) {
+        Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
+        if(c == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Debe seleccionar una cita de la tabla");
+            alert.showAndWait();
+        }else{
+            if (citasPendientes.contains(c)){ //si la cita está pendiente, entonces no tiene atención
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText("Eliminar Cita");
+                alert.setContentText("¿Está seguro de que desea eliminar esta cita?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    citas.remove(c);
+                    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathCitas))){
+                        out.writeObject(citas);
+                        out.flush();
+
+                        //mostrar informacion
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Information Dialog");
+                        alert.setHeaderText("Resultado de la operación");
+                        alert.setContentText("Cita eliminada exitosamente");
+                        alert.showAndWait();
+                        App.setRoot("Citas");
+                    } catch (IOException ex) {
+                        System.out.println("IOException:" + ex.getMessage());
+                    }
+                } else {
+                    // ... user chose CANCEL or closed the dialog
+                }
+            } else {
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("No se puede eliminar una cita con atención registrada");
+                alert.showAndWait();
+                try {
+                    App.setRoot("Citas");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
     }
 
-    @FXML
-    private void registrarAtencion(MouseEvent event) {
+   @FXML
+    public void registrarAtencion(ActionEvent event) {
+        Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
+        System.out.println("Registrando atención");
+        if(c == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("Debe seleccionar una cita de la tabla");
+            alert.showAndWait();
+        } else {
+            try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
+            VBox root = (VBox) fxmlLoader.load();
+            NuevaAtencionController ct = (NuevaAtencionController) fxmlLoader.getController();
+            ct.llenarCampos(c);
+            App.changeRoot(root);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }
