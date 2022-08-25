@@ -46,11 +46,11 @@ public class CitasController implements Initializable {
     @FXML private Button btnConsCliente;
     @FXML private Button btnConsFecha;
     @FXML private Button btnBorrarFiltros;
-    @FXML private ImageView regresar;
+    /*@FXML private ImageView regresar;
     @FXML private ImageView icon;
     @FXML private ImageView agregar;
-    @FXML private ImageView registrar;
-    
+    @FXML private ImageView registrar;*/
+    @FXML private Button btnRegresar;
     @FXML private Button btnCrearCita;
     @FXML private Button btnEliminarCita;
     @FXML private Button btnRegistrarAtencion;
@@ -69,12 +69,12 @@ public class CitasController implements Initializable {
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         tvCitas.getItems().setAll(citas);
         
-        App.setImage("iconCitas",App.pathImg,icon);
+        /*App.setImage("iconCitas",App.pathImg,icon);
         App.setImage("regresar",App.pathImg,regresar);
         App.setImage("agregarCita",App.pathImg,agregar);
-        App.setImage("registrar",App.pathImg,registrar);
+        App.setImage("registrar",App.pathImg,registrar);*/
         
-        regresar.setOnMouseClicked(eh -> {
+        btnRegresar.setOnAction(eh -> {
             try {
                 App.setRoot("primary");
             } catch (IOException ex) {
