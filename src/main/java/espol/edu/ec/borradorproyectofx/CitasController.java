@@ -60,6 +60,7 @@ public class CitasController implements Initializable {
         App.setImage("regresar",App.pathImg,regresar);
         App.setImage("agregarCita",App.pathImg,agregar);
         App.setImage("registrar",App.pathImg,registrar);
+        
         regresar.setOnMouseClicked(eh -> {
             try {
                 App.setRoot("primary");

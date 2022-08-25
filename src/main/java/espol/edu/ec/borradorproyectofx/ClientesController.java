@@ -110,4 +110,9 @@ public class ClientesController implements Initializable {
         }
     }
 
+    @FXML
+    private void mostarInfo(MouseEvent event) {
+        
+    }
+
 }
