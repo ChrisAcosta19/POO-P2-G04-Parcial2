@@ -8,5 +8,5 @@ module espol.edu.ec.borradorproyectofx {
 
     opens espol.edu.ec.borradorproyectofx to javafx.fxml;
     opens modelo to javafx.base;
-    exports espol.edu.ec.borradorproyectofx;
+    exports espol.edu.ec.borradorproyectofx to javafx.graphics;
 }

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import modelo.*;
@@ -64,6 +65,12 @@ public class App extends Application {
             }
     }
     
+    public static void tooltip(String lbl){
+        if(lbl.equals("")){
+
+        }
+    }
+     
     public static void main(String[] args) {   
         try(BufferedReader br = new BufferedReader(new FileReader("archivos/Iniciar.txt"))){
             String linea = br.readLine();

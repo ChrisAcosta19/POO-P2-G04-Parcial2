@@ -93,7 +93,13 @@ public class PrimaryController implements Initializable {
                 ex.printStackTrace();
             }
         });
+        
+        btnAtenciones.setOnAction(eh -> {
+            try {
+                App.setRoot("Atenciones");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
-
-    
 }
