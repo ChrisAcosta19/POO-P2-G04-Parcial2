@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="442.0" stylesheets="@../../../../estilos/estiloSubmenus_1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.NuevaAtencionController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="442.0" stylesheets="@../../../../estilos/estiloSubmenus.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.NuevaAtencionController">
    <children>
       <Label fx:id="lblTitulo" text="Registro de Atenciones">
          <font>

@@ -8,13 +8,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import modelo.Empleado;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import modelo.*;
 
 /**
@@ -31,10 +29,9 @@ public class NuevaAtencionController implements Initializable{
     @FXML private Label lblTitulo;
     @FXML private Button btnGuardar;
     @FXML private Button btnCancelar;
+    @FXML private Button btnActividad;
     private Cita cita;
-    @FXML
-    private Button btnActividad;
-     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         llenarCampos(CitasController.citaARegistrar);
@@ -123,9 +120,7 @@ public class NuevaAtencionController implements Initializable{
         lblCliente.setText(c.getCliente().getNombre());
         
         ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);//cargar la lista del archivo
-        for (Empleado E: empleados) {
-            cmbTerapista.getItems().add(E);
-        }
+        cmbTerapista.getItems().setAll(empleados);
     }
 
     @FXML

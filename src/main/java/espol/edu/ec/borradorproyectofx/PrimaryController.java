@@ -18,7 +18,6 @@ import javafx.stage.Stage;
  * @author Usuario
  */
 public class PrimaryController implements Initializable {
-
     @FXML private BorderPane mainPane;
     @FXML private ImageView iconSalir;
     @FXML private GridPane buttonsPane;
@@ -32,21 +31,19 @@ public class PrimaryController implements Initializable {
     @FXML private Button btnEmpleados;
     @FXML private Button btnClientes;
     @FXML private Button btnAtenciones;
-    
-    public static boolean gamePrueba=false;
-
-       /**
+   
+    /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         App.setImage("iconServicios",App.pathImg,iconSrv);
         App.setImage("iconCitas",App.pathImg,iconCitas);
         App.setImage("iconAtenciones",App.pathImg,iconAtens);
         App.setImage("iconEmpleados",App.pathImg,iconEmpl);
         App.setImage("iconClientes",App.pathImg,iconClientes);
         App.setImage("iconSalir",App.pathImg,iconSalir);
+        
         btnServicios.setOnAction(eh -> {
             try {
                 App.setRoot("Servicios");
@@ -78,19 +75,19 @@ public class PrimaryController implements Initializable {
                 ex.printStackTrace();
             }
         });
-        
-        iconSalir.setOnMouseClicked(eh -> {
-            Node source = (Node) eh.getSource();
-            Stage stage = (Stage) source.getScene().getWindow();
-            stage.close();
-        });
-                
+              
         btnAtenciones.setOnAction(eh -> {
             try {
                 App.setRoot("Atenciones");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+        });
+        
+        iconSalir.setOnMouseClicked(eh -> {
+            Node source = (Node) eh.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
         });
     }
 }

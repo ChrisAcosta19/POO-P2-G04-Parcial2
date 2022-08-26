@@ -18,19 +18,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import modelo.Atencion;
-import modelo.Cita;
-import modelo.Cliente;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import modelo.Atencion;
 import modelo.Cita;
@@ -52,22 +43,13 @@ public class CitasController implements Initializable {
     @FXML private Button btnConsCliente;
     @FXML private Button btnConsFecha;
     @FXML private Button btnBorrarFiltros;
-    /*@FXML private ImageView regresar;
-    @FXML private ImageView icon;
-    @FXML private ImageView agregar;
-<<<<<<< Updated upstream
-    @FXML private ImageView registrar;*/
     @FXML private Button btnRegresar;
-    @FXML private Button btnCrearCita;
     @FXML private Button btnEliminarCita;
     @FXML private Button btnRegistrarAtencion;
     private static ArrayList<Cita> citas;
     private static ArrayList<Cita> citasPendientes;
-    
-    @FXML private ImageView registrar;
-    @FXML private Label lblTitulo;
-    
     public static Cita citaARegistrar;
+    
     /**
      * Initializes the controller class.
      */
@@ -82,11 +64,6 @@ public class CitasController implements Initializable {
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         tvCitas.getItems().setAll(citas);
-        
-        /*App.setImage("iconCitas",App.pathImg,icon);
-        App.setImage("regresar",App.pathImg,regresar);
-        App.setImage("agregarCita",App.pathImg,agregar);
-        App.setImage("registrar",App.pathImg,registrar);*/
         
         btnRegresar.setOnAction(eh -> {
             try {
@@ -125,14 +102,6 @@ public class CitasController implements Initializable {
             txtFecha.setText("");
             txtCedCliente.setText("");
             tvCitas.getItems().setAll(citas);
-        });
-        
-        btnCrearCita.setOnAction(eh -> {
-            try {
-                App.setRoot("nuevaCita");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         });
     }    
     
@@ -216,12 +185,13 @@ public class CitasController implements Initializable {
             alert.setContentText("Debe seleccionar una cita de la tabla");
             alert.showAndWait();
         } else if (citasPendientes.contains(c)){
+            citaARegistrar = c;
             try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
-            VBox root = (VBox) fxmlLoader.load();
-            NuevaAtencionController ct = (NuevaAtencionController) fxmlLoader.getController();
-            ct.llenarCampos(c);
-            App.changeRoot(root);
+                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
+                VBox root = (VBox) fxmlLoader.load();
+                NuevaAtencionController ct = (NuevaAtencionController) fxmlLoader.getController();
+                ct.llenarCampos(c);
+                App.changeRoot(root);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -238,30 +208,11 @@ public class CitasController implements Initializable {
             }
         }
     }
-    
-    private void agregarCita(MouseEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaCita.fxml"));//no tiene el controlador especificado
-        VBox root = (VBox) fxmlLoader.load();
-        //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios}
-        App.changeRoot(root);
-    }
 
     @FXML
-    private void registrarAtencion(MouseEvent event) throws IOException{
-        
-        Cita cita = (Cita) tvCitas.getSelectionModel().getSelectedItem();
-        if(cita == null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error al intentar registrar atención");
-            alert.setHeaderText(null);
-            alert.setContentText("Debe seleccionar una cita");
-            alert.showAndWait();
-        }else{
-            citaARegistrar= cita;
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));//no tiene el controlador especificado
-            VBox root = (VBox) fxmlLoader.load();
-            //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios}
-            App.changeRoot(root);
-        }
+    private void agregarCita(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaCita.fxml"));
+        VBox root = (VBox) fxmlLoader.load();
+        App.changeRoot(root);
     }
 }

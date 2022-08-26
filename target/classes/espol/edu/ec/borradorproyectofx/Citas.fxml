@@ -46,7 +46,7 @@
       </TableView>
       <HBox alignment="CENTER" prefHeight="86.0" prefWidth="640.0" spacing="10.0">
          <children>
-            <Button fx:id="btnCrearCita" mnemonicParsing="false" text="Crear Cita" />
+            <Button mnemonicParsing="false" onAction="#agregarCita" text="Crear Cita" />
             <Button fx:id="btnEliminarCita" mnemonicParsing="false" onAction="#eliminarCita" text="Eliminar Cita" />
             <Button fx:id="btnRegistrarAtencion" mnemonicParsing="false" onAction="#registrarAtencion" text="Registrar Atención" />
             <Button fx:id="btnRegresar" mnemonicParsing="false" text="Regresar" />
