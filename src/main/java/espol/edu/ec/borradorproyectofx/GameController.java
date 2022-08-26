@@ -121,7 +121,6 @@ public class GameController implements Initializable, Serializable {
         }
         
        ActividadesController.replayGame=null;
-       CitasController.citaARegistrar=null;
        
         
     }

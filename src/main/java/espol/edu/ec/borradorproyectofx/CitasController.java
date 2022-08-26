@@ -23,6 +23,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import modelo.Atencion;
 import modelo.Cita;
@@ -44,13 +46,15 @@ public class CitasController implements Initializable {
     @FXML private Button btnConsCliente;
     @FXML private Button btnConsFecha;
     @FXML private Button btnBorrarFiltros;
-    @FXML private Button btnRegresar;
-    @FXML private Button btnEliminarCita;
-    @FXML private Button btnRegistrarAtencion;
     @FXML private Label lblTitulo;
     private static ArrayList<Cita> citas;
     private static ArrayList<Cita> citasPendientes;
     public static Cita citaARegistrar;
+    @FXML private ImageView regresar;
+    @FXML private ImageView icon;
+    @FXML private ImageView agregar;
+    @FXML private ImageView eliminar;
+    @FXML private ImageView registrar;
     
     /**
      * Initializes the controller class.
@@ -60,6 +64,12 @@ public class CitasController implements Initializable {
         citas = Cita.cargarCitas(App.pathCitas);
         citasPendientes = cargarCitasPendientes();
         
+        App.setImage("iconCitas",App.pathImg,icon);
+        App.setImage("regresar",App.pathImg,regresar);
+        App.setImage("agregarCita",App.pathImg,agregar);
+        App.setImage("eliminarCita",App.pathImg,eliminar);
+        App.setImage("registrar",App.pathImg,registrar);
+        
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colTerapista.setCellValueFactory(new PropertyValueFactory<>("encargadoServicio"));
         colServicio.setCellValueFactory(new PropertyValueFactory<>("servicio"));
@@ -67,7 +77,7 @@ public class CitasController implements Initializable {
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         tvCitas.getItems().setAll(citas);
         
-        btnRegresar.setOnAction(eh -> {
+        regresar.setOnMouseClicked(eh -> {
             try {
                 App.setRoot("primary");
             } catch (IOException ex) {
@@ -124,9 +134,9 @@ public class CitasController implements Initializable {
         }
         return pendientes;
     }
-
+    
     @FXML
-    private void eliminarCita(ActionEvent event) {
+    private void eliminarCita(MouseEvent event) throws IOException {
         Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
         if(c == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -175,9 +185,9 @@ public class CitasController implements Initializable {
             }
         }
     }
-
-   @FXML
-    public void registrarAtencion(ActionEvent event) {
+    
+    @FXML
+    public void registrarAtencion(MouseEvent event) throws IOException{
         Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
         System.out.println("Registrando atención");
         if(c == null){
@@ -208,11 +218,13 @@ public class CitasController implements Initializable {
             }
         }
     }
-
+    
     @FXML
-    private void agregarCita(ActionEvent event) throws IOException {
+    private void agregarCita (MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaCita.fxml"));
         VBox root = (VBox) fxmlLoader.load();
         App.changeRoot(root);
     }
+
+    
 }

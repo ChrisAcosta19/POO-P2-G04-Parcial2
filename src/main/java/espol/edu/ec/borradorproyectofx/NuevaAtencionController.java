@@ -36,14 +36,20 @@ public class NuevaAtencionController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         
         if(GameEndController.juegoAcabado){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información importante");
+            alert.setHeaderText(null);
+            alert.setContentText("Actividad registrada");
+            alert.showAndWait();
             btnActividad.setDisable(true);
-        }
-        
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Información importante");
             alert.setHeaderText(null);
             alert.setContentText("Para registrar la atención, primero debe realizar la actividad");
             alert.showAndWait();
+        }
+        
                         
         llenarCampos(CitasController.citaARegistrar);
         
@@ -109,13 +115,6 @@ public class NuevaAtencionController implements Initializable{
                         System.out.println("IOException:" + ex.getMessage());
                     }
                 }
-        } else if(Validacion.mensaje.equals("")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error al intentar guardar atención");
-            alert.setHeaderText(null);
-            alert.setContentText("Llenar todos los campos");
-            alert.showAndWait();
-            Validacion.mensaje = "";
         } else if(!GameEndController.juegoAcabado){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error al intentar guardar atención");
@@ -123,7 +122,14 @@ public class NuevaAtencionController implements Initializable{
             alert.setContentText("Debe realizar la actividad para guardar la atención");
             alert.showAndWait();
             Validacion.mensaje = "";
-        } else {
+        } else if(Validacion.mensaje.equals("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error al intentar guardar atención");
+            alert.setHeaderText(null);
+            alert.setContentText("Llenar todos los campos");
+            alert.showAndWait();
+            Validacion.mensaje = "";
+        }  else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error al intentar guardar atención");
             alert.setHeaderText(null);

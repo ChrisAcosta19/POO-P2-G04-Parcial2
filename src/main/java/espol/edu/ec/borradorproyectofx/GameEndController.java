@@ -38,12 +38,13 @@ public class GameEndController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        App.setImage("regresar", App.pathImgGame, regresar);
+        App.setImage("regresar", App.pathImg, regresar);
         App.setGif("aplausos",aplausos);
         
         regresar.setOnMouseClicked(eh -> {
             try {
-                App.setRoot("nuevaAtencion");
+                App.setRoot("nuevaAtencion");   
+                CitasController.citaARegistrar=null;
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
