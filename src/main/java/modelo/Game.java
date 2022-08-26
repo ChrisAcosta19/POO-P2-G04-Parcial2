@@ -1,4 +1,3 @@
-
 package modelo;
 
 import java.io.FileInputStream;
@@ -37,10 +36,10 @@ public class Game implements Serializable, Cloneable{
         this.actividad=actividad;
     }
 
-        @Override
-        public String toString() {
-            return "Game {" + "numEjercicios=" + numEjercicios +", cliente=" + cliente + ", fecha=" + fecha + ", fallos=" + fallos + ", tiempo=" + tiempoEnFormato + ", actividad=" + actividad + '}';
-        }
+    @Override
+    public String toString() {
+        return "Game {" + "numEjercicios=" + numEjercicios + ", cliente=" + cliente + ", fecha=" + fecha + ", fallos=" + fallos + ", tiempo=" + tiempoEnFormato + ", actividad=" + actividad + '}';
+    }
     
     public static String timeFormat(int tiempo){
         if(tiempo<60){
@@ -93,69 +92,63 @@ public class Game implements Serializable, Cloneable{
         return games;
     }
     
-    public Object clone() throws CloneNotSupportedException 
-   {
-      return (Game)super.clone();
-   }
+    public Object clone() throws CloneNotSupportedException {
+        return (Game) super.clone();
+    }
     
-        public int getNumEjercicios() {
-            return numEjercicios;
-        }
-
-        public void setNumEjercicios(int numEjercicios) {
-            this.numEjercicios = numEjercicios;
-        }
-
-        public ArrayList<Ejercicio> getEjercicios() {
-            return ejercicios;
-        }
-
-        public void setEjercicios(ArrayList<Ejercicio> ejercicios) {
-            this.ejercicios = ejercicios;
-        }
-
-        public String getCliente() {
-            return cliente;
-        }
-
-        public void setCliente(String cliente) {
-            this.cliente = cliente;
-        }
-
-        public String getFecha() {
-            return fecha;
-        }
-
-        public void setFecha(String fecha) {
-            this.fecha = fecha;
-        }
-
-        public int getFallos() {
-            return fallos;
-        }
-
-        public void setFallos(int fallos) {
-            this.fallos = fallos;
-        }
-
-        public String getTiempoEnFormato() {
-            return tiempoEnFormato;
-        }
-
-        public void setTiempoEnFormato(int tiempo) {
-            this.tiempoEnFormato = timeFormat(tiempo);
-        }
-
-        public String getActividad() {
-            return actividad;
-        }
-
-        public void setActividad(String actividad) {
-            this.actividad = actividad;
-        }
-    
-        
+    public int getNumEjercicios() {
+        return numEjercicios;
     }
 
- 
-       
+    public void setNumEjercicios(int numEjercicios) {
+        this.numEjercicios = numEjercicios;
+    }
+
+    public ArrayList<Ejercicio> getEjercicios() {
+        return ejercicios;
+    }
+
+    public void setEjercicios(ArrayList<Ejercicio> ejercicios) {
+        this.ejercicios = ejercicios;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getFallos() {
+        return fallos;
+    }
+
+    public void setFallos(int fallos) {
+        this.fallos = fallos;
+    }
+
+    public String getTiempoEnFormato() {
+        return tiempoEnFormato;
+    }
+
+    public void setTiempoEnFormato(int tiempo) {
+        this.tiempoEnFormato = timeFormat(tiempo);
+    }
+
+    public String getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(String actividad) {
+        this.actividad = actividad;
+    }
+}

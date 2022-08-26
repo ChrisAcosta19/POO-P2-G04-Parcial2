@@ -108,11 +108,11 @@ public class NuevaAtencionController implements Initializable{
 
                         alert.showAndWait();
                         App.setRoot("Atenciones");
-
                     } catch (IOException ex) {
                         System.out.println("IOException:" + ex.getMessage());
                     }
                 }
+            GameEndController.juegoAcabado = false;
         } else if(!GameEndController.juegoAcabado){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error al intentar guardar atención");
@@ -134,8 +134,7 @@ public class NuevaAtencionController implements Initializable{
             alert.setContentText(Validacion.mensaje);
             alert.showAndWait();
             Validacion.mensaje = "";
-        }
-        GameEndController.juegoAcabado = false;
+        }   
     }
     
     public void llenarCampos(Cita c){
