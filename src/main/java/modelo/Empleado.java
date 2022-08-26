@@ -68,12 +68,9 @@ public class Empleado extends Persona {
     
     public static ArrayList<Empleado> cargarEmpleados(String ruta){
         ArrayList<Empleado> empleados = new ArrayList<>();
-        System.out.println("xxxxxxxxxxxxx");
-       //leer la lista de personas del archivo serializado
+       //leer la lista de empleados del archivo serializado
         try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
             empleados = (ArrayList<Empleado>) oi.readObject();
-            System.out.println("=============");
-            // System.out.println(empleados);
         } catch (FileNotFoundException ex) {
             System.out.println("archivo no existe");
         } catch (IOException   ex) {

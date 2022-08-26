@@ -31,9 +31,16 @@ public class NuevaAtencionController implements Initializable{
     @FXML private Button btnCancelar;
     @FXML private Button btnActividad;
     private Cita cita;
+    public static boolean actividadIsDone;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if(!actividadIsDone){
+            btnGuardar.setDisable(true);
+        } else {
+            btnGuardar.setDisable(false);
+        }
+        
         llenarCampos(CitasController.citaARegistrar);
         
         btnCancelar.setOnAction(eh -> {

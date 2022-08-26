@@ -1,16 +1,12 @@
 
 package espol.edu.ec.borradorproyectofx;
 
-import static espol.edu.ec.borradorproyectofx.GameMainController.numEjercicios;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -36,10 +32,11 @@ public class GameEndController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        App.setImage("regresar", App.pathImgGame, regresar);
+        App.setImage("regresar",App.pathImg,regresar);
         App.setGif("aplausos",aplausos);
         
         regresar.setOnMouseClicked(eh -> {
+            NuevaAtencionController.actividadIsDone = true;
             try {
                 App.setRoot("nuevaAtencion");
             } catch (IOException ex) {

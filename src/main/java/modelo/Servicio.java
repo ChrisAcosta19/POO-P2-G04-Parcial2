@@ -80,12 +80,9 @@ public class Servicio implements Serializable {
     
     public static ArrayList<Servicio> cargarServicios(String ruta){
         ArrayList<Servicio> servicios = new ArrayList<>();
-        System.out.println("xxxxxxxxxxxxx");
-       //leer la lista de personas del archivo serializado
+       //leer la lista de servicios del archivo serializado
         try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
             servicios = (ArrayList<Servicio>) oi.readObject();
-            System.out.println("=============");
-            // System.out.println(empleados);
         } catch (FileNotFoundException ex) {
             System.out.println("archivo no existe");
         } catch (IOException   ex) {

@@ -32,7 +32,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Fecha (aaaa-dd-mm):" />
+            <Label text="Fecha (aaaa-mm-dd):" />
             <Label text="Cliente:" GridPane.rowIndex="2" />
             <Label text="Duración (minutos):" GridPane.rowIndex="3" />
             <Label text="Terapista:" GridPane.rowIndex="4" />
@@ -46,7 +46,7 @@
                   <Insets left="50.0" />
                </GridPane.margin>
             </ComboBox>
-            <Label layoutX="10.0" layoutY="22.0" text="Hora (xx:xx:xx):" GridPane.rowIndex="1" />
+            <Label layoutX="10.0" layoutY="22.0" text="Hora (hh:mm:ss):" GridPane.rowIndex="1" />
             <Label fx:id="lblFecha" alignment="CENTER" contentDisplay="CENTER" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="100.0" />

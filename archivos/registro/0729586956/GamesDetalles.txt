@@ -1,9 +1,3 @@
-<<<<<<< HEAD
 Fecha: a,Número de ejercicios: 2,Número de fallos: 0,Tiempo total: 04 seg;Número de imágenes: 2,Número de fallos: 0,Tiempo: 02 seg;Número de imágenes: 4,Número de fallos: 0,Tiempo: 02 seg
 Fecha: a,Número de ejercicios: 4,Número de fallos: 0,Tiempo total: 20 seg;Número de imágenes: 2,Número de fallos: 0,Tiempo: 02 seg;Número de imágenes: 1,Número de fallos: 0,Tiempo: 11 seg;Número de imágenes: 3,Número de fallos: 0,Tiempo: 02 seg;Número de imágenes: 3,Número de fallos: 0,Tiempo: 01 seg
 Fecha: a,Número de ejercicios: 2,Número de fallos: 0,Tiempo total: 04 seg;Número de imágenes: 2,Número de fallos: 0,Tiempo: 02 seg;Número de imágenes: 4,Número de fallos: 0,Tiempo: 02 seg
-=======
->>>>>>> 31fe0810206eb73af1d1afd707bc665ee27954a6
-Fecha: a,Número de ejercicios: 1,Número de fallos: 0,Tiempo total: 03 seg;Número de imágenes: 1,Número de fallos: 0,Tiempo: 03 seg
-Fecha: a,Número de ejercicios: 2,Número de fallos: 0,Tiempo total: 21 seg;Número de imágenes: 2,Número de fallos: 0,Tiempo: 07 seg;Número de imágenes: 3,Número de fallos: 0,Tiempo: 14 seg
-Fecha: a,Número de ejercicios: 2,Número de fallos: 1,Tiempo total: 16 seg;Número de imágenes: 3,Número de fallos: 0,Tiempo: 03 seg;Número de imágenes: 3,Número de fallos: 1,Tiempo: 13 seg

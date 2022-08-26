@@ -188,6 +188,7 @@ public class CitasController implements Initializable {
             alert.showAndWait();
         } else if (citasPendientes.contains(c)){
             citaARegistrar = c;
+            NuevaAtencionController.actividadIsDone = false;
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
                 VBox root = (VBox) fxmlLoader.load();

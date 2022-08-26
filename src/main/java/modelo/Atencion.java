@@ -63,12 +63,9 @@ public class Atencion implements Serializable {
     
     public static ArrayList<Atencion> cargarAtenciones(String ruta) {
         ArrayList<Atencion> atenciones = new ArrayList<>();
-        System.out.println("xxxxxxxxxxxxx");
-        //leer la lista de personas del archivo serializado
+        //leer la lista de atenciones del archivo serializado
         try ( ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
             atenciones = (ArrayList<Atencion>) oi.readObject();
-            System.out.println("=============");
-            // System.out.println(empleados);
         } catch (FileNotFoundException ex) {
             System.out.println("archivo no existe");
         } catch (IOException ex) {
