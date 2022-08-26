@@ -63,6 +63,7 @@ public class GameController implements Initializable, Serializable {
     public static int fallosTotal;
     public String infoPorPregunta="";
     
+    
     String fecha;
     String cliente;
     
@@ -101,7 +102,7 @@ public class GameController implements Initializable, Serializable {
         //
         boolean guardar=false;
         
-        if (ActividadesController.replayGame==null){ // se esta regiutrando una atencion
+        if (ActividadesController.replayGame==null){ // se esta registrando una atencion
             fecha=CitasController.citaARegistrar.getFecha();
             cliente=CitasController.citaARegistrar.getCliente().getCedula();            
             jugar(g,true); 
@@ -118,7 +119,11 @@ public class GameController implements Initializable, Serializable {
             cliente=ClientesController.clienteSeleccionado.getCedula();
             jugar(ActividadesController.replayGame,guardar);
         }
-          
+        
+       ActividadesController.replayGame=null;
+       CitasController.citaARegistrar=null;
+       
+        
     }
     
     void jugar(Game g, boolean guardarResultados){

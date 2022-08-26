@@ -182,8 +182,8 @@ public class CitasController implements Initializable {
         System.out.println("Registrando atención");
         if(c == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar registrar atención");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar una cita de la tabla");
             alert.showAndWait();
         } else if (citasPendientes.contains(c)){
@@ -191,16 +191,14 @@ public class CitasController implements Initializable {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
                 VBox root = (VBox) fxmlLoader.load();
-                NuevaAtencionController ct = (NuevaAtencionController) fxmlLoader.getController();
-                ct.llenarCampos(c);
                 App.changeRoot(root);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar registrar atención");
+            alert.setHeaderText(null);
             alert.setContentText("La cita seleccionada ya está registrada");
             alert.showAndWait();
             try {
