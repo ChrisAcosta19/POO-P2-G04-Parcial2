@@ -24,11 +24,11 @@ public class GameMainController implements Initializable {
 
 
     @FXML private ImageView btnAvanzar;
-    @FXML private ImageView btnHome;
     @FXML private TextField fieldNumEjercicios;
     public static int numEjercicios;
     @FXML private Label lblEjercicios;
     @FXML private BorderPane mainPane;
+    @FXML private ImageView regresar;
     
     /*private int numEjercicio=Integer.valueOf(fieldNumEjercicios.getText());
     
@@ -39,7 +39,7 @@ public class GameMainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         App.setImage("arrow_right",App.pathImgGame,btnAvanzar);
-        App.setImage("home",App.pathImgGame,btnHome);
+        App.setImage("regresar",App.pathImg,regresar);
         
         btnAvanzar.setOnMouseClicked(eh -> {
             try {
@@ -55,9 +55,9 @@ public class GameMainController implements Initializable {
             }
         });
 
-        btnHome.setOnMouseClicked(eh -> {
+        regresar.setOnMouseClicked(eh -> {
             try {
-                App.setRoot("primary");
+                App.setRoot("nuevaAtencion");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

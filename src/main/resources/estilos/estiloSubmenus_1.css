@@ -16,7 +16,7 @@ Label { -fx-font-family: "Hervetica";
 #lblCliente { -fx-font-family: "Hervetica"; 
          -fx-font-size: 30px;
          -fx-text-fill: #008287;
-
+}
 
 BorderPane { -fx-background-color: #D5FFF7; }
 AnchorPane { -fx-background-color: #D5FFF7; }

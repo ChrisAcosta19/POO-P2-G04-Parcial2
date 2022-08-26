@@ -8,11 +8,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import modelo.Empleado;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import modelo.*;
 
 /**
@@ -30,9 +32,13 @@ public class NuevaAtencionController implements Initializable{
     @FXML private Button btnGuardar;
     @FXML private Button btnCancelar;
     private Cita cita;
+    @FXML
+    private Button btnActividad;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        llenarCampos(CitasController.citaARegistrar);
+        
         btnCancelar.setOnAction(eh -> {
             try {
                 App.setRoot("Citas");
@@ -65,7 +71,7 @@ public class NuevaAtencionController implements Initializable{
                         //mostrar informacion
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Information Dialog");
-                        alert.setHeaderText("Resultado de la operación");
+                        alert.setHeaderText(null);
                         alert.setContentText("Nueva atención agregada exitosamente");
                         alert.showAndWait();
                         App.setRoot("Atenciones");
@@ -83,7 +89,7 @@ public class NuevaAtencionController implements Initializable{
                         //mostrar informacion
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Information Dialog");
-                        alert.setHeaderText("Resultado de la operación");
+                        alert.setHeaderText(null);
                         alert.setContentText("Atención editada exitosamente");
 
                         alert.showAndWait();
@@ -96,14 +102,14 @@ public class NuevaAtencionController implements Initializable{
         } else if(Validacion.mensaje.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setHeaderText(null);
             alert.setContentText("Llenar todos los campos");
             alert.showAndWait();
             Validacion.mensaje = "";
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setHeaderText(null);
             alert.setContentText(Validacion.mensaje);
             alert.showAndWait();
             Validacion.mensaje = "";
@@ -120,6 +126,11 @@ public class NuevaAtencionController implements Initializable{
         for (Empleado E: empleados) {
             cmbTerapista.getItems().add(E);
         }
+    }
+
+    @FXML
+    private void actividad(ActionEvent event) throws IOException {
+        App.setRoot("gameMain");
     }
 }
 

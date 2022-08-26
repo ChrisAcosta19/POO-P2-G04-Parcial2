@@ -68,7 +68,6 @@
       <AnchorPane prefHeight="90.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="iconSalir" fitHeight="50.0" fitWidth="50.0" layoutX="554.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="btnGame" layoutX="85.0" layoutY="33.0" mnemonicParsing="false" text="JUEGO ¿CUÁNTOS HAY?" />
          </children>
       </AnchorPane>
    </bottom>
