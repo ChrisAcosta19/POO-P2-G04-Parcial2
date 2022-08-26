@@ -13,7 +13,7 @@
    <children>
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="640.0">
          <children>
-            <Label fx:id="lblTitulo" text="Citas">
+            <Label fx:id="lblTitulo" text="CITAS">
                <font>
                   <Font size="16.0" />
                </font>
