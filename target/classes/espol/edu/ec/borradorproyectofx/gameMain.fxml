@@ -47,6 +47,6 @@
       <URL value="@../../../../estilos/estiloGameMain.css" />
    </stylesheets>
    <bottom>
-      <ImageView fx:id="btnHome" fitHeight="100.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+      <ImageView fx:id="regresar" fitHeight="100.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

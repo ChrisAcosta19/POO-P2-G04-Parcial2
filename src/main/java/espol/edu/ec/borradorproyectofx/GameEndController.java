@@ -23,32 +23,30 @@ public class GameEndController implements Initializable {
 
 
     @FXML private BorderPane mainPane;
-    @FXML private ImageView btnHome;
     @FXML private ImageView aplausos;
     @FXML private Label lblTiempoMedio;
     @FXML private Label lblTiempoTotal;
-    @FXML
-    private Label lblGracias;
-    @FXML
-    private Label lblTimeP;
-    @FXML
-    private Label lblTimeT;
-    @FXML
-    private Label lblTitulo;
+    @FXML private Label lblGracias;
+    @FXML private Label lblTimeP;
+    @FXML private Label lblTimeT;
+    @FXML private Label lblTitulo;
+    @FXML private ImageView regresar;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cargarImagenes();
+        App.setImage("regresar", App.pathImgGame, regresar);
+        App.setGif("aplausos",aplausos);
         
-        btnHome.setOnMouseClicked(eh -> {
+        regresar.setOnMouseClicked(eh -> {
             try {
-                App.setRoot("primary");
+                App.setRoot("nuevaAtencion");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
+        
         int tiempoSec=GameController.timeTotal;
         if(tiempoSec<60){
             lblTiempoTotal.setText(String.valueOf(tiempoSec)+"s");
@@ -71,29 +69,4 @@ public class GameEndController implements Initializable {
         
     }
 
-    private void cargarImagenes(){
-        InputStream input = null;
-        Image image = null;
-        try {
-            input = new FileInputStream(App.pathImgGame + "home.png");
-            image = new Image(input, 100, 100, false, false);
-            btnHome.setImage(image);
-            
-            input = new FileInputStream(App.pathImgGame + "aplausos.gif");
-            image = new Image(input, 100, 100, false, false);
-            aplausos.setImage(image);
-            
-            
-        } catch (IOException ex) {
-            System.out.println("No se pudo cargar imagen");
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException ex) {
-                    System.out.println("Error al cerrar el recurso");
-                }
-            }
-        }
-    }
 }

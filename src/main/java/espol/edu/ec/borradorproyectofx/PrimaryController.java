@@ -28,7 +28,6 @@ public class PrimaryController implements Initializable {
     @FXML private ImageView iconAtens;
     @FXML private ImageView iconClientes;
     @FXML private ImageView iconEmpl;
-    @FXML private Button btnGame;
     @FXML private Button btnServicios;
     @FXML private Button btnEmpleados;
     @FXML private Button btnClientes;
@@ -85,16 +84,7 @@ public class PrimaryController implements Initializable {
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
         });
-        
-        btnGame.setOnAction(eh -> {
-            gamePrueba=true;
-            try {
-                App.setRoot("gameMain");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
-        
+                
         btnAtenciones.setOnAction(eh -> {
             try {
                 App.setRoot("Atenciones");

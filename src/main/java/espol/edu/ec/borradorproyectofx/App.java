@@ -26,7 +26,6 @@ public class App extends Application {
     public static String pathAtenciones = "archivos/Atenciones.bin";
     public static String pathImg = "src/main/resources/media/";
     public static String pathImgGame = "src/main/resources/game/";
-    public static ArrayList<String> clientesCedulas=new ArrayList<>();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -63,6 +62,27 @@ public class App extends Application {
                     }
                 }
             }
+    }
+    
+    public static void setGif(String name,ImageView iView){
+        InputStream input = null;
+        Image image = null;
+        try {
+            input = new FileInputStream(App.pathImgGame + name + ".gif");
+            image = new Image(input, 100, 100, false, false);
+            iView.setImage(image);
+
+        } catch (Exception ex) {
+            System.out.println("No se pudo cargar imagen");
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (Exception ex) {
+                    System.out.println("Error al cerrar el recurso");
+                }
+            }
+        }
     }
     
     

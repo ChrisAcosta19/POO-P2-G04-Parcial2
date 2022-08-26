@@ -73,16 +73,7 @@ public class GameController implements Initializable, Serializable {
         App.setImage("arrow_right",App.pathImgGame,btnAvanzar);
         App.setImage("arrow_left",App.pathImgGame,btnRetroceder);
         
-        if(PrimaryController.gamePrueba ){
-            cliente="0987654321";
-            fecha="Fecha de prueba";
-        } else if(CitasController.citaARegistrar!=null){
-            fecha=CitasController.citaARegistrar.getFecha();
-            cliente=CitasController.citaARegistrar.getCliente().getCedula();
-        } else{
-            fecha="";
-            cliente=ClientesController.clienteSeleccionado.getCedula();
-        } 
+        
         
         
        
@@ -109,21 +100,12 @@ public class GameController implements Initializable, Serializable {
         
         //
         boolean guardar=false;
-        if (ActividadesController.replayGame==null){
-            jugar(g,true);  
-            if (PrimaryController.gamePrueba){
-                Alert alert=new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Guardado de Resultados");
-                alert.setHeaderText(null);
-                alert.setContentText("¿Desea guardar los resultados de esta sesión de juego de prueba?");
-                Optional<ButtonType> result= alert.showAndWait();
-                if(result.get()==ButtonType.OK){
-                    guardar=true;}
-                
-                jugar(g,guardar);
-            }else{
-                jugar(g,true);}
-        } else{
+        
+        if (ActividadesController.replayGame==null){ // se esta regiutrando una atencion
+            fecha=CitasController.citaARegistrar.getFecha();
+            cliente=CitasController.citaARegistrar.getCliente().getCedula();            
+            jugar(g,true); 
+        } else {// se esta rejugando
             Alert alert=new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Guardado de Resultados");
             alert.setHeaderText(null);
@@ -132,12 +114,11 @@ public class GameController implements Initializable, Serializable {
             if(result.get()==ButtonType.OK){
                 guardar=true;
             }
+            fecha="";
             cliente=ClientesController.clienteSeleccionado.getCedula();
             jugar(ActividadesController.replayGame,guardar);
         }
-        
-        
-        
+          
     }
     
     void jugar(Game g, boolean guardarResultados){
@@ -157,7 +138,7 @@ public class GameController implements Initializable, Serializable {
                             g.getEjercicios().get(ejercicio).done();
                         }
                     } else {
-                        setGif("globoe", respuestaVisual);
+                        App.setGif("globoe", respuestaVisual);
                         sonido(false);
                         if (!g.getEjercicios().get(ejercicio).isDone()) {
                             g.getEjercicios().get(ejercicio).intentosAumentar();
@@ -312,13 +293,11 @@ public class GameController implements Initializable, Serializable {
                 media = new Media(file.toURI().toString());
                 mp = new MediaPlayer(media);
                 mp.play();
-                System.out.println("REPRODUCIENDO");
             } else {
                 file = new File(App.pathImgGame + "sonidoMal.wav");
                 media = new Media(file.toURI().toString());
                 mp = new MediaPlayer(media);
                 mp.play();
-                System.out.println("REPRODUCIENDO");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -352,26 +331,7 @@ public class GameController implements Initializable, Serializable {
         
     
     
-    void setGif(String name,ImageView iView){
-        InputStream input = null;
-        Image image = null;
-        try {
-            input = new FileInputStream(App.pathImgGame + name + ".gif");
-            image = new Image(input, 100, 100, false, false);
-            iView.setImage(image);
-
-        } catch (Exception ex) {
-            System.out.println("No se pudo cargar imagen");
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (Exception ex) {
-                    System.out.println("Error al cerrar el recurso");
-                }
-            }
-        }
-    }
+    
     
     void respuesta(Ejercicio e,boolean a){
         if(a) {e.done();} else e.intentosAumentar();
