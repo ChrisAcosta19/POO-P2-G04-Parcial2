@@ -33,7 +33,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Fecha (aaaa-dd-mm):" />
+            <Label text="Fecha (aaaa-mm-dd):" />
             <Label text="Cliente:" GridPane.rowIndex="2" />
             <Label text="Servicio:" GridPane.rowIndex="3" />
             <Label text="Terapista:" GridPane.rowIndex="4" />
