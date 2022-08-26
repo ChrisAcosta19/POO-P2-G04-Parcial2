@@ -33,8 +33,6 @@ import modelo.Cliente;
  * @author chris
  */
 public class CitasController implements Initializable {
-
-
     @FXML private TableView<Cita> tvCitas;
     @FXML private TableColumn colCliente;
     @FXML private TableColumn colTerapista;
@@ -54,14 +52,17 @@ public class CitasController implements Initializable {
     @FXML private Button btnCrearCita;
     @FXML private Button btnEliminarCita;
     @FXML private Button btnRegistrarAtencion;
-    ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
-    ArrayList<Cita> citasPendientes = cargarCitasPendientes();
+    private static ArrayList<Cita> citas;
+    private static ArrayList<Cita> citasPendientes;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        citas = Cita.cargarCitas(App.pathCitas);
+        citasPendientes = cargarCitasPendientes();
+        
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colTerapista.setCellValueFactory(new PropertyValueFactory<>("encargadoServicio"));
         colServicio.setCellValueFactory(new PropertyValueFactory<>("servicio"));
@@ -177,9 +178,9 @@ public class CitasController implements Initializable {
                 }
             } else {
                 //mostrar informacion
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("Resultado de la operación");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Error");
                 alert.setContentText("No se puede eliminar una cita con atención registrada");
                 alert.showAndWait();
                 try {
@@ -201,13 +202,24 @@ public class CitasController implements Initializable {
             alert.setHeaderText("Error");
             alert.setContentText("Debe seleccionar una cita de la tabla");
             alert.showAndWait();
-        } else {
+        } else if (citasPendientes.contains(c)){
             try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
             VBox root = (VBox) fxmlLoader.load();
             NuevaAtencionController ct = (NuevaAtencionController) fxmlLoader.getController();
             ct.llenarCampos(c);
             App.changeRoot(root);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Error");
+            alert.setContentText("La cita seleccionada ya está registrada");
+            alert.showAndWait();
+            try {
+                App.setRoot("Citas");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

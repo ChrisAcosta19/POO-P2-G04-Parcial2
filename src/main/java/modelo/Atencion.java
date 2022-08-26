@@ -12,19 +12,36 @@ import java.util.ArrayList;
  * @author chris
  */
 public class Atencion implements Serializable {
-
     private Cita cita;
     private int duracion;
     private Empleado empleadoAtencion;
+    private Cliente clienteCita;
+    private String fechaCita;
+    private String horaCita;
 
     //Constructor de la clase
     public Atencion(Cita cita, int duracion, Empleado empleadoAtencion) {
         this.cita = cita;
         this.duracion = duracion;
         this.empleadoAtencion = empleadoAtencion;
+        this.clienteCita = cita.getCliente();
+        this.fechaCita = cita.getFecha();
+        this.horaCita = cita.getHora();
     }
     
     //Getters
+    public Cliente getClienteCita() {
+        return clienteCita;
+    }
+
+    public String getFechaCita() {
+        return fechaCita;
+    }
+
+    public String getHoraCita() {
+        return horaCita;
+    }
+    
     public Cita getCita() {
         return cita;
     }

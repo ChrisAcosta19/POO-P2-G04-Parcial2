@@ -50,11 +50,11 @@ public class AtencionesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        colCliente.setCellValueFactory(new PropertyValueFactory<>("cita"));
+        colCliente.setCellValueFactory(new PropertyValueFactory<>("clienteCita"));
         colTerapista.setCellValueFactory(new PropertyValueFactory<>("empleadoAtencion"));
         colDuracion.setCellValueFactory(new PropertyValueFactory<>("duracion"));
-        colFecha.setCellValueFactory(new PropertyValueFactory<>("cita"));
-        colHora.setCellValueFactory(new PropertyValueFactory<>("cita"));
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaCita"));
+        colHora.setCellValueFactory(new PropertyValueFactory<>("horaCita"));
         tvAtenciones.getItems().setAll(atenciones);
         
         btnRegresar.setOnAction(eh -> {
