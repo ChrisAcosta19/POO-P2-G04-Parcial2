@@ -53,6 +53,8 @@ public class Atencion implements Serializable {
     public Empleado getEmpleadoAtencion() {
         return empleadoAtencion;
     }
+
+    
     
     //metodo toString para mostrar informacion
     @Override

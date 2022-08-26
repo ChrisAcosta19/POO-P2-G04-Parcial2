@@ -11,7 +11,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +22,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import modelo.Atencion;
 import modelo.Cita;
@@ -44,13 +45,15 @@ public class CitasController implements Initializable {
     @FXML private Button btnConsCliente;
     @FXML private Button btnConsFecha;
     @FXML private Button btnBorrarFiltros;
-    @FXML private Button btnRegresar;
-    @FXML private Button btnEliminarCita;
-    @FXML private Button btnRegistrarAtencion;
     @FXML private Label lblTitulo;
     private static ArrayList<Cita> citas;
     private static ArrayList<Cita> citasPendientes;
     public static Cita citaARegistrar;
+    @FXML private ImageView regresar;
+    @FXML private ImageView icon;
+    @FXML private ImageView agregar;
+    @FXML private ImageView eliminar;
+    @FXML private ImageView registrar;
     
     /**
      * Initializes the controller class.
@@ -60,6 +63,12 @@ public class CitasController implements Initializable {
         citas = Cita.cargarCitas(App.pathCitas);
         citasPendientes = cargarCitasPendientes();
         
+        App.setImage("iconCitas",App.pathImg,icon);
+        App.setImage("regresar",App.pathImg,regresar);
+        App.setImage("agregarCita",App.pathImg,agregar);
+        App.setImage("eliminarCita",App.pathImg,eliminar);
+        App.setImage("registrar",App.pathImg,registrar);
+        
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colTerapista.setCellValueFactory(new PropertyValueFactory<>("encargadoServicio"));
         colServicio.setCellValueFactory(new PropertyValueFactory<>("servicio"));
@@ -67,7 +76,7 @@ public class CitasController implements Initializable {
         colHora.setCellValueFactory(new PropertyValueFactory<>("hora"));
         tvCitas.getItems().setAll(citas);
         
-        btnRegresar.setOnAction(eh -> {
+        regresar.setOnMouseClicked(eh -> {
             try {
                 App.setRoot("primary");
             } catch (IOException ex) {
@@ -124,21 +133,21 @@ public class CitasController implements Initializable {
         }
         return pendientes;
     }
-
+    
     @FXML
-    private void eliminarCita(ActionEvent event) {
+    private void eliminarCita(MouseEvent event) throws IOException {
         Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
         if(c == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar eliminar cita");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar una cita de la tabla");
             alert.showAndWait();
         }else{
             if (citasPendientes.contains(c)){ //si la cita está pendiente, entonces no tiene atención
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Dialog");
-                alert.setHeaderText("Eliminar Cita");
+                alert.setTitle("Eliminar Cita");
+                alert.setHeaderText(null);
                 alert.setContentText("¿Está seguro de que desea eliminar esta cita?");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
@@ -149,8 +158,8 @@ public class CitasController implements Initializable {
 
                         //mostrar informacion
                         alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Information Dialog");
-                        alert.setHeaderText("Resultado de la operación");
+                        alert.setTitle("Eliminar Cita");
+                        alert.setHeaderText(null);
                         alert.setContentText("Cita eliminada exitosamente");
                         alert.showAndWait();
                         App.setRoot("Citas");
@@ -163,8 +172,8 @@ public class CitasController implements Initializable {
             } else {
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText("Error");
+                alert.setTitle("Error al intentar eliminar cita");
+                alert.setHeaderText(null);
                 alert.setContentText("No se puede eliminar una cita con atención registrada");
                 alert.showAndWait();
                 try {
@@ -175,33 +184,30 @@ public class CitasController implements Initializable {
             }
         }
     }
-
-   @FXML
-    public void registrarAtencion(ActionEvent event) {
+    
+    @FXML
+    public void registrarAtencion(MouseEvent event) throws IOException{
         Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
         System.out.println("Registrando atención");
         if(c == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar registrar atención");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar una cita de la tabla");
             alert.showAndWait();
         } else if (citasPendientes.contains(c)){
             citaARegistrar = c;
-            NuevaAtencionController.actividadIsDone = false;
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
                 VBox root = (VBox) fxmlLoader.load();
-                NuevaAtencionController ct = (NuevaAtencionController) fxmlLoader.getController();
-                ct.llenarCampos(c);
                 App.changeRoot(root);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar registrar atención");
+            alert.setHeaderText(null);
             alert.setContentText("La cita seleccionada ya está registrada");
             alert.showAndWait();
             try {
@@ -211,11 +217,17 @@ public class CitasController implements Initializable {
             }
         }
     }
-
+    
     @FXML
-    private void agregarCita(ActionEvent event) throws IOException {
+    private void agregarCita (MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaCita.fxml"));
         VBox root = (VBox) fxmlLoader.load();
         App.changeRoot(root);
     }
+    
+    @FXML
+    private void mostarInfo(MouseEvent event) {
+        
+    }
+    
 }

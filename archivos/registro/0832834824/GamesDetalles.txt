@@ -1,1 +1,2 @@
 Fecha: a,Número de ejercicios: 2,Número de fallos: 3,Tiempo total: 23 seg;Número de imágenes: 3,Número de fallos: 2,Tiempo: 18 seg;Número de imágenes: 4,Número de fallos: 1,Tiempo: 05 seg
+Fecha: 2022-11-11,Número de ejercicios: 3,Número de fallos: 1,Tiempo total: 13 seg;Número de imágenes: 4,Número de fallos: 0,Tiempo: 02 seg;Número de imágenes: 2,Número de fallos: 1,Tiempo: 06 seg;Número de imágenes: 2,Número de fallos: 0,Tiempo: 03 seg

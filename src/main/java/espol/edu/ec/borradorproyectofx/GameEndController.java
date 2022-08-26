@@ -27,18 +27,20 @@ public class GameEndController implements Initializable {
     @FXML private Label lblTimeT;
     @FXML private Label lblTitulo;
     @FXML private ImageView regresar;
+    
+    public static boolean juegoAcabado=false;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        App.setImage("regresar",App.pathImg,regresar);
+        App.setImage("regresar", App.pathImg, regresar);
         App.setGif("aplausos",aplausos);
         
         regresar.setOnMouseClicked(eh -> {
-            NuevaAtencionController.actividadIsDone = true;
             try {
-                App.setRoot("nuevaAtencion");
+                App.setRoot("nuevaAtencion");   
+                CitasController.citaARegistrar=null;
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -63,6 +65,7 @@ public class GameEndController implements Initializable {
             lblTiempoMedio.setText(String.valueOf(min)+" min "+String.valueOf(sec)+" seg");
         }
         
+        juegoAcabado=true;
         
     }
 

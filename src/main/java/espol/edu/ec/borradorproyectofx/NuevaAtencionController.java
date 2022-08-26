@@ -31,14 +31,22 @@ public class NuevaAtencionController implements Initializable{
     @FXML private Button btnCancelar;
     @FXML private Button btnActividad;
     private Cita cita;
-    public static boolean actividadIsDone;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if(!actividadIsDone){
-            btnGuardar.setDisable(true);
+        if(GameEndController.juegoAcabado){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información importante");
+            alert.setHeaderText(null);
+            alert.setContentText("Actividad registrada");
+            alert.showAndWait();
+            btnActividad.setDisable(true);
         } else {
-            btnGuardar.setDisable(false);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información importante");
+            alert.setHeaderText(null);
+            alert.setContentText("Para registrar la atención, primero debe realizar la actividad");
+            alert.showAndWait();
         }
         
         llenarCampos(CitasController.citaARegistrar);
@@ -59,7 +67,7 @@ public class NuevaAtencionController implements Initializable{
         System.out.println("Registrando atención");
         Validacion.validarEntero("Duracion", txtDuracion.getText());
         
-        if(Validacion.mensaje.equals("") && cmbTerapista.getValue() != null){
+        if(Validacion.mensaje.equals("") && cmbTerapista.getValue() != null && GameEndController.juegoAcabado){
             Atencion a = new Atencion(cita,
                     Integer.parseInt(txtDuracion.getText()),
                     cmbTerapista.getValue());
@@ -74,7 +82,7 @@ public class NuevaAtencionController implements Initializable{
 
                         //mostrar informacion
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Information Dialog");
+                        alert.setTitle("Agregar atención");
                         alert.setHeaderText(null);
                         alert.setContentText("Nueva atención agregada exitosamente");
                         alert.showAndWait();
@@ -83,6 +91,8 @@ public class NuevaAtencionController implements Initializable{
                         System.out.println("IOException:" + ex.getMessage());
                     }
                 } else {
+                    btnActividad.setDisable(true);
+                     
                     int ind = atenciones.indexOf(a);
                     atenciones.set(ind, a);
 
@@ -92,7 +102,7 @@ public class NuevaAtencionController implements Initializable{
 
                         //mostrar informacion
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Information Dialog");
+                        alert.setTitle("Editar Atención");
                         alert.setHeaderText(null);
                         alert.setContentText("Atención editada exitosamente");
 
@@ -103,21 +113,29 @@ public class NuevaAtencionController implements Initializable{
                         System.out.println("IOException:" + ex.getMessage());
                     }
                 }
+        } else if(!GameEndController.juegoAcabado){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error al intentar guardar atención");
+            alert.setHeaderText(null);
+            alert.setContentText("Debe realizar la actividad para guardar la atención");
+            alert.showAndWait();
+            Validacion.mensaje = "";
         } else if(Validacion.mensaje.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
+            alert.setTitle("Error al intentar guardar atención");
             alert.setHeaderText(null);
             alert.setContentText("Llenar todos los campos");
             alert.showAndWait();
             Validacion.mensaje = "";
-        } else {
+        }  else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
+            alert.setTitle("Error al intentar guardar atención");
             alert.setHeaderText(null);
             alert.setContentText(Validacion.mensaje);
             alert.showAndWait();
             Validacion.mensaje = "";
         }
+        GameEndController.juegoAcabado = false;
     }
     
     public void llenarCampos(Cita c){
@@ -135,4 +153,3 @@ public class NuevaAtencionController implements Initializable{
         App.setRoot("gameMain");
     }
 }
-
