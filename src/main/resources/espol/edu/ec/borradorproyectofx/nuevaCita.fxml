@@ -12,15 +12,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="442.0" stylesheets="@../../../../estilos/estiloSubmenus_1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.NuevaCitaController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="442.0" stylesheets="@../../../../estilos/estiloSubmenus_1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.NuevaCitaController">
 
    <children>
-      <Label fx:id="lblTitulo" text="Nueva Cita">
+      <Label fx:id="lblTitulo" prefHeight="51.0" prefWidth="145.0" text="Nueva Cita">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <GridPane maxWidth="400.0" prefHeight="200.0">
+      <GridPane maxWidth="400.0" prefHeight="227.0" prefWidth="400.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="176.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.0" minWidth="10.0" prefWidth="281.0" />
@@ -60,7 +60,7 @@
             </ComboBox>
          </children>
       </GridPane>
-      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="457.0" spacing="10.0">
+      <HBox alignment="CENTER" prefHeight="67.0" prefWidth="442.0" spacing="10.0">
          <children>
             <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#crearCita" text="Guardar" />
             <Button fx:id="btnCancelar" mnemonicParsing="false" text="Cancelar" />

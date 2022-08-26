@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -46,6 +47,7 @@ public class CitasController implements Initializable {
     @FXML private Button btnRegresar;
     @FXML private Button btnEliminarCita;
     @FXML private Button btnRegistrarAtencion;
+    @FXML private Label lblTitulo;
     private static ArrayList<Cita> citas;
     private static ArrayList<Cita> citasPendientes;
     public static Cita citaARegistrar;

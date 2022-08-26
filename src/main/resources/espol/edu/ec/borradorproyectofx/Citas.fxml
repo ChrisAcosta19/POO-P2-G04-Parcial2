@@ -13,7 +13,7 @@
    <children>
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="640.0">
          <children>
-            <Label text="Citas">
+            <Label fx:id="lblTitulo" text="Citas">
                <font>
                   <Font size="16.0" />
                </font>
@@ -35,7 +35,7 @@
             <Button fx:id="btnConsFecha" mnemonicParsing="false" text="Consultar por Fecha" />
          </children>
       </HBox>
-      <TableView fx:id="tvCitas" prefHeight="237.0" prefWidth="640.0">
+      <TableView fx:id="tvCitas" prefHeight="247.0" prefWidth="640.0">
         <columns>
           <TableColumn fx:id="colCliente" prefWidth="160.0" text="Cliente" />
           <TableColumn fx:id="colTerapista" prefWidth="167.0" text="Terapista" />
@@ -44,7 +44,7 @@
             <TableColumn fx:id="colHora" prefWidth="58.0" text="Hora" />
         </columns>
       </TableView>
-      <HBox alignment="CENTER" prefHeight="86.0" prefWidth="640.0" spacing="10.0">
+      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="640.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#agregarCita" text="Crear Cita" />
             <Button fx:id="btnEliminarCita" mnemonicParsing="false" onAction="#eliminarCita" text="Eliminar Cita" />
