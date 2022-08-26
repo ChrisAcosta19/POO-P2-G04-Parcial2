@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import modelo.Atencion;
 import modelo.Cita;
 import modelo.Cliente;
@@ -69,7 +70,6 @@ public class CitasController implements Initializable {
     @FXML private Label lblTitulo;
     
     public static Cita citaARegistrar;
-
     /**
      * Initializes the controller class.
      */
@@ -251,6 +251,5 @@ public class CitasController implements Initializable {
             //luego que el fxml ha sido cargado puedo utilizar el controlador para realizar cambios}
             App.changeRoot(root);
         }
-
     }
 }

@@ -111,7 +111,6 @@ public class GameController implements Initializable, Serializable {
         boolean guardar=false;
         if (ActividadesController.replayGame==null){
             jugar(g,true);  
-
             if (PrimaryController.gamePrueba){
                 Alert alert=new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("Guardado de Resultados");
@@ -124,7 +123,6 @@ public class GameController implements Initializable, Serializable {
                 jugar(g,guardar);
             }else{
                 jugar(g,true);}
-
         } else{
             Alert alert=new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Guardado de Resultados");
