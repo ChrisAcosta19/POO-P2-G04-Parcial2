@@ -140,15 +140,15 @@ public class CitasController implements Initializable {
         Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
         if(c == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error al intentar eliminar cita");
+            alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar una cita de la tabla");
             alert.showAndWait();
         }else{
             if (citasPendientes.contains(c)){ //si la cita está pendiente, entonces no tiene atención
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Dialog");
-                alert.setHeaderText("Eliminar Cita");
+                alert.setTitle("Eliminar Cita");
+                alert.setHeaderText(null);
                 alert.setContentText("¿Está seguro de que desea eliminar esta cita?");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
@@ -159,8 +159,8 @@ public class CitasController implements Initializable {
 
                         //mostrar informacion
                         alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Information Dialog");
-                        alert.setHeaderText("Resultado de la operación");
+                        alert.setTitle("Eliminar Cita");
+                        alert.setHeaderText(null);
                         alert.setContentText("Cita eliminada exitosamente");
                         alert.showAndWait();
                         App.setRoot("Citas");
@@ -173,8 +173,8 @@ public class CitasController implements Initializable {
             } else {
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText("Error");
+                alert.setTitle("Error al intentar eliminar cita");
+                alert.setHeaderText(null);
                 alert.setContentText("No se puede eliminar una cita con atención registrada");
                 alert.showAndWait();
                 try {
@@ -225,6 +225,10 @@ public class CitasController implements Initializable {
         VBox root = (VBox) fxmlLoader.load();
         App.changeRoot(root);
     }
-
+    
+    @FXML
+    private void mostarInfo(MouseEvent event) {
+        
+    }
     
 }
