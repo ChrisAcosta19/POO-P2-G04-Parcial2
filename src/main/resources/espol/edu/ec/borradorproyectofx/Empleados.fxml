@@ -29,7 +29,7 @@
             <TableColumn fx:id="colTelefono" prefWidth="94.0" text="Teléfono" />
             <TableColumn fx:id="colEmail" prefWidth="119.0" text="E-mail" />
             <TableColumn fx:id="colEstado" prefWidth="87.0" text="Estado" />
-            <TableColumn fx:id="colServicios" prefWidth="149.0" text="Servicios" />
+            <TableColumn fx:id="colServicios" maxWidth="109.0" prefWidth="109.0" text="Servicios" />
         </columns>
          <VBox.margin>
             <Insets left="20.0" right="20.0" />
