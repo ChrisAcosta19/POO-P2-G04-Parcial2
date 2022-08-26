@@ -76,6 +76,7 @@ public class ActividadesController implements Initializable {
                 
         lblSelected.setText(ClientesController.clienteSeleccionado.getNombre());
         App.setImage("regresar",App.pathImg,regresar);
+        btnReplay.setDisable(true);
         
         for(Game g:listaResultados){
             System.out.println(g);

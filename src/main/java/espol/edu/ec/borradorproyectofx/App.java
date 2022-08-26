@@ -32,7 +32,6 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
-        
         stage.show();
     }
 
@@ -66,12 +65,7 @@ public class App extends Application {
             }
     }
     
-    public static void tooltip(String lbl){
-        if(lbl.equals("")){
-
-        }
-    }
-     
+    
     public static void main(String[] args) {   
         try(BufferedReader br = new BufferedReader(new FileReader("archivos/Iniciar.txt"))){
             String linea = br.readLine();
@@ -90,11 +84,6 @@ public class App extends Application {
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
-        
-        ArrayList<Cliente> clientes1= Cliente.cargarClientes(App.pathClientes);
-        for(Cliente c:clientes1){
-        clientesCedulas.add(c.getCedula());
-    }
         
         launch();
     }

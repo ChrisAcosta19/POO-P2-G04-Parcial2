@@ -63,11 +63,9 @@ public class GameController implements Initializable, Serializable {
     public static int fallosTotal;
     public String infoPorPregunta="";
     
-    // parametros de prueba
+    String fecha;
+    String cliente;
     
-    int c1=(int) Math.floor(Math.random()*App.clientesCedulas.size());
-    String cliente=App.clientesCedulas.get(c1);
-    String fecha="a";
     Game g2save;
         
     @Override
@@ -75,17 +73,25 @@ public class GameController implements Initializable, Serializable {
         App.setImage("arrow_right",App.pathImgGame,btnAvanzar);
         App.setImage("arrow_left",App.pathImgGame,btnRetroceder);
         
-            
-        /*la atencion a partir de la cual se ejecuta el juego
-        String fecha=AtencionController.atencion.getCita().getFecha();
-        String cliente=a.getCita().getCliente().getCedula(); */
+        if(PrimaryController.gamePrueba ){
+            cliente="0987654321";
+            fecha="Fecha de prueba";
+        } else if(CitasController.citaARegistrar!=null){
+            fecha=CitasController.citaARegistrar.getFecha();
+            cliente=CitasController.citaARegistrar.getCliente().getCedula();
+        } else{
+            fecha="";
+            cliente=ClientesController.clienteSeleccionado.getCedula();
+        } 
+        
+        
        
         ArrayList <Ejercicio> ejerciciosVacio= new ArrayList<>();
         Game g=new Game(GameMainController.numEjercicios,ejerciciosVacio);
         numImagenesXEjercicio=imagesPerQuestion(GameMainController.numEjercicios);
         
         for(int x:numImagenesXEjercicio){
-            ArrayList <String> imagenesModelo= new ArrayList <>();
+            ArrayList <String> imagenesModelo= new ArrayList<>();
             int j=(int) Math.floor(Math.random()*ToF.length); boolean bool=false;
             bool=ToF[j];
             imagesSelection(x,bool,imagenesModelo);
@@ -105,6 +111,20 @@ public class GameController implements Initializable, Serializable {
         boolean guardar=false;
         if (ActividadesController.replayGame==null){
             jugar(g,true);  
+
+            if (PrimaryController.gamePrueba){
+                Alert alert=new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Guardado de Resultados");
+                alert.setHeaderText(null);
+                alert.setContentText("¿Desea guardar los resultados de esta sesión de juego de prueba?");
+                Optional<ButtonType> result= alert.showAndWait();
+                if(result.get()==ButtonType.OK){
+                    guardar=true;}
+                
+                jugar(g,guardar);
+            }else{
+                jugar(g,true);}
+
         } else{
             Alert alert=new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Guardado de Resultados");

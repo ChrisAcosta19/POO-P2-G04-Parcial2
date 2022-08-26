@@ -7,49 +7,44 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import modelo.*;
 
 public class AtencionesController implements Initializable {
 
 
-    @FXML
-    private TableView<Atencion> tvAtenciones;
-    @FXML
-    private TableColumn colCliente;
-    @FXML
-    private TableColumn colTerapista;
-    @FXML
-    private TableColumn colDuracion;
-    @FXML
-    private TableColumn colFecha;
-    @FXML
-    private TableColumn colHora;
-    @FXML
-    private Button btnRegresar;
-    @FXML
-    private TextField txtCedCliente;
-    @FXML
-    private TextField txtCedEmpleado;
-    @FXML
-    private TextField txtFecha;
-    @FXML
-    private Button btnConsCliente;
-    @FXML
-    private Button btnConsEmpleado;
-    @FXML
-    private Button btnConsFecha;
-    @FXML
-    private Button btnBorrarFiltros;
+    @FXML private TableView<Atencion> tvAtenciones;
+    @FXML private TableColumn colCliente;
+    @FXML private TableColumn colTerapista;
+    @FXML private TableColumn colDuracion;
+    @FXML private TableColumn colFecha;
+    @FXML private TableColumn colHora;
+    @FXML private TextField txtCedCliente;
+    @FXML private TextField txtCedEmpleado;
+    @FXML private TextField txtFecha;
+    @FXML private Button btnConsCliente;
+    @FXML private Button btnConsEmpleado;
+    @FXML private Button btnConsFecha;
+    @FXML private Button btnBorrarFiltros;
+    @FXML private Label lblTitulo;
+    @FXML private ImageView regresar;
+    @FXML private ImageView icon;
+    
     ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(App.pathAtenciones);
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        App.setImage("iconAtenciones",App.pathImg,icon);
+        App.setImage("regresar",App.pathImg,regresar);
+        
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cita"));
         colTerapista.setCellValueFactory(new PropertyValueFactory<>("empleadoAtencion"));
         colDuracion.setCellValueFactory(new PropertyValueFactory<>("duracion"));
@@ -57,7 +52,7 @@ public class AtencionesController implements Initializable {
         colHora.setCellValueFactory(new PropertyValueFactory<>("cita"));
         tvAtenciones.getItems().setAll(atenciones);
         
-        btnRegresar.setOnAction(eh -> {
+        regresar.setOnMouseClicked(eh -> {
             try {
                 App.setRoot("primary");
             } catch (IOException ex) {

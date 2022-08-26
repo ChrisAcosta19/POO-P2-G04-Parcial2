@@ -33,13 +33,15 @@ public class PrimaryController implements Initializable {
     @FXML private Button btnEmpleados;
     @FXML private Button btnClientes;
     @FXML private Button btnAtenciones;
-
+    
+    public static boolean gamePrueba=false;
 
        /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         App.setImage("iconServicios",App.pathImg,iconSrv);
         App.setImage("iconCitas",App.pathImg,iconCitas);
         App.setImage("iconAtenciones",App.pathImg,iconAtens);
@@ -85,6 +87,7 @@ public class PrimaryController implements Initializable {
         });
         
         btnGame.setOnAction(eh -> {
+            gamePrueba=true;
             try {
                 App.setRoot("gameMain");
             } catch (IOException ex) {

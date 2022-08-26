@@ -12,7 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< Updated upstream
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="442.0" stylesheets="@../../../../estilos/estiloSubmenus.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.NuevaAtencionController">
+=======
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="442.0" stylesheets="@../../../../estilos/estiloSubmenus_1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.borradorproyectofx.NuevaAtencionController">
+>>>>>>> Stashed changes
    <children>
       <Label fx:id="lblTitulo" text="Registro de Atenciones">
          <font>
@@ -47,27 +51,24 @@
                </GridPane.margin>
             </ComboBox>
             <Label layoutX="10.0" layoutY="22.0" text="Hora (xx:xx:xx):" GridPane.rowIndex="1" />
-            <Label fx:id="lblFecha" text="Label" GridPane.columnIndex="1">
+            <Label fx:id="lblFecha" alignment="CENTER" contentDisplay="CENTER" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="100.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="lblHora" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="lblHora" alignment="CENTER" contentDisplay="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="100.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="lblCliente" layoutX="257.0" layoutY="62.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="100.0" />
-               </GridPane.margin>
-            </Label>
+            <Label fx:id="lblCliente" alignment="CENTER" contentDisplay="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="457.0" spacing="10.0">
          <children>
             <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarAtencion" text="Guardar" />
             <Button fx:id="btnCancelar" mnemonicParsing="false" text="Cancelar" />
+            <Button fx:id="btnActividad" mnemonicParsing="false" onAction="#actividad" text="Realizar actividad" />
          </children>
       </HBox>
    </children>
