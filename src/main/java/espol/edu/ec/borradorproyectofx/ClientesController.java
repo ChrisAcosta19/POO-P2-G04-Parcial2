@@ -100,23 +100,25 @@ public class ClientesController implements Initializable {
     private void mostrarActividades(MouseEvent event) throws IOException{
         juegosExists=true;
         Cliente cl = (Cliente) tvClientes.getSelectionModel().getSelectedItem();
-        clienteSeleccionado=cl;
-        ActividadesController.listaResultados = ActividadesController.cargarLista();
         if(cl == null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error al intentar consultar actividades");
             alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar un cliente");
             alert.showAndWait();
-        }else if(!juegosExists){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("D:");
-            alert.setHeaderText(null);
-            alert.setContentText("El cliente seleccionado no tiene actividades realizadas");
-            alert.showAndWait();
-        } else {
-            App.setRoot("actividades");
-        }
+        }else{ 
+            clienteSeleccionado=cl;
+            ActividadesController.listaResultados = ActividadesController.cargarLista();
+            
+            if(!juegosExists){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("D:");
+                alert.setHeaderText(null);
+                alert.setContentText("El cliente seleccionado no tiene actividades realizadas");
+                alert.showAndWait();
+            } else {
+                App.setRoot("actividades");
+        }}
     }
 
     @FXML

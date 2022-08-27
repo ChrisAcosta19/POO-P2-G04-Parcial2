@@ -57,7 +57,7 @@ public class ActividadesController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-             
+        btnReplay.setDisable(true);     
         lblSelected.setText(ClientesController.clienteSeleccionado.getNombre());
         App.setImage("regresar",App.pathImg,regresar);
         
@@ -87,7 +87,9 @@ public class ActividadesController implements Initializable {
     private void mostrarTabla(){
         paneCentral.getChildren().clear();
         paneBottom.getChildren().clear();
-            
+        
+        btnReplay.setDisable(true);
+        
         colActividad.setCellValueFactory(new PropertyValueFactory<>("actividad"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colEjercicios.setCellValueFactory(new PropertyValueFactory<>("numEjercicios"));
@@ -122,10 +124,13 @@ public class ActividadesController implements Initializable {
             alert.setContentText("Debe seleccionar una sesión de juego");
             alert.showAndWait();
         }else{
+            if(!g.getFecha().equals("n/a")){// solo si es la sesión original, se puede volver a jugar
+            btnReplay.setDisable(false);}
+            
             paneCentral.getChildren().clear();
             paneBottom.getChildren().clear();
             
-                       
+            
             int indiceGame=listaResultados.indexOf(g);
             
             System.out.println("------------------");
@@ -163,7 +168,8 @@ public class ActividadesController implements Initializable {
             paneCentral.getChildren().add(paneGeneral);
             paneGeneral.setAlignment(Pos.CENTER);
             paneGeneral.setPadding(new Insets(20));*/
-                        
+            
+            // coloca en labels el detalle de cada ejercicio de la actividad            
            for(int x=1;x<detallesTotal.length;x++){
                VBox pane=new VBox();
                Label lbl=new Label("Ejercicio "+x);
@@ -196,12 +202,13 @@ public class ActividadesController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar una sesión de juego");
             alert.showAndWait();
-        }else{
-            ArrayList<Game> listaActividades=Game.cargarActividades(ClientesController.clienteSeleccionado.getCedula());
-            int indiceGame=listaResultados.indexOf(g);
-            Game gSelected=listaActividades.get(indiceGame);
-            replayGame=gSelected;
-            App.setRoot("game");
+        }else {
+                ArrayList<Game> listaActividades=Game.cargarActividades(ClientesController.clienteSeleccionado.getCedula());
+                int indiceGame=listaResultados.indexOf(g);
+                Game gSelected=listaActividades.get(indiceGame);
+                replayGame=gSelected;
+                App.setRoot("game");
+            
         }
     }
     

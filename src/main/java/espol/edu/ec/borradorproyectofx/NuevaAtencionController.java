@@ -40,15 +40,15 @@ public class NuevaAtencionController implements Initializable{
             alert.setHeaderText(null);
             alert.setContentText("Actividad registrada");
             alert.showAndWait();
-            btnActividad.setDisable(true);
-            btnGuardar.setDisable(false);
+            btnActividad.setDisable(true); // se inhabilita el boton de realizar actividad
+            btnGuardar.setDisable(false); // se habilita el boton de guardado
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Información importante");
             alert.setHeaderText(null);
             alert.setContentText("Para registrar la atención, primero debe realizar la actividad");
             alert.showAndWait();
-            btnGuardar.setDisable(true);
+            btnGuardar.setDisable(true); // se inhabilita el boton hasta que se realice la actividad
         }
         
         llenarCampos(CitasController.citaARegistrar);
@@ -92,29 +92,9 @@ public class NuevaAtencionController implements Initializable{
                     } catch (IOException ex) {
                         System.out.println("IOException:" + ex.getMessage());
                     }
-                } else {
-                    btnActividad.setDisable(true);
-                     
-                    int ind = atenciones.indexOf(a);
-                    atenciones.set(ind, a);
-
-                    try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathAtenciones))) {
-                        out.writeObject(atenciones);
-                        out.flush();
-
-                        //mostrar informacion
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Editar Atención");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Atención editada exitosamente");
-
-                        alert.showAndWait();
-                        App.setRoot("Atenciones");
-                    } catch (IOException ex) {
-                        System.out.println("IOException:" + ex.getMessage());
-                    }
                 }
             GameEndController.juegoAcabado = false;
+            
         } else if(Validacion.mensaje.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error al intentar guardar atención");
