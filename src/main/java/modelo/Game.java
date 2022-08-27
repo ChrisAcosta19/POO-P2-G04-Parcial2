@@ -1,9 +1,17 @@
 package modelo;
 
+import espol.edu.ec.borradorproyectofx.ActividadesController;
+import espol.edu.ec.borradorproyectofx.App;
+import espol.edu.ec.borradorproyectofx.ClientesController;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -83,7 +91,7 @@ public class Game implements Serializable, Cloneable{
             games = (ArrayList<Game>) oi.readObject();
             System.out.println("=============");
         } catch (FileNotFoundException ex) {
-            System.out.println("archivo no existe");
+            ClientesController.juegosExists=false;
         } catch (IOException ex) {
             System.out.println("error io:" + ex.getMessage());
         } catch (ClassNotFoundException ex) {
@@ -91,6 +99,37 @@ public class Game implements Serializable, Cloneable{
         }
         return games;
     }
+    
+    public static void crearArchivo(){
+        File directorioPrincipal = new File("archivos/registro");
+        File directorioCliente = new File("archivos/registro/0832834824");
+        directorioPrincipal.mkdir();
+        directorioCliente.mkdir();
+        
+        ArrayList<Game> actividades = new ArrayList<>();
+        ArrayList<String> images=new ArrayList<>();
+        images.add("cow");
+        ArrayList<Ejercicio> ejercicios= new ArrayList<>();
+        ejercicios.add(new Ejercicio(1,images,0,false));
+        actividades.add(new Game(1,ejercicios));
+        
+        ArrayList<Game> resultados = new ArrayList<>();
+        resultados.add(new Game("¿Cuántos hay?","0832834824","2022-02-01",1,0,"05 seg"));
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/registro/0832834824/Games.bin"))) {
+            out.writeObject(actividades);
+            out.flush();
+        }catch (Exception e){}
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/registro/0832834824/GamesResults.bin"))) {
+            out.writeObject(resultados);
+            out.flush();
+        }catch (Exception e){}
+        try ( BufferedWriter writer = new BufferedWriter(new FileWriter("archivos/registro/0832834824/GamesDetalles.txt", true))){
+            String registro = "Fecha: 2022-02-01" + ",Número de ejercicios: 1" + ",Número de fallos: 0" + ",Tiempo total: 05 seg" + ";Número de imágenes: 1" + ",Número de fallos: 0" + ",Tiempo: 05 seg" + "\n";
+            writer.write(registro);
+            writer.close();
+        }catch (Exception e){}
+    }
+    
     
     public Object clone() throws CloneNotSupportedException {
         return (Game) super.clone();

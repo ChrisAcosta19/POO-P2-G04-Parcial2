@@ -41,12 +41,14 @@ public class NuevaAtencionController implements Initializable{
             alert.setContentText("Actividad registrada");
             alert.showAndWait();
             btnActividad.setDisable(true);
+            btnGuardar.setDisable(false);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Información importante");
             alert.setHeaderText(null);
             alert.setContentText("Para registrar la atención, primero debe realizar la actividad");
             alert.showAndWait();
+            btnGuardar.setDisable(true);
         }
         
         llenarCampos(CitasController.citaARegistrar);
@@ -113,13 +115,6 @@ public class NuevaAtencionController implements Initializable{
                     }
                 }
             GameEndController.juegoAcabado = false;
-        } else if(!GameEndController.juegoAcabado){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error al intentar guardar atención");
-            alert.setHeaderText(null);
-            alert.setContentText("Debe realizar la actividad para guardar la atención");
-            alert.showAndWait();
-            Validacion.mensaje = "";
         } else if(Validacion.mensaje.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error al intentar guardar atención");

@@ -1,26 +1,26 @@
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Validacion.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Cliente.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevaCitaController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\GameController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Atencion.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\module-info.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\EmpleadosController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\PrimaryController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevoServicioController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\GameEndController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\CitasController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Empleado.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevoEmpleadoController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\ClientesController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevaAtencionController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Game.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Servicio.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Persona.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\ActividadesController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Cita.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Ejercicio.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\App.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\ServiciosController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\GameMainController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevoClienteController.java
-C:\Users\chris\Documents\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\AtencionesController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\App.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\AtencionesController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Atencion.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Cliente.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\CitasController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Ejercicio.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Empleado.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\GameMainController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Servicio.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevoEmpleadoController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Game.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevoServicioController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevaCitaController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\EmpleadosController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevoClienteController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\ServiciosController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\NuevaAtencionController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Validacion.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\ActividadesController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\ClientesController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Cita.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\modelo\Persona.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\GameEndController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\PrimaryController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\espol\edu\ec\borradorproyectofx\GameController.java
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\src\main\java\module-info.java

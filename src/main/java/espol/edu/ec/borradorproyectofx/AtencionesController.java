@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -41,6 +42,7 @@ public class AtencionesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+      
         App.setImage("iconAtenciones",App.pathImg,icon);
         App.setImage("regresar",App.pathImg,regresar);
         

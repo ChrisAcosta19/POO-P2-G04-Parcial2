@@ -38,45 +38,28 @@ import modelo.*;
  */
 public class ActividadesController implements Initializable {
 
-    @FXML
-    private Label lblSelected;
-    @FXML
-    private Button btnReplay;
-    @FXML
-    private TableColumn colActividad;
-    @FXML
-    private TableColumn colFecha;
-    @FXML
-    private TableColumn colEjercicios;
-    @FXML
-    private TableColumn colFallos;
-    @FXML
-    private Button btnDetails;
-    @FXML
-    private FlowPane paneCentral;
-    @FXML
-    private HBox paneBottom;
-    @FXML
-    private ImageView regresar;
-    @FXML
-    private TableView<Game> tableAct;
-    @FXML
-    private TableColumn colTiempo;
+    @FXML private Label lblSelected;
+    @FXML private Button btnReplay;
+    @FXML private TableColumn colActividad;
+    @FXML private TableColumn colFecha;
+    @FXML private TableColumn colEjercicios;
+    @FXML private TableColumn colFallos;
+    @FXML private Button btnDetails;
+    @FXML private FlowPane paneCentral;
+    @FXML private HBox paneBottom;
+    @FXML private ImageView regresar;
+    @FXML private TableView<Game> tableAct;
+    @FXML private TableColumn colTiempo;
+    @FXML private Label lblTitulo;
     
-    ArrayList<Game> listaResultados=Game.cargarResultados(ClientesController.clienteSeleccionado.getCedula());
+    public static ArrayList<Game> listaResultados;
     public static Game replayGame;
-    @FXML
-    private Label lblTitulo;
-    
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-                
+             
         lblSelected.setText(ClientesController.clienteSeleccionado.getNombre());
         App.setImage("regresar",App.pathImg,regresar);
-        btnReplay.setDisable(true);
         
         for(Game g:listaResultados){
             System.out.println(g);
@@ -222,5 +205,8 @@ public class ActividadesController implements Initializable {
         }
     }
     
+    public static ArrayList<Game> cargarLista(){
+        return Game.cargarResultados(ClientesController.clienteSeleccionado.getCedula());
+    }
     
 }

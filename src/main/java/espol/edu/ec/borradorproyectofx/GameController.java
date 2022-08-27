@@ -68,17 +68,17 @@ public class GameController implements Initializable, Serializable {
     public void initialize(URL url, ResourceBundle rb) {
         App.setImage("arrow_right",App.pathImgGame,btnAvanzar);
         App.setImage("arrow_left",App.pathImgGame,btnRetroceder);
-        ArrayList <Ejercicio> ejerciciosVacio= new ArrayList<>();
-        Game g = new Game(GameMainController.numEjercicios,ejerciciosVacio);
+        ArrayList <Ejercicio> ejercicios= new ArrayList<>();
+        Game g = new Game(GameMainController.numEjercicios,ejercicios);
         numImagenesXEjercicio=imagesPerQuestion(GameMainController.numEjercicios);
         
         for(int x:numImagenesXEjercicio){
-            ArrayList <String> imagenesModelo= new ArrayList<>();
+            ArrayList <String> imagenes= new ArrayList<>();
             int j=(int) Math.floor(Math.random()*ToF.length);
             boolean bool=false;
             bool=ToF[j];
-            imagesSelection(x,bool,imagenesModelo);
-            Ejercicio ejercicio=new Ejercicio(x,imagenesModelo,0,false);
+            imagesSelection(x,bool,imagenes);
+            Ejercicio ejercicio=new Ejercicio(x,imagenes,0,false);
             g.getEjercicios().add(ejercicio);
         }        
         
@@ -95,7 +95,8 @@ public class GameController implements Initializable, Serializable {
         
         if (ActividadesController.replayGame==null){ // se esta registrando una atencion
             fecha=CitasController.citaARegistrar.getFecha();
-            cliente=CitasController.citaARegistrar.getCliente().getCedula();            
+            cliente=CitasController.citaARegistrar.getCliente().getCedula();
+            resultados=Game.cargarResultados(cliente);
             jugar(g,true); 
         } else {// se esta rejugando
             Alert alert=new Alert(AlertType.CONFIRMATION);
@@ -108,9 +109,9 @@ public class GameController implements Initializable, Serializable {
             }
             fecha="";
             cliente=ClientesController.clienteSeleccionado.getCedula();
+            resultados=Game.cargarResultados(cliente);
             jugar(ActividadesController.replayGame,guardar);
         } 
-       ActividadesController.replayGame=null;
     }
     
     void jugar(Game g, boolean guardarResultados){
@@ -173,12 +174,12 @@ public class GameController implements Initializable, Serializable {
 
                         if (directorioCliente.exists()) {
 
-                            File fileResultados = new File("archivos/registro/" + cliente + "GamesResults.bin");
-                            File fileActividades = new File("archivos/registro/" + cliente + "GamesResults.bin");
+                            File fileResultados = new File("archivos/registro/" + cliente + "/GamesResults.bin");
+                            File fileActividades = new File("archivos/registro/" + cliente + "/Games.bin");
 
                             if (fileResultados.exists() && fileActividades.exists()) {
                                 actividades = Game.cargarActividades(cliente);
-                                resultados = Game.cargarResultados(cliente);
+                                
                             }
 
                             try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/registro/" + cliente + "/Games.bin"))) {
@@ -206,8 +207,6 @@ public class GameController implements Initializable, Serializable {
                                 e.printStackTrace();
                             }
                         }
-                    } else {
-                        resultados = Game.cargarResultados(cliente);
                     }
 
                     try {
@@ -220,7 +219,7 @@ public class GameController implements Initializable, Serializable {
                         timeTotal = timePromedio;
                         timePromedio /= g.getNumEjercicios();
                         String tiempo = Game.timeFormat(timeTotal);
-                        Game g2 = new Game("¿Cuantos hay?", cliente, fecha, g.getNumEjercicios(), fallosTotal, tiempo);
+                        Game g2 = new Game("¿Cuántos hay?", cliente, fecha, g.getNumEjercicios(), fallosTotal, tiempo);
                         System.out.println(g2);
                         resultados.add(g2);
                         if (guardarResultados) {

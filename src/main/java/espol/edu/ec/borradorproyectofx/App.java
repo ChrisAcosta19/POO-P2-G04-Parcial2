@@ -90,6 +90,7 @@ public class App extends Application {
                 Cliente.crearArchivo(pathClientes);
                 Cita.crearArchivo(pathCitas);
                 Atencion.crearArchivo(pathAtenciones);
+                Game.crearArchivo();
                 try(BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/Iniciar.txt"))){
                     bw.write("true");
                 }catch(IOException e){
@@ -99,7 +100,7 @@ public class App extends Application {
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
-        
+        ActividadesController.replayGame=null;
         launch();
     }
 

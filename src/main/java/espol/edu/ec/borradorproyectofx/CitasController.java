@@ -62,6 +62,7 @@ public class CitasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         citas = Cita.cargarCitas(App.pathCitas);
         citasPendientes = cargarCitasPendientes();
+        GameEndController.juegoAcabado=false;
         
         App.setImage("iconCitas",App.pathImg,icon);
         App.setImage("regresar",App.pathImg,regresar);

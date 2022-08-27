@@ -1,3 +1,0 @@
-Fecha: a,Número de ejercicios: 2,Número de fallos: 0,Tiempo total: 04 seg;Número de imágenes: 2,Número de fallos: 0,Tiempo: 02 seg;Número de imágenes: 4,Número de fallos: 0,Tiempo: 02 seg
-Fecha: a,Número de ejercicios: 4,Número de fallos: 0,Tiempo total: 20 seg;Número de imágenes: 2,Número de fallos: 0,Tiempo: 02 seg;Número de imágenes: 1,Número de fallos: 0,Tiempo: 11 seg;Número de imágenes: 3,Número de fallos: 0,Tiempo: 02 seg;Número de imágenes: 3,Número de fallos: 0,Tiempo: 01 seg
-Fecha: a,Número de ejercicios: 2,Número de fallos: 0,Tiempo total: 04 seg;Número de imágenes: 2,Número de fallos: 0,Tiempo: 02 seg;Número de imágenes: 4,Número de fallos: 0,Tiempo: 02 seg

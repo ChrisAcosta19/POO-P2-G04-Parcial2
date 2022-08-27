@@ -38,11 +38,23 @@ public class GameEndController implements Initializable {
         App.setGif("aplausos",aplausos);
         
         regresar.setOnMouseClicked(eh -> {
+            if(ActividadesController.replayGame==null){
             try {
+                juegoAcabado=true;
                 App.setRoot("nuevaAtencion");   
                 CitasController.citaARegistrar=null;
+                
+                
             } catch (IOException ex) {
                 ex.printStackTrace();
+            }
+            }else{
+              try {
+                App.setRoot("actividades");   
+                ActividadesController.replayGame=null;
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }  
             }
         });
         
@@ -65,7 +77,7 @@ public class GameEndController implements Initializable {
             lblTiempoMedio.setText(String.valueOf(min)+" min "+String.valueOf(sec)+" seg");
         }
         
-        juegoAcabado=true;
+        
         
     }
 
