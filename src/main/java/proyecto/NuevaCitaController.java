@@ -36,7 +36,10 @@ public class NuevaCitaController implements Initializable{
     @FXML private Button btnCancelar;
     ArrayList<Cita> citas;
     public static Cita cita;
-            
+    
+     /**
+     * Inicialización del controlador para una nueva cita
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         citas = Cita.cargarCitas(App.pathCitas);//cargar la lista del archivo
@@ -50,6 +53,10 @@ public class NuevaCitaController implements Initializable{
         llenarCampos();
     }
     
+    /**
+     * Método que crea una cita a partir de la información que el usuario introduzca,
+     * asegurándose que se llenen todos los campos y que estos sean válidos
+     */
     @FXML
     public void crearCita(ActionEvent event) {
         System.out.println("Guardando cita");
@@ -118,7 +125,10 @@ public class NuevaCitaController implements Initializable{
             Validacion.mensaje = "";
         }
     }
-
+    
+    /**
+     * Método que llena las combo boxes con los servicios, empleados y clientes registrados
+     */
     public void llenarCampos(){
         ArrayList<Servicio> servicios = Servicio.cargarServicios(App.pathServicios);//cargar la lista del archivo
         ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);//cargar la lista del archivo
