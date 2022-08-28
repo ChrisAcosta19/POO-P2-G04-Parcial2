@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="442.0" stylesheets="@../estilos/estiloSubmenus.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.NuevaAtencionController">
+   <children>
+      <Label fx:id="lblTitulo" text="Registro de Atenciones">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <GridPane maxWidth="400.0" prefHeight="200.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="176.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="390.0" minWidth="10.0" prefWidth="281.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Fecha (aaaa-mm-dd):" />
+            <Label text="Cliente:" GridPane.rowIndex="2" />
+            <Label text="Duración (minutos):" GridPane.rowIndex="3" />
+            <Label text="Terapista:" GridPane.rowIndex="4" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <TextField fx:id="txtDuracion" prefHeight="25.0" prefWidth="279.0" />
+               </children>
+            </HBox>
+            <ComboBox fx:id="cmbTerapista" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin>
+            </ComboBox>
+            <Label layoutX="10.0" layoutY="22.0" text="Hora (hh:mm:ss):" GridPane.rowIndex="1" />
+            <Label fx:id="lblFecha" alignment="CENTER" contentDisplay="CENTER" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblHora" alignment="CENTER" contentDisplay="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCliente" alignment="CENTER" contentDisplay="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="457.0" spacing="10.0">
+         <children>
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarAtencion" text="Guardar" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" text="Cancelar" />
+            <Button fx:id="btnActividad" mnemonicParsing="false" onAction="#actividad" text="Realizar actividad" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

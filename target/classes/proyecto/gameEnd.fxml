@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/estiloGameEnd.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.GameEndController">
+   <top>
+      <Label fx:id="lblTitulo" alignment="CENTER" prefHeight="65.0" prefWidth="433.0" text="JUGUEMOS A CONTAR" textAlignment="JUSTIFY" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="193.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblTimeP" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="23.0" prefHeight="38.0" prefWidth="185.0" text="Tiempo Promedio" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTiempoMedio" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="28.0" prefHeight="95.0" prefWidth="177.0">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTiempoTotal" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="109.0" prefHeight="95.0" prefWidth="176.0">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTimeT" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="100.0" prefHeight="39.0" prefWidth="184.0" text="Tiempo Total" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="regresar" fitHeight="100.0" fitWidth="170.0" layoutX="24.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </right>
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblGracias" alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="50.0" prefWidth="370.0" text="GRACIAS POR JUGAR">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="aplausos" fitHeight="155.0" fitWidth="213.0" layoutX="94.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -1,4 +1,4 @@
-module espol.edu.ec.borradorproyectofx {
+module proyecto {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.base;
@@ -6,7 +6,7 @@ module espol.edu.ec.borradorproyectofx {
     requires javafx.graphics;
     requires javafx.media;
 
-    opens espol.edu.ec.borradorproyectofx to javafx.fxml;
-    opens modelo to javafx.base;
-    exports espol.edu.ec.borradorproyectofx to javafx.graphics;
+    opens proyecto to javafx.fxml;
+    opens proyecto.modelo to javafx.base;
+    exports proyecto to javafx.graphics;
 }

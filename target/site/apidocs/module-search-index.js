@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"espol.edu.ec.borradorproyectofx"}];updateSearchResults();
+moduleSearchIndex = [{"l":"proyecto"}];updateSearchResults();

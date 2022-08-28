@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs></exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.appArgs>--module-path "C:\Program Files\Eclipse Adoptium\javafx-sdk-17.0.2\lib" --add-modules=javafx.controls,javafx.fxml</exec.appArgs>
+                <exec.mainClass>proyecto.App</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <exec.workingdir>F:\Users\Jp Pm\OneDrive - Escuela Superior PolitÃƒÂ©cnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2</exec.workingdir>
+            </properties>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.appArgs>--module-path "C:\Program Files\Eclipse Adoptium\javafx-sdk-17.0.2\lib" --add-modules=javafx.controls,javafx.fxml</exec.appArgs>
+                <exec.mainClass>proyecto.App</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+                <exec.workingdir>F:\Users\Jp Pm\OneDrive - Escuela Superior PolitÃƒÂ©cnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2</exec.workingdir>
+            </properties>
+        </action>
+        <action>
+            <actionName>profile</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.0.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs></exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.mainClass>proyecto.App</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <exec.appArgs>--module-path "C:\Program Files\Eclipse Adoptium\javafx-sdk-17.0.2\lib" --add-modules=javafx.controls,javafx.fxml</exec.appArgs>
+                <exec.workingdir>F:\Users\Jp Pm\OneDrive - Escuela Superior PolitÃƒÂ©cnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2</exec.workingdir>
+            </properties>
+        </action>
+    </actions>

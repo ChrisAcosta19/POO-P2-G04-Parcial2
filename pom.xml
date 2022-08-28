@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>espol.edu.ec</groupId>
+    <groupId>proyecto</groupId>
     <artifactId>POO-P2-G04-Parcial2</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
@@ -48,7 +48,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>espol.edu.ec.borradorproyectofx.App</mainClass>
+                    <mainClass>proyecto.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>
