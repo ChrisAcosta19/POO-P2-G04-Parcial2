@@ -1,5 +1,8 @@
 package espol.edu.ec.borradorproyectofx;
 
+import modelo.Cliente;
+import modelo.Empleado;
+import modelo.Atencion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -14,7 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import modelo.*;
 
 public class AtencionesController implements Initializable {
 

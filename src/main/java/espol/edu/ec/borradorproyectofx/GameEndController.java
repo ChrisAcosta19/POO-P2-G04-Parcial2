@@ -37,8 +37,8 @@ public class GameEndController implements Initializable {
         App.setImage("regresar", App.pathImg, regresar);
         App.setGif("aplausos",aplausos);
         
-        regresar.setOnMouseClicked(eh -> {
-            if(ActividadesController.replayGame==null){ // cuando se esta registrando una atención, regresa a la ventana para terminar el guardado
+        regresar.setOnMouseClicked(eh -> { // Expresión lambda que determina el comportamiento del ImageView regresar
+            if(ActividadesController.replayGame==null){ // Cuando se esta registrando una atención, regresa a la ventana para terminar el guardado
             try {
                 juegoAcabado=true; 
                 App.setRoot("nuevaAtencion");   
@@ -48,7 +48,7 @@ public class GameEndController implements Initializable {
             }
             }else{
               try {
-                App.setRoot("clientes");// cuando se esta rejugando una sesión, vuelve a la ventana de clientes   
+                App.setRoot("clientes");// Cuando se esta rejugando una sesión, vuelve a la ventana de clientes   
                 ActividadesController.replayGame=null;
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -56,7 +56,7 @@ public class GameEndController implements Initializable {
             }
         });
         
-        // escribir el tiempo promedio de cada pregunta y elt iempo total del juego en el label con el formato correspondiente (ya sea en minutos o segundos)
+        // Escribe el tiempo promedio de cada pregunta y el tiempo total del juego en labels con el formato correspondiente (ya sea en minutos o segundos)
         int tiempoSec=GameController.timeTotal;
         if(tiempoSec<60){
             lblTiempoTotal.setText(String.valueOf(tiempoSec)+"s");

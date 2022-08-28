@@ -4,6 +4,9 @@
  */
 package espol.edu.ec.borradorproyectofx;
 
+import modelo.Validacion;
+import modelo.Empleado;
+import modelo.Servicio;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -19,7 +22,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
-import modelo.*;
 import java.io.*;
 import javafx.scene.control.Label;
 

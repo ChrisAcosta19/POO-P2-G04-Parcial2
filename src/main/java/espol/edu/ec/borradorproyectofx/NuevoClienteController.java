@@ -4,6 +4,9 @@
  */
 package espol.edu.ec.borradorproyectofx;
 
+import modelo.Cliente;
+import modelo.Validacion;
+import modelo.Persona;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -17,7 +20,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import modelo.*;
 /**
  * FXML Controller class
  *

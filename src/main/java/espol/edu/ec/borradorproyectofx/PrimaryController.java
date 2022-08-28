@@ -44,7 +44,7 @@ public class PrimaryController implements Initializable {
         App.setImage("iconClientes",App.pathImg,iconClientes);
         App.setImage("iconSalir",App.pathImg,iconSalir);
         
-        btnServicios.setOnAction(eh -> {
+        btnServicios.setOnAction(eh -> { // Expresión lambda que determina el comportamiento del botón btnServicios
             try {
                 App.setRoot("Servicios");
             } catch (IOException ex) {
@@ -52,7 +52,7 @@ public class PrimaryController implements Initializable {
             }
         });
         
-        btnEmpleados.setOnAction(eh -> {
+        btnEmpleados.setOnAction(eh -> { // Expresión lambda que determina el comportamiento del botón btnEmpleados
             try {
                 App.setRoot("Empleados");
             } catch (IOException ex) {
@@ -60,7 +60,7 @@ public class PrimaryController implements Initializable {
             }
         });
         
-        btnClientes.setOnAction(eh -> {
+        btnClientes.setOnAction(eh -> { // Expresión lambda que determina el comportamiento del botón btnClientes
             try {
                 App.setRoot("Clientes");
             } catch (IOException ex) {
@@ -68,7 +68,7 @@ public class PrimaryController implements Initializable {
             }
         });
         
-        btnCitas.setOnAction(eh -> {
+        btnCitas.setOnAction(eh -> { // Expresión lambda que determina el comportamiento del botón btnCitas
             try {
                 App.setRoot("Citas");
             } catch (IOException ex) {
@@ -76,7 +76,7 @@ public class PrimaryController implements Initializable {
             }
         });
               
-        btnAtenciones.setOnAction(eh -> {
+        btnAtenciones.setOnAction(eh -> { // Expresión lambda que determina el comportamiento del botón btnAtenciones
             try {
                 App.setRoot("Atenciones");
             } catch (IOException ex) {
@@ -84,7 +84,7 @@ public class PrimaryController implements Initializable {
             }
         });
         
-        iconSalir.setOnMouseClicked(eh -> {
+        iconSalir.setOnMouseClicked(eh -> { // Expresión lambda que determina el comportamiento del ImageView iconSalir
             Node source = (Node) eh.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();

@@ -1,5 +1,8 @@
 package espol.edu.ec.borradorproyectofx;
 
+import modelo.Cita;
+import modelo.Cliente;
+import modelo.Validacion;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,7 +17,6 @@ import javafx.scene.control.ComboBox;
 import modelo.Empleado;
 import javafx.scene.control.Label;
 import modelo.Servicio;
-import modelo.*;
 
 /**
  *

@@ -1,6 +1,7 @@
 package espol.edu.ec.borradorproyectofx;
 
-import modelo.*;
+import modelo.Ejercicio;
+import modelo.Game;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -47,29 +48,29 @@ public class GameController implements Initializable, Serializable {
     @FXML private transient Button btnVerificarRespuesta;
     @FXML private transient ImageView respuestaVisualMal;
     
-    String[] images={"cow","cowg","cowh","duck","horse","horsea","horseb","pig","pigb","rooster","roosterb","sheep"};
-    transient ImageView[] imagesLocation={img01,img02,img11,img12,img03,img13,img00,img10};
+    private String[] images={"cow","cowg","cowh","duck","horse","horsea","horseb","pig","pigb","rooster","roosterb","sheep"};
+    private transient ImageView[] imagesLocation={img01,img02,img11,img12,img03,img13,img00,img10};
     private ArrayList <Integer> numImagenesXEjercicio=new ArrayList<>();
     private Boolean[] ToF={true, true, false, true, true, true, true};
     private int ejercicio=0;
-    ArrayList<Ejercicio> ejercicios=new ArrayList<>();
-    ArrayList<Game> actividades = new ArrayList<>();
-    ArrayList<Game> resultados = new ArrayList<>();
+    private ArrayList<Ejercicio> ejercicios=new ArrayList<>();
+    private ArrayList<Game> actividades = new ArrayList<>();
+    private ArrayList<Game> resultados = new ArrayList<>();
     
     public static int timePromedio;
     public static int timeTotal;
     public static int fallosTotal;
-    public String infoPorPregunta="";
-    String fecha;
-    String cliente; 
-    Game g2save;
+    private String infoPorPregunta="";
+    private String fecha;
+    private String cliente; 
+    private Game g2save;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         App.setImage("arrow_right",App.pathImgGame,btnAvanzar);
         App.setImage("arrow_left",App.pathImgGame,btnRetroceder);
         
-        //crea el juego con parametros que se van a ir completando con la ejecucion de cada metodo
+        //Se crea el juego con parámetros que se van a ir completando con la ejecución de cada método
         ArrayList <Ejercicio> ejercicios= new ArrayList<>();
         Game g = new Game(GameMainController.numEjercicios,ejercicios);
         numImagenesXEjercicio=imagesPerQuestion(GameMainController.numEjercicios);
@@ -87,43 +88,48 @@ public class GameController implements Initializable, Serializable {
         System.out.println(g);
         
         try {
-            g2save=(Game)g.clone(); // juego que se va a guardar sin fallos ni tiempo registrado
+            g2save=(Game)g.clone(); // Se clona el objeto Game para guardarlo y poder rejugarlo posteriormnete, por lo que no tiene fallos ni tiempo registrado
         } catch (CloneNotSupportedException ex) {
             ex.printStackTrace();
         }
         
-        //
-        boolean guardar=false;
         
-        if (ActividadesController.replayGame==null){ // cuando se esta registrando una atencion
-            fecha=CitasController.citaARegistrar.getFecha();// fecha de la cita que se registra la atencion
-            cliente=CitasController.citaARegistrar.getCliente().getCedula();// cedula del cliente de quien se registra la atencion
-            resultados=Game.cargarResultados(cliente); //recuperar la lista del archivo
+        boolean guardar=false; // Variable que determina si se guardan o no los resultados de la sesión
+        
+        //Evalúa los casos posibles, si se está registrando una atención, o se estpa rejugando una sesión
+        if (ActividadesController.replayGame==null){ // Este caso es cuando se esta registrando una atención
+            fecha=CitasController.citaARegistrar.getFecha();// Asigna el valor de la fecha de la cita de la que se registra la atención
+            cliente=CitasController.citaARegistrar.getCliente().getCedula();// Asigna el valor de la cédula del cliente de quien se registra la atención
+            resultados=Game.cargarResultados(cliente); //Recupera la lista del archivo
             jugar(g,true); 
-        } else {// cuando se esta rejugando una sesión 
+        } else {// Este caso es cuando se esta rejugando una sesión 
             Alert alert=new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Guardado de Resultados");
             alert.setHeaderText(null);
             alert.setContentText("¿Desea guardar los resultados de esta sesión de juego?");
             Optional<ButtonType> result= alert.showAndWait();
             if(result.get()==ButtonType.OK){
-                guardar=true; // de ser true, se guardar los resultados y los detalles, mas no la actividad
+                guardar=true; // De ser true, se guardan los resultados y los detalles, mas no la actividad
             }
             fecha="n/a";
-            cliente=ClientesController.clienteSeleccionado.getCedula(); //cedula del cliente del que se consulta las actividades
-            resultados=Game.cargarResultados(cliente); //recuperar la lista del archivo
+            cliente=ClientesController.clienteSeleccionado.getCedula(); //Asigna el valor de la cédula del cliente del que se consultan sus actividades
+            resultados=Game.cargarResultados(cliente); //Recupera la lista del archivo
             jugar(ActividadesController.replayGame,guardar);
             
         } 
     }
     
+    /* Método que determina los comportamientos de jugabilidad y guardado de resultados de la actividad
+    @param g Objeto tipo Game que se está jugando
+    @param guardarResultados Indica si se guardan los resultados de ls sesión de juego actual
+    */
     void jugar(Game g, boolean guardarResultados){
         try {
             ejercicio(g,ejercicio);
         } catch (Exception ex) {}
         
         try{
-            btnVerificarRespuesta.setOnMouseClicked(eh -> {
+            btnVerificarRespuesta.setOnMouseClicked(eh -> { // Expresión lambda que determina el comportamiento del botón btnVerificarRespuesta 
                 int respuesta;
                 try {
                     respuesta = Integer.valueOf(fieldRespuesta.getText());
@@ -140,7 +146,7 @@ public class GameController implements Initializable, Serializable {
                             g.getEjercicios().get(ejercicio).intentosAumentar();
                         }
                     }
-                } catch (Exception ex) {
+                } catch (Exception ex) { // Si se ingresa un valor que no sea un número, se emite una alerta
                     fieldRespuesta.clear();
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error al ingresar número");
@@ -151,14 +157,14 @@ public class GameController implements Initializable, Serializable {
             });
         }catch (Exception ex) {}
         
-        btnAvanzar.setOnMouseClicked(eh -> {
-            if(!g.getEjercicios().get(ejercicio).isDone()){
+        btnAvanzar.setOnMouseClicked(eh -> { // Expresión lambda que determina el comportamiento del botón btnAvanzar
+            if(!g.getEjercicios().get(ejercicio).isDone()){ // Si se intenta avanzar al siguiente ejercicio sin haber respondido correctamente el actual, se emite una alerta
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("D:");
                 alert.setHeaderText(null);
                 alert.setContentText("La pregunta aún no ha sido respondida correctamente");
                 alert.showAndWait();
-            }else{
+            }else{ // Cuando se responde correctamente se limpian los ImageView  
                 respuestaVisual.imageProperty().set(null);
                 fieldRespuesta.clear();
                 ejercicio++;
@@ -168,9 +174,9 @@ public class GameController implements Initializable, Serializable {
                     ex.printStackTrace();
                 } catch (IndexOutOfBoundsException ex) {
                     
-                    //verifica que los directorios existan, y si no, los crea
+                    //Verifica que los directorios existan donde se guardan los resultados y los juegos, y si no, los crea
                     if (ActividadesController.replayGame == null) {
-                        File directorioPrincipal = new File("archivos/registro");
+                        File directorioPrincipal = new File("archivos/registro"); 
                         File directorioCliente = new File("archivos/registro/" + cliente);
                         if (!directorioPrincipal.exists()) {
                             directorioPrincipal.mkdir();
@@ -182,10 +188,11 @@ public class GameController implements Initializable, Serializable {
                             File fileActividades = new File("archivos/registro/" + cliente + "/Games.bin");
 
                             if (fileResultados.exists() && fileActividades.exists()) {
-                                actividades = Game.cargarActividades(cliente);
+                                actividades = Game.cargarActividades(cliente); // Si existe ya el archivo, se recupera la lista de juegos de este, si no, se utiliza la lista vacía por defecto
                                 
                             }
-
+                            
+                            // Se serializa el objeto tipo Game para poder ser rejugado
                             try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/registro/" + cliente + "/Games.bin"))) {
                                 actividades.add(g2save);
                                 out.writeObject(actividades);
@@ -214,21 +221,24 @@ public class GameController implements Initializable, Serializable {
                     }
 
                     try {
+                        // Se llena el String info con los datos de cada ejercicio del juego
                         for (Ejercicio e : g.getEjercicios()) {
-                            String xd = ";Número de imágenes: " + e.getRespuesta() + ",Número de fallos: " + e.getFallos() + ",Tiempo: " + Game.timeFormat(e.getTime());
-                            infoPorPregunta += xd;
-                            fallosTotal += e.getFallos();
-                            timePromedio += e.getTime();
+                            String info = ";Número de imágenes: " + e.getRespuesta() + ",Número de fallos: " + e.getFallos() + ",Tiempo: " + Game.timeFormat(e.getTime());
+                            infoPorPregunta += info;
+                            fallosTotal += e.getFallos(); // Se actualizan los fallos del ejercicio
+                            timePromedio += e.getTime(); // Se actualiza la variable que contiene el tiempo en que se completó el ejercicio
                         }
-                        timeTotal = timePromedio;
-                        timePromedio /= g.getNumEjercicios();
-                        String tiempo = Game.timeFormat(timeTotal);
+                        timeTotal = timePromedio; // Se asigna a la variable que contiene el tiempo total
+                        timePromedio /= g.getNumEjercicios(); // Se promedia para el número de ejercicios para obtener el tiempo promedio por ejercicio y se actualiza la variable
+                        String tiempo = Game.timeFormat(timeTotal); // Se obtiene el tiempo en formato de minutos y segundos en String
+                        // Se crea el objeto tipo Game que tendrá los resultados de la sesión 
                         Game g2 = new Game("¿Cuántos hay?", cliente, fecha, g.getNumEjercicios(), fallosTotal, tiempo);
                         System.out.println(g2);
-                        resultados.add(g2);
+                        resultados.add(g2); // Se agrega a la lista de juegos
+                        // Se verifica si se guardan o no los resultados de la sesión
                         if (guardarResultados) {
                             
-                            //se guarda el archivo game en la lista y se serializa
+                            //Se serializa la lista 
                             try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/registro/" + cliente + "/GamesResults.bin"))) {
                                 out.writeObject(resultados);
                                 out.flush();
@@ -238,7 +248,7 @@ public class GameController implements Initializable, Serializable {
                                 e.printStackTrace();
                             }
                             
-                            //se guardan los detalles de cada ejercicio en el txt
+                            //Se guardan los detalles de cada ejercicio en el txt correspondiente
                             try ( BufferedWriter writer = new BufferedWriter(new FileWriter("archivos/registro/" + cliente + "/GamesDetalles.txt", true))) {
                                 String registro = "Fecha: " + g2.getFecha() + ",Número de ejercicios: " + g2.getNumEjercicios() + ",Número de fallos: " + g2.getFallos() + ",Tiempo total: " + g2.getTiempoEnFormato() + infoPorPregunta + "\n";
                                 writer.write(registro);
@@ -261,7 +271,9 @@ public class GameController implements Initializable, Serializable {
             }
         });
         
-        btnRetroceder.setOnMouseClicked(eh -> {
+        
+        btnRetroceder.setOnMouseClicked(eh -> { // Expresión lambda que determina el comportamiento del botón btnRetroceder
+            //Si se encuentra en el primer ejercicio, se regresa a la página de inicio pidiendo una confirmación para ello
             if (ejercicio == 0) {
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("¡OJO!");
@@ -269,13 +281,24 @@ public class GameController implements Initializable, Serializable {
                 alert.setContentText("Si sales ahora, no se guardará el juego ni sus resultados, ¿desea salir?");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
+                    
+                    if(ActividadesController.replayGame==null){
                     try {
                         App.setRoot("gameMain");
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
+                    // Sin embargo, si se está rejugando una sesión, el botón redirige a la ventana de actividades del cliente seleccionado
+                    } else{
+                    try {
+                        App.setRoot("actividades");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }    
+                    }
                 }
             } else {
+                // Se limpian los ImageView
                 respuestaVisual.imageProperty().set(null);
                 fieldRespuesta.clear();
                 ejercicio--;
@@ -288,7 +311,9 @@ public class GameController implements Initializable, Serializable {
         });    
     } 
     
-    //reproduce el sonido dependiendo de la respuesta obtenida en el textfield
+    /*Método que reproduce un sonido dependiendo de la respuesta obtenida en el TextField
+    @ param respuesta Indica si la respuesta es correcta o incorrecta
+    */
     void sonido(boolean respuesta) {
         Media media;
         MediaPlayer mp;
@@ -312,7 +337,10 @@ public class GameController implements Initializable, Serializable {
         }
     }
     
-    // metodo que coloca las imagenes de cada ejercicio llamando al metodo imagesLocation y mide el tiempo 
+    /* Método que ejecuta las acciones necesarias para jugar cada ejercicio, coloca las imágenes de cada ejercicio llamando al método imagesLocation y mide el tiempo utilizando un hilo
+    @param g Objeto tipo Game que se está jugando
+    @param ejercicio Índice del ejercicio en la lista de ejercicios del objeto Game 
+    */
     void ejercicio(Game g, int ejercicio) throws IOException {
         img00.imageProperty().set(null);img01.imageProperty().set(null);img02.imageProperty().set(null);
         img03.imageProperty().set(null);img10.imageProperty().set(null);img11.imageProperty().set(null);
@@ -337,16 +365,22 @@ public class GameController implements Initializable, Serializable {
         t.start();
         }
         
-    //depende de la respuesta obtenida del textfield, aumenta intento fallido o setea el ejercicio como respondido correctamente 
-    void respuesta(Ejercicio e, boolean a) {
-        if (a) {
+    /*Método que dependiendo de la respuesta obtenida del TextField, aumenta un intento fallido al ejercicio o caso contrario cambia es estadio del ejercicio como respondido correctamente 
+    @param e Ejercicio el cual se está jugando
+    @param correcta Indica si la respuesta recibida es correcta o no
+    */
+    void respuesta(Ejercicio e, boolean correcta) {
+        if (correcta) {
             e.done();
         } else {
             e.intentosAumentar();
         }
     }
     
-    // retorna la pocición de la imagen según la cantidad de imagenes del ejercicio
+    /* Método que retorna el ImageView correspondiente a la posición que tendrá la imagen según su índice en la lista
+    @param i índice de imagen en la lista (siendo 7 el máximo, porque 8 es la cantidad máxima de imágenes posibles en el ejercicio)
+    @return Devuelve un ImageView
+    */
     ImageView getIView(int i){
         ImageView iv=null;
         if(i==0){iv= img01;}
@@ -360,7 +394,10 @@ public class GameController implements Initializable, Serializable {
         return iv;
     }
     
-   //metodo que determina la cantidad de imagenes en cada ejercicio aleatoriamente
+    /*Método que determina la cantidad de imágenes en cada ejercicio aleatoriamente, según la cantidad de ejercicios totales de la sesion de juego
+    @param numEjercicios Número de ejercicios en total de la sesión de juego
+    @return Devuelve una lista de enteros
+    */
     ArrayList <Integer> imagesPerQuestion(int numEjercicios){
         ArrayList<Integer> imagesPerQ = new ArrayList<>();
         int a;
@@ -383,24 +420,31 @@ public class GameController implements Initializable, Serializable {
             }
 
             for (int b = 0; b < numEjercicios - 6; b++) {
-                a = (int) Math.floor(Math.random() * 8);
+                a = (int) Math.floor(Math.random() * 8)+1;
                 imagesPerQ.add(a);
             }
         }
         return imagesPerQ;
     }
     
-    //metodo que coloca las imagenes en el gridpane
+    /*Método que recorre la lista de imágenes para colocarlas en el ImageView correspondiente
+    @param imagenes Lista de imágenes del ejercicio
+    */
     void imagesLocation(ArrayList <String> imagenes){
         int n = imagenes.size();
         for (int r = 0; r <= (n - 1); r++) {
             String imagenElegida = imagenes.get(r);
-            ImageView iv = getIView(r);
+            ImageView iv = getIView(r); 
             App.setImage(imagenElegida, App.pathImgGame, iv);
         }
     }
     
-    //metodo para seleccionar imagenes aleatoriamente para cada ejercicio
+    /*
+    Método para seleccionar imágenes (nombre de archivos .png) aleatoriamente para cada ejercicio
+    @param n Número de imágenes a seleccionar en cada ejercicio
+    @param imgDif Determina si las imágenes del ejercicio son todas iguales o diferentes
+    @param imagenesElegidas Lista a la cual se agregan las imágenes por cada ejercicio
+    */
     void imagesSelection(int n, boolean imgDif,ArrayList<String> imagenesElegidas){
         String imagenElegida=null;
         ImageView iv=null;

@@ -28,11 +28,11 @@ public class GameMainController implements Initializable {
         App.setImage("arrow_right",App.pathImgGame,btnAvanzar);
         App.setImage("regresar",App.pathImg,regresar);
         
-        btnAvanzar.setOnMouseClicked(eh -> {
+        btnAvanzar.setOnMouseClicked(eh -> { // Expresión lambda que determina el comportamiento del botón btnAvanzar
             try {
                 numEjercicios=Integer.valueOf(fieldNumEjercicios.getText());
-                App.setRoot("game");
-            } catch (Exception ex) {
+                App.setRoot("game"); //Se redirige a la ventana para jugar la sesión
+            } catch (Exception ex) { // Si se ingresa un valor que no sea número, se emite una alerta
                 fieldNumEjercicios.clear();
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error al ingresar número");
@@ -42,9 +42,9 @@ public class GameMainController implements Initializable {
             }
         });
 
-        regresar.setOnMouseClicked(eh -> {
+        regresar.setOnMouseClicked(eh -> { // Expresión lambda que determina el comportamiento del ImageView regresar
             try {
-                App.setRoot("nuevaAtencion");
+                App.setRoot("nuevaAtencion"); // Regresa a la ventana en que se está registrando la atención
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

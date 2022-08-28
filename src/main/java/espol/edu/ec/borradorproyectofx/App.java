@@ -1,5 +1,11 @@
 package espol.edu.ec.borradorproyectofx;
 
+import modelo.Cita;
+import modelo.Cliente;
+import modelo.Game;
+import modelo.Empleado;
+import modelo.Servicio;
+import modelo.Atencion;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +14,6 @@ import javafx.stage.Stage;
 import java.io.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import modelo.*;
 
 
 /**
@@ -41,6 +46,12 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     
+    /*
+    Método que asigna una imagen al ImageView ingresado como parámetro
+    @param name Nombre del archivo png
+    @param path Ruta donde se encuentra el archivo
+    @param iView ImageView al cual se asignará la imagen seleccionada
+    */
     public static void setImage(String name,String path,ImageView iView){
         InputStream input = null;
         Image image = null;
@@ -61,6 +72,11 @@ public class App extends Application {
         }
     }
     
+    /*
+    Método que asigna un gif al ImageView ingresado como parámetro
+    @param name Nombre del archivo gif
+    @param iView ImageView al cual se asignará la imagen seleccionada
+    */
     public static void setGif(String name,ImageView iView){
         InputStream input = null;
         Image image = null;

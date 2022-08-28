@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"espol.edu.ec.borradorproyectofx","l":"espol.edu.ec.borradorproyectofx"}];updateSearchResults();

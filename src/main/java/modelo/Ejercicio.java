@@ -4,6 +4,11 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Juan Pablo Plúas
+ */
+
 public class Ejercicio implements Serializable{
         private static final long serialVersionUID = 1;
         int respuesta;
@@ -12,7 +17,13 @@ public class Ejercicio implements Serializable{
         boolean done;
         int time=0;
         
-
+        /*
+        Constructor de la clase Ejercicio
+        @param respuestas Número de imágenes que tiene el ejercicio, por ende, la respuesta del mismo
+        @param imagenes Lista de imágenes del ejercicio
+        @param fallos Número de fallos totales del ejercicio
+        @param done Indica si el ejercicio ya ha sido respondido correctamente
+        */
         public Ejercicio(int respuesta, ArrayList<String> imagenes, int fallos, boolean done) {
             this.respuesta = respuesta;
             this.imagenes = imagenes;
@@ -37,45 +48,29 @@ public class Ejercicio implements Serializable{
             return "Ejercicio{" + "respuesta=" + respuesta + ", fallos=" + fallos + ", time=" + time + "s}";
         }
 
+    
     public int getRespuesta() {
         return respuesta;
-    }
-
-    public void setRespuesta(int respuesta) {
-        this.respuesta = respuesta;
     }
 
     public ArrayList<String> getImagenes() {
         return imagenes;
     }
 
-    public void setImagenes(ArrayList<String> imagenes) {
-        this.imagenes = imagenes;
-    }
-
     public int getFallos() {
         return fallos;
-    }
-
-    public void setFallos(int fallos) {
-        this.fallos = fallos;
     }
 
     public boolean isDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
-    }
-
     public int getTime() {
         return time;
     }
 
-    public void setTime(int time) {
-        this.time = time;
-    }
+    
+    
         
         
     }  

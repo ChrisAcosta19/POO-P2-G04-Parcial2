@@ -4,6 +4,7 @@
  */
 package espol.edu.ec.borradorproyectofx;
 
+import modelo.Empleado;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -27,7 +28,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
-import modelo.*;
 
 /**
  * FXML Controller class
