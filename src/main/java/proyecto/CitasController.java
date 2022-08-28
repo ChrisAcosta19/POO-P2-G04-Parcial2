@@ -150,7 +150,7 @@ public class CitasController implements Initializable {
             alert.setContentText("Debe seleccionar una cita de la tabla");
             alert.showAndWait();
         }else{
-            if (citasPendientes.contains(c)){ //si la cita está pendiente, entonces no tiene atención
+            if (citasPendientes.contains(c)){ //si la cita está dentro de pendientes, entonces no tiene atención
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Eliminar Cita");
                 alert.setHeaderText(null);
@@ -243,5 +243,4 @@ public class CitasController implements Initializable {
     private void mostarInfo(MouseEvent event) {
         
     }
-    
 }
