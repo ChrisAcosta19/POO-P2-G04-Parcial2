@@ -1,5 +1,7 @@
-package proyecto;
+package modelo;
 
+import modelo.Servicio;
+import modelo.Persona;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

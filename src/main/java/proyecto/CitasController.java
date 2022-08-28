@@ -1,5 +1,8 @@
 package proyecto;
 
+import modelo.Atencion;
+import modelo.Cliente;
+import modelo.Cita;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;

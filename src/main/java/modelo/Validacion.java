@@ -1,8 +1,12 @@
-package proyecto;
+package modelo;
 
+import modelo.Persona;
+import modelo.Cliente;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import proyecto.App;
+import proyecto.App;
 import proyecto.App;
 
 /**

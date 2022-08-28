@@ -1,5 +1,6 @@
-package proyecto;
+package modelo;
 
+import modelo.Ejercicio;
 import proyecto.ActividadesController;
 import proyecto.App;
 import proyecto.ClientesController;
@@ -14,6 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import proyecto.ClientesController;
 
 /**
  *

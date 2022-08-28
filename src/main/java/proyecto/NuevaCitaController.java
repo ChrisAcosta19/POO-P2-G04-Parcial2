@@ -1,5 +1,10 @@
 package proyecto;
 
+import modelo.Empleado;
+import modelo.Validacion;
+import modelo.Servicio;
+import modelo.Cliente;
+import modelo.Cita;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

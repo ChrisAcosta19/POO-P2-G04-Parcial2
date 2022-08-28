@@ -1,7 +1,10 @@
-package proyecto;
+package modelo;
+import modelo.Cliente;
+import modelo.Cita;
 import proyecto.App;
 import java.io.*;
 import java.util.ArrayList;
+import proyecto.App;
 
 /**
  *

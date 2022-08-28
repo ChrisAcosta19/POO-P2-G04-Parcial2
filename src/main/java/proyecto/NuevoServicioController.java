@@ -1,5 +1,7 @@
 package proyecto;
 
+import modelo.Validacion;
+import modelo.Servicio;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;

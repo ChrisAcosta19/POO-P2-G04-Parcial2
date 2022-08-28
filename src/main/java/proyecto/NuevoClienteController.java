@@ -1,5 +1,8 @@
 package proyecto;
 
+import modelo.Validacion;
+import modelo.Persona;
+import modelo.Cliente;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;

@@ -1,5 +1,8 @@
 package proyecto;
 
+import modelo.Empleado;
+import modelo.Atencion;
+import modelo.Cliente;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

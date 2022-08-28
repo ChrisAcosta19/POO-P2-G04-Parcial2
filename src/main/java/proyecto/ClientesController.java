@@ -1,5 +1,6 @@
 package proyecto;
 
+import modelo.Cliente;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

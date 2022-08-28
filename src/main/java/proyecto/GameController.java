@@ -1,5 +1,7 @@
 package proyecto;
 
+import modelo.Game;
+import modelo.Ejercicio;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;

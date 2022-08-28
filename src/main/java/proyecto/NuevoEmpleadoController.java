@@ -1,5 +1,8 @@
 package proyecto;
 
+import modelo.Empleado;
+import modelo.Validacion;
+import modelo.Servicio;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
