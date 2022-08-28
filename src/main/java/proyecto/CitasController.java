@@ -24,10 +24,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+
 /**
  * FXML Controller class
  *
- * @author chris
+ * @author chris, Ronald Gaibor
  */
 public class CitasController implements Initializable {
     @FXML private TableView<Cita> tvCitas;
@@ -113,6 +114,10 @@ public class CitasController implements Initializable {
         });
     }    
     
+     /**
+     * Método que carga las citas pendientes, es decir, que no han sido atendidas
+     * y las pone en una lista de citas pendientes para su posterior utilización
+     */
     public ArrayList<Cita> cargarCitasPendientes(){
         ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
         ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(App.pathAtenciones);
@@ -131,6 +136,10 @@ public class CitasController implements Initializable {
         return pendientes;
     }
     
+     /**
+     * Método que elimina una cita, siempre y cuando cumpla con el requerimiento
+     * de no haber sido atendida
+     */
     @FXML
     private void eliminarCita(MouseEvent event) throws IOException {
         Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
@@ -182,6 +191,11 @@ public class CitasController implements Initializable {
         }
     }
     
+     /**
+     * Método que revisa que se haya seleccionado una atención, que esta no haya
+     * sido registrada, y que cambia el panel al de una nueva atención, tomando
+     * los datos de la cita seleccionada
+     */
     @FXML
     public void registrarAtencion(MouseEvent event) throws IOException{
         Cita c = (Cita) tvCitas.getSelectionModel().getSelectedItem();
@@ -215,6 +229,9 @@ public class CitasController implements Initializable {
         }
     }
     
+     /**
+     * Método que cambia el panel al de una nueva cita para su creación
+     */
     @FXML
     private void agregarCita (MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaCita.fxml"));
