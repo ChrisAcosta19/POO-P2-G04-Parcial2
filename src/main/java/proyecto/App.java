@@ -1,11 +1,5 @@
 package proyecto;
 
-import proyecto.modelo.Cita;
-import proyecto.modelo.Cliente;
-import proyecto.modelo.Game;
-import proyecto.modelo.Empleado;
-import proyecto.modelo.Servicio;
-import proyecto.modelo.Atencion;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -1,5 +1,5 @@
 
-package proyecto.modelo;
+package proyecto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class Ejercicio implements Serializable{
         boolean done;
         int time=0;
         
-        /*
+        /**
         Constructor de la clase Ejercicio
         @param respuestas Número de imágenes que tiene el ejercicio, por ende, la respuesta del mismo
         @param imagenes Lista de imágenes del ejercicio

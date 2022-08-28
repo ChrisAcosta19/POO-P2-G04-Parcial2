@@ -1,8 +1,5 @@
 package proyecto;
 
-import proyecto.modelo.Cliente;
-import proyecto.modelo.Empleado;
-import proyecto.modelo.Atencion;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,7 +14,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-
+/**
+ * FXML Controller class
+ *
+ * @author Ronald Gaibor
+ */
 public class AtencionesController implements Initializable {
 
 

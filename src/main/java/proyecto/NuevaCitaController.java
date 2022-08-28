@@ -1,8 +1,5 @@
 package proyecto;
 
-import proyecto.modelo.Cita;
-import proyecto.modelo.Cliente;
-import proyecto.modelo.Validacion;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,14 +11,14 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
-import proyecto.modelo.Empleado;
 import javafx.scene.control.Label;
-import proyecto.modelo.Servicio;
 
 /**
+ * FXML Controller class
  *
  * @author Ronald Gaibor
  */
+
 public class NuevaCitaController implements Initializable{
     
     @FXML private TextField txtFecha;

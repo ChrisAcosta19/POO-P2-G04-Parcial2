@@ -1,7 +1,5 @@
 package proyecto;
 
-import proyecto.modelo.Ejercicio;
-import proyecto.modelo.Game;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -119,7 +117,8 @@ public class GameController implements Initializable, Serializable {
         } 
     }
     
-    /* Método que determina los comportamientos de jugabilidad y guardado de resultados de la actividad
+    /** 
+     * Método que determina los comportamientos de jugabilidad y guardado de resultados de la actividad
     @param g Objeto tipo Game que se está jugando
     @param guardarResultados Indica si se guardan los resultados de ls sesión de juego actual
     */
@@ -311,7 +310,8 @@ public class GameController implements Initializable, Serializable {
         });    
     } 
     
-    /*Método que reproduce un sonido dependiendo de la respuesta obtenida en el TextField
+    /**
+     * Método que reproduce un sonido dependiendo de la respuesta obtenida en el TextField
     @ param respuesta Indica si la respuesta es correcta o incorrecta
     */
     void sonido(boolean respuesta) {
@@ -337,7 +337,8 @@ public class GameController implements Initializable, Serializable {
         }
     }
     
-    /* Método que ejecuta las acciones necesarias para jugar cada ejercicio, coloca las imágenes de cada ejercicio llamando al método imagesLocation y mide el tiempo utilizando un hilo
+    /**
+     * Método que ejecuta las acciones necesarias para jugar cada ejercicio, coloca las imágenes de cada ejercicio llamando al método imagesLocation y mide el tiempo utilizando un hilo
     @param g Objeto tipo Game que se está jugando
     @param ejercicio Índice del ejercicio en la lista de ejercicios del objeto Game 
     */
@@ -365,7 +366,8 @@ public class GameController implements Initializable, Serializable {
         t.start();
         }
         
-    /*Método que dependiendo de la respuesta obtenida del TextField, aumenta un intento fallido al ejercicio o caso contrario cambia es estadio del ejercicio como respondido correctamente 
+    /**
+     * Método que dependiendo de la respuesta obtenida del TextField, aumenta un intento fallido al ejercicio o caso contrario cambia es estadio del ejercicio como respondido correctamente 
     @param e Ejercicio el cual se está jugando
     @param correcta Indica si la respuesta recibida es correcta o no
     */
@@ -394,7 +396,8 @@ public class GameController implements Initializable, Serializable {
         return iv;
     }
     
-    /*Método que determina la cantidad de imágenes en cada ejercicio aleatoriamente, según la cantidad de ejercicios totales de la sesion de juego
+    /**
+     * Método que determina la cantidad de imágenes en cada ejercicio aleatoriamente, según la cantidad de ejercicios totales de la sesion de juego
     @param numEjercicios Número de ejercicios en total de la sesión de juego
     @return Devuelve una lista de enteros
     */
@@ -427,7 +430,8 @@ public class GameController implements Initializable, Serializable {
         return imagesPerQ;
     }
     
-    /*Método que recorre la lista de imágenes para colocarlas en el ImageView correspondiente
+    /**
+     * Método que recorre la lista de imágenes para colocarlas en el ImageView correspondiente
     @param imagenes Lista de imágenes del ejercicio
     */
     void imagesLocation(ArrayList <String> imagenes){
@@ -439,7 +443,7 @@ public class GameController implements Initializable, Serializable {
         }
     }
     
-    /*
+    /**
     Método para seleccionar imágenes (nombre de archivos .png) aleatoriamente para cada ejercicio
     @param n Número de imágenes a seleccionar en cada ejercicio
     @param imgDif Determina si las imágenes del ejercicio son todas iguales o diferentes

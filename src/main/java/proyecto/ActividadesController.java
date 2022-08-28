@@ -1,7 +1,6 @@
 
 package proyecto;
 
-import proyecto.modelo.Game;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -85,7 +84,7 @@ public class ActividadesController implements Initializable {
         
     }    
     
-    /*
+    /**
     Método que muestra la tabla de actividades del cliente seleccionado
     */
     private void mostrarTabla(){
@@ -118,7 +117,7 @@ public class ActividadesController implements Initializable {
         
     }
     
-    /*
+    /**
     Método que muestra los detalles de cada ejercicio de la sesión de juego seleccionada
     @throw IOException
     */
@@ -212,7 +211,7 @@ public class ActividadesController implements Initializable {
         
     }
     
-    /*
+    /**
     Método que permite rejugar una sesión de juego seleccionada
     @throw IOException
     */
@@ -235,7 +234,7 @@ public class ActividadesController implements Initializable {
         }
     }
     
-    /*
+    /**
     Método que carga la lista de sesiones de juego 
     @return Devuelve una lista de objetos Game con resultados
     */

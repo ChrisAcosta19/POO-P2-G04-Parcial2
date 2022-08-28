@@ -1,8 +1,5 @@
 package proyecto;
 
-import proyecto.modelo.Cita;
-import proyecto.modelo.Validacion;
-import proyecto.modelo.Atencion;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,13 +11,14 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
-import proyecto.modelo.Empleado;
 import javafx.scene.control.Label;
 
 /**
+ * FXML Controller class
  *
- * @author Ronald Gaibor
+ * @author Ronald Gaibor & Juan Pablo Plúas 
  */
+
 public class NuevaAtencionController implements Initializable{
     
     @FXML private Label lblFecha;
@@ -65,7 +63,7 @@ public class NuevaAtencionController implements Initializable{
         });
     }
     
-    /*
+    /**
     Método que guarda la atención
     */
     @FXML
@@ -118,7 +116,7 @@ public class NuevaAtencionController implements Initializable{
         }   
     }
     
-    /*
+    /**
     Método que llena los labels con la infromación de la cita que se registra
     @param c Cita que se está registrando
     */
@@ -132,7 +130,7 @@ public class NuevaAtencionController implements Initializable{
         cmbTerapista.getItems().setAll(empleados);
     }
     
-    /*
+    /**
     Método para realizar la actividad correspondiente a la atención
     */
     @FXML

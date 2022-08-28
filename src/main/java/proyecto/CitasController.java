@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package proyecto;
 
 import java.io.FileOutputStream;
@@ -25,9 +21,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import proyecto.modelo.Atencion;
-import proyecto.modelo.Cita;
-import proyecto.modelo.Cliente;
 /**
  * FXML Controller class
  *

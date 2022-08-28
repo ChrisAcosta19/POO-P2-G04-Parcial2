@@ -1,4 +1,4 @@
-package proyecto.modelo;
+package proyecto;
 
 import proyecto.ActividadesController;
 import proyecto.App;
@@ -29,7 +29,7 @@ public class Game implements Serializable, Cloneable{
     int fallos;
     String actividad;
     String tiempoEnFormato;
-    /*
+    /**
     Constructor inicial de la clase Game
     @param numEjercicios Número de ejercicios que tiene el juego
     @param ejercicios Lista de ejercicios
@@ -39,7 +39,7 @@ public class Game implements Serializable, Cloneable{
         this.ejercicios = ejercicios;
     }
     
-    /*
+    /**
     Constructor de la clase Game para guardar resultados
     @param actividad Nombre de la actividad
     @param cliente Cédula de cliente
@@ -61,7 +61,7 @@ public class Game implements Serializable, Cloneable{
     public String toString() {
         return "Game {" + "numEjercicios=" + numEjercicios + ", cliente=" + cliente + ", fecha=" + fecha + ", fallos=" + fallos + ", tiempo=" + tiempoEnFormato + ", actividad=" + actividad + '}';
     }
-    /*
+    /**
     Método que devuelve un String con el tiempo ingresado en segundos, en formato de minutos y segundos según corresponda
     @return Devuelve una String
     */
@@ -81,7 +81,7 @@ public class Game implements Serializable, Cloneable{
             return min+" min "+sec+" seg";
         }  
     }
-    /*
+    /**
     Método que carga la lista de objetos Game rejugables
     @param cedulaCliente Cédula del cliente del cual se va a cargar la lista
     @return Devuelve una lista de objetos Game rejugables
@@ -102,7 +102,7 @@ public class Game implements Serializable, Cloneable{
         return games;
     }
     
-    /*
+    /**
     Método que carga la lista de objetos Game con los resultados
     @param cedulaCliente Cédula del cliente del cual se va a cargar la lista
     @return Devuelve una lista de objetos Game con resultados
@@ -124,8 +124,8 @@ public class Game implements Serializable, Cloneable{
         return games;
     }
     
-    /*
-    Método que carga una sesión de juego relacionada a la atención que también se carga por defecto
+    /**
+     * Método que carga una sesión de juego relacionada a la atención que también se carga por defecto
     */
     public static void crearArchivo(){
         File directorioPrincipal = new File("archivos/registro");
