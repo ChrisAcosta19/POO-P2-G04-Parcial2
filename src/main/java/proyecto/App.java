@@ -101,7 +101,7 @@ public class App extends Application {
         try(BufferedReader br = new BufferedReader(new FileReader("Iniciar.txt"))){
             String linea = br.readLine();
             if(linea.equalsIgnoreCase("false")){
-                new File("archivos/").mkdir();
+                new File("archivos").mkdir();
                 Servicio.crearArchivo(pathServicios);
                 Empleado.crearArchivo(pathEmpleados, pathServicios);
                 Cliente.crearArchivo(pathClientes);

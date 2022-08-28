@@ -132,9 +132,6 @@ public class Game implements Serializable, Cloneable{
         String cedula = atenciones.get(0).getCita().getCliente().getCedula();
         
         File directorioPrincipal = new File("archivos/registro");
-        if(directorioPrincipal.exists()){
-            directorioPrincipal.delete();
-        }
         File directorioCliente = new File("archivos/registro/" + cedula);
         directorioPrincipal.mkdir();
         directorioCliente.mkdir();
