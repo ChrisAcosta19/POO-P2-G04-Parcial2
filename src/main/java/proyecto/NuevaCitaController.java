@@ -70,7 +70,7 @@ public class NuevaCitaController implements Initializable{
                               txtHora.getText(),
                               cmbCliente.getValue(),cmbServicio.getValue(),cmbTerapista.getValue());
             if (!citas.contains(c)) {
-                citas.add(c);//agregar servicio a la lista
+                citas.add(c);//agregar cita a la lista
                 System.out.println("Nueva Cita:" + c);
 
                 //serializar la lista
@@ -139,4 +139,3 @@ public class NuevaCitaController implements Initializable{
         cmbCliente.getItems().setAll(clientes);
     }
 }
-
