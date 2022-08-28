@@ -122,6 +122,10 @@ public class NuevoServicioController implements Initializable {
         }
     }
     
+    /**
+     * método para mostrar los datos del servicio a editar
+     * @param s servicio cuyos datos se usarán para llenar los campos
+     */
     public void llenarCampos(Servicio s){
         lblTitulo.setText("Editar Servicio");
         txtNombre.setText(s.getNombre());

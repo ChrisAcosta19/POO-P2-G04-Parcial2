@@ -7,6 +7,6 @@ module proyecto {
     requires javafx.media;
 
     opens proyecto to javafx.fxml;
-    opens proyecto.modelo to javafx.base;
+    opens modelo to javafx.base;
     exports proyecto to javafx.graphics;
 }

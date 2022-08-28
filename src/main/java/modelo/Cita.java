@@ -6,14 +6,13 @@ package modelo;
 import java.util.*;
 import java.io.*;
 import proyecto.App;
-import proyecto.App;
 
 /**
  *
- * @author chris
+ * @author Chtistopher Acosta
  */
 public class Cita implements Serializable {
-
+    //Atributos de la clase
     private String fecha;
     private String hora;
     private Cliente cliente;
@@ -56,12 +55,13 @@ public class Cita implements Serializable {
         return "Fecha: " +fecha+ ", Hora: " +hora+ ", Cliente: " +cliente.getNombre()
                 +", Encargado de la cita: "+encargadoServicio.getNombre();
     }
-    
-    
-    /*metodo equals para comparar si dos citas son iguales
-      primero evalua si coinciden en fecha, hora y encargado
-      si lo anterior es falso, entonces evalua si coinciden en fecha, hora y cliente
-    */
+       
+    /**
+     * metodo equals para comparar si dos citas son iguales
+     * @param obj recibe el objeto a comparar
+     * @return true si coinciden en fecha, hora y encargado o si coinciden en
+     * fecha, hora y encargado
+     */
     @Override
     public boolean equals(Object obj) {
         if(this == obj){
@@ -80,6 +80,11 @@ public class Cita implements Serializable {
         return false;
     }
     
+    /**
+     * método para cargar las citas de un archivo binario
+     * @param ruta recibe la ruta de un archivo binario
+     * @return citas devuelve el ArrayList de citas del archivo de la ruta recibida
+     */
     public static ArrayList<Cita> cargarCitas(String ruta) {
         ArrayList<Cita> citas = new ArrayList<>();
         //leer la lista de citas del archivo serializado
@@ -95,6 +100,10 @@ public class Cita implements Serializable {
         return citas;
     }
     
+    /**
+     * método para crear el archivo binario con un ArrayList de citas
+     * @param ruta recibe la ruta del archivo binario a crear
+     */
     public static void crearArchivo(String ruta){
         ArrayList<Cita> citas = new ArrayList<>();
         ArrayList<Cliente> clientes = Cliente.cargarClientes(App.pathClientes);

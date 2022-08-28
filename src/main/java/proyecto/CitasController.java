@@ -116,7 +116,8 @@ public class CitasController implements Initializable {
     
      /**
      * Método que carga las citas pendientes, es decir, que no han sido atendidas
-     * y las pone en una lista de citas pendientes para su posterior utilización
+     * y las pone en una lista de citas pendientes
+     * @return pendientes con el ArrayList de las citas pendientes
      */
     public ArrayList<Cita> cargarCitasPendientes(){
         ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
@@ -192,9 +193,10 @@ public class CitasController implements Initializable {
     }
     
      /**
-     * Método que revisa que se haya seleccionado una atención, que esta no haya
+     * Método que revisa que se haya seleccionado una cita, que esta no haya
      * sido registrada, y que cambia el panel al de una nueva atención, tomando
      * los datos de la cita seleccionada
+     * @throws java.io.IOException en caso de que no pueda abrir nuevaAtencion.fxml
      */
     @FXML
     public void registrarAtencion(MouseEvent event) throws IOException{
@@ -208,13 +210,9 @@ public class CitasController implements Initializable {
             alert.showAndWait();
         } else if (citasPendientes.contains(c)){
             citaARegistrar = c;
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
-                VBox root = (VBox) fxmlLoader.load();
-                App.changeRoot(root);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaAtencion.fxml"));
+            VBox root = (VBox) fxmlLoader.load();
+            App.changeRoot(root);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error al intentar registrar atención");
@@ -237,10 +235,5 @@ public class CitasController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("nuevaCita.fxml"));
         VBox root = (VBox) fxmlLoader.load();
         App.changeRoot(root);
-    }
-    
-    @FXML
-    private void mostarInfo(MouseEvent event) {
-        
     }
 }

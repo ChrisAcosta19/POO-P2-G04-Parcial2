@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  *
- * @author chris
+ * @author Christopher Acosta
  */
 public class Cliente extends Persona {
     //Atributos de la clase
@@ -40,6 +40,10 @@ public class Cliente extends Persona {
         return datosRepresentante;
     }
     
+    /**
+     * @param ruta recibe la ruta de un archivo binario
+     * @return clientes con Arraylist de clientes del archivo binario
+     */
     public static ArrayList<Cliente> cargarClientes(String ruta) {
         ArrayList<Cliente> clientes = new ArrayList<>();
         //leer la lista de clientes del archivo serializado
@@ -55,6 +59,10 @@ public class Cliente extends Persona {
         return clientes;
     }
     
+    /**
+     * @param ruta recibe una ruta de un archivo binario
+     * crea el archivo binario con un ArrayList de clientes en la ruta recibida
+     */
     public static void crearArchivo(String ruta){
         ArrayList<Cliente> clientes = new ArrayList<>();
         Persona representante1 = new Persona("0453462369","María","0987445643","maria@gmail.com");

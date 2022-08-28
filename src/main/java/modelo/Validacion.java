@@ -1,12 +1,8 @@
 package modelo;
 
-import modelo.Persona;
-import modelo.Cliente;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import proyecto.App;
-import proyecto.App;
 import proyecto.App;
 
 /**
@@ -16,10 +12,17 @@ import proyecto.App;
 
 //Esta clase se encarga de validar numeros, nombres, fechas y horas
 public class Validacion {
+    //variable estática para almcenar mensajes en caso de que algún dato no sea válido
     public static String mensaje = "";
-    //metodo que recibe un String y trata de convertirlo a entero
-    /*se opto por Long porque tanto cedula como telefono tienen 10 digitos
-    y Long acepta valores de esa longitud*/
+    
+    /**
+     * metodo que recibe un String y trata de convertirlo a entero
+     * se opto por Long porque tanto cedula como telefono tienen 10 digitos
+     * y Long acepta valores de esa longitud
+     * @param atributo para ver que entero se está validando
+     * @param entrada el entero a validar en formato String
+     * @return true si es válido el entero
+     */
     public static boolean validarEntero(String atributo,String entrada){
         try{
             if(atributo.contains("Telefono")||atributo.contains("Cedula")){
@@ -36,7 +39,12 @@ public class Validacion {
         }
     }
     
-    //metodo que recibe un String y trata de convertirlo a double
+    /**
+     * metodo que recibe un String y trata de convertirlo a double
+     * @param atributo para ver que double se está validando
+     * @param entrada el double a validar
+     * @return true si es válido el double
+     */
     public static boolean validarDouble(String atributo, String entrada){
         try{
             Double.parseDouble(entrada);
@@ -47,12 +55,14 @@ public class Validacion {
         }
     }
     
-    //metodo que recibe un String y trata de convertirlo a una fecha
-    /*La sentencia LocalDate.parse(fecha) se encarga de revisar si lo digitado tiene
-    un año en 4 digitos, un mes en 2 dígitos y un día en 2 dígitos. También controla
-    que se puedan crear fechas válidas, es decir que ingrese un dia del 01 al 31 o
-    del 01 al 30 según corresponda el mes, también que en el caso de febrero que
-    ingrese del 01 al 28 si el año no es bisiesto y del 01 al 29 caso contrario*/
+    /**
+     * método para tratar de convertir un String a una fecha
+     * La sentencia LocalDate.parse(fecha) se encarga de hacer todas las revisiones necesarias
+     * para que se pueda crear una fecha a partir del String recibido
+     * El formato de la fecha debe ser AAAA-MM-DD para pueda ser válida
+     * @param fecha fecha a validar en formato String
+     * @return true si la fecha es válida
+     */
     public static boolean validarFecha(String fecha){
         try{
             LocalDate.parse(fecha);
@@ -63,11 +73,14 @@ public class Validacion {
         }
     }
     
-    //metodo que recibe un String y trata de convertirlo a una hora
-    /*La sentencia LocalTime.parse(horario) se encarga de revisar si lo digitado tiene
-    una hora en 2 digitos, un minuto en 2 digitos y un segundo en 2 digitos. También
-    controla que se puedan crear horarios válidos, es decir que la hora ingresada este
-    entre 00 y 23, los minutos vayan del 00 al 59 y los segundos de igual forma*/
+    /**
+     * metodo que recibe un String y trata de convertirlo a una hora
+     * La sentencia LocalTime.parse(hora) se encarga de hacer todas las revisiones necesarias
+     * para que se pueda crear una hora a partir del String recibido
+     * El formato de la hora debe ser hh:mm:ss o por lo menos hh:mm para que pueda ser válida
+     * @param hora recibe la hora a validar en formato String
+     * @return true ai la hora recibida es válida
+     */
     public static boolean validarHora(String hora){
         try{
             LocalTime.parse(hora);
@@ -78,10 +91,12 @@ public class Validacion {
         }
     }
     
-    //metodo que recibe un String y trata de ver si califica para un nombre
-    /*Un String será aceptado como un nombre solo si se ingresan leras o el espacio en blanco
-    una letra puede estar en mayúscula, minúscula (clasificadas por su codigo ASCII)o ser uno
-    de los caracteres del array de letrasEscpeciales*/
+    /**
+     * metodo que recibe un String y trata de ver si califica para un nombre
+     * @param objeto el nombre de la clase del objeto cuyo nombre se va a validar
+     * @param nombre el nombre que se va a validar
+     * @return true si el nombre solo contiene letras o letrasEpeciales
+     */
     public static boolean validarNombre(String objeto, String nombre){
         char[] letrasEspeciales = {'á','é','í','ó','ú','Á','É','Í','Ó','Ú','ñ','Ñ','Ü','ü'};
         ArrayList<Character> listaLetras = new ArrayList<>();
@@ -106,10 +121,12 @@ public class Validacion {
         return true;
     }
     
-    //metodo que recibe un String y trata de ver si califica para un email
-    /*Un String será aceptado como email si por lo menos tiene el @ entre sus caracteres.
-    Dado que resultaría complicado conocer todos los dominios de email que existen,
-    entonces por lo menos debería tener el @*/
+    /**
+     * metodo que recibe un String y trata de ver si califica para un email
+     * @param objeto tipo de persona cuyo correo se va a validar
+     * @param email email que se va a validar
+     * @return true si el email contiene al menos el @ entre sus caracteres
+     */
     public static boolean validarEmail(String objeto, String email){
         if(email.contains("@"))
             return true;
@@ -119,6 +136,15 @@ public class Validacion {
         }
     }
     
+    /**
+     * metodo que revisa si es posible crear una persona en el programa
+     * @param tipo tipo de persona a validar
+     * @param persona persona que se va a validar
+     * @param per persona que se quita de la lista "personas" en caso de que se esté editando los
+     * datos de esa persona para que no se detecte a sí misma
+     * @return true si es posible crear dicha persona, caso contrario muestra un mensaje con la
+     * persona en la que encontró alguna coincidencia con su cédula, teléfono o email
+     */
     public static boolean validarPersona(String tipo, Persona persona, Persona per){
         ArrayList<Persona> personas = new ArrayList<>();
         ArrayList<Empleado> empleados = Empleado.cargarEmpleados(App.pathEmpleados);

@@ -188,6 +188,10 @@ public class NuevoEmpleadoController implements Initializable {
         }
     }
     
+    /**
+     * metodo para colocar los datos del empleado a editar
+     * @param e empleado cuyos datos se van a editar
+     */
     public void llenarCampos(Empleado e){
         lblTitulo.setText("Editar Empleado");
         txtCedula.setText(e.getCedula());

@@ -1,7 +1,5 @@
 package modelo;
 
-import modelo.Servicio;
-import modelo.Persona;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,14 +10,21 @@ import java.util.ArrayList;
 
 /**
  *
- * @author chris
+ * @author Christopher Acosta
  */
 public class Empleado extends Persona {
     //Atributos de la clase
     private boolean estado; // true = Activo, false = Inactivo
     private ArrayList<Servicio> listaServicios;
       
-    //Constructores de la clase
+    /**
+     * Constructores de la clase
+     * @param cedula cédula del empleado
+     * @param nombre nombre del empleado
+     * @param telefono teléfono del empleado
+     * @param email email del empleado
+     * @param estado estado del empleado true = Activo y false = Inactivo
+     */
     public Empleado(String cedula, String nombre, String telefono, String email, boolean estado) {
         super(cedula, nombre, telefono, email);
         this.estado = estado;
@@ -45,13 +50,16 @@ public class Empleado extends Persona {
         this.estado = false;
     }
     
-    //metodo toString para mostrar informacion
+    /**
+     * método para mostar información del objeto
+     * @return devuelve String con los datos del empleado
+     */
     @Override
     public String toString(){
         return super.toString()+", Estado: "+(estado?"Activo":"Inactivo");
     }
     
-    //Getters
+    //Getters & Setters
     public ArrayList<Servicio> getListaServicios() {
         return listaServicios;
     }
@@ -64,6 +72,11 @@ public class Empleado extends Persona {
         return estado?"Activo":"Inactivo";
     }
     
+    /**
+     * método para cargar un ArrayList de empleados de un archivo binario
+     * @param ruta recibe la ruta del archivo binario
+     * @return empleados devuelve el ArrayList de empleados del archivo
+     */
     public static ArrayList<Empleado> cargarEmpleados(String ruta){
         ArrayList<Empleado> empleados = new ArrayList<>();
        //leer la lista de empleados del archivo serializado
@@ -79,6 +92,11 @@ public class Empleado extends Persona {
         return empleados;
     }
     
+    /**
+     * método para crear archivo binario con ArrayList de empleados
+     * @param rutaEmp recibe ruta del archivo con ArrayList de empleados
+     * @param rutaSer recibe ruta del archivo con ArrayList de servicios
+     */
     public static void crearArchivo(String rutaEmp, String rutaSer){
         ArrayList<Servicio> servicios = Servicio.cargarServicios(rutaSer);
         ArrayList<Empleado> empleados = new ArrayList<>();

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -23,7 +22,6 @@ import javafx.scene.image.ImageView;
  * @author Ronald Gaibor
  */
 public class AtencionesController implements Initializable {
-
 
     @FXML private TableView<Atencion> tvAtenciones;
     @FXML private TableColumn colCliente;
@@ -42,13 +40,13 @@ public class AtencionesController implements Initializable {
     @FXML private ImageView regresar;
     @FXML private ImageView icon;
     
-    ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(App.pathAtenciones);
+    public static ArrayList<Atencion> atenciones;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      
+        atenciones = Atencion.cargarAtenciones(App.pathAtenciones);
         App.setImage("iconAtenciones",App.pathImg,icon);
         App.setImage("regresar",App.pathImg,regresar);
         

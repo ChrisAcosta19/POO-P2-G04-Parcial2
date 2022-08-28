@@ -1,9 +1,5 @@
 package modelo;
 
-import modelo.Ejercicio;
-import proyecto.ActividadesController;
-import proyecto.App;
-import proyecto.ClientesController;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -128,10 +124,18 @@ public class Game implements Serializable, Cloneable{
     
     /**
      * Método que carga una sesión de juego relacionada a la atención que también se carga por defecto
+     * @param ruta recibe ruta del archivo binario con ArrayList de Atenciones
     */
-    public static void crearArchivo(){
+    public static void crearArchivo(String ruta){
+        ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(ruta);
+        String fecha = atenciones.get(0).getCita().getFecha();
+        String cedula = atenciones.get(0).getCita().getCliente().getCedula();
+        
         File directorioPrincipal = new File("archivos/registro");
-        File directorioCliente = new File("archivos/registro/0832834824");
+        if(directorioPrincipal.exists()){
+            directorioPrincipal.delete();
+        }
+        File directorioCliente = new File("archivos/registro/" + cedula);
         directorioPrincipal.mkdir();
         directorioCliente.mkdir();
         
@@ -143,20 +147,24 @@ public class Game implements Serializable, Cloneable{
         actividades.add(new Game(1,ejercicios));
         
         ArrayList<Game> resultados = new ArrayList<>();
-        resultados.add(new Game("¿Cuántos hay?","0832834824","2022-02-01",1,0,"05 seg"));
-        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/registro/0832834824/Games.bin"))) {
+        resultados.add(new Game("¿Cuántos hay?", cedula, fecha, 1, 0, "05 seg"));
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/registro/"+cedula+"/Games.bin"))) {
             out.writeObject(actividades);
             out.flush();
-        }catch (Exception e){}
-        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/registro/0832834824/GamesResults.bin"))) {
+        } catch (Exception e) {
+        }
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/registro/"+cedula+"/GamesResults.bin"))) {
             out.writeObject(resultados);
             out.flush();
-        }catch (Exception e){}
-        try ( BufferedWriter writer = new BufferedWriter(new FileWriter("archivos/registro/0832834824/GamesDetalles.txt", true))){
-            String registro = "Fecha: 2022-02-01" + ",Número de ejercicios: 1" + ",Número de fallos: 0" + ",Tiempo total: 05 seg" + ";Número de imágenes: 1" + ",Número de fallos: 0" + ",Tiempo: 05 seg" + "\n";
+        } catch (Exception e) {
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("archivos/registro/"+cedula+"/GamesDetalles.txt"))) {
+            String registro = "Fecha: "+fecha+",Número de ejercicios: 1" + ",Número de fallos: 0" + ",Tiempo total: 05 seg" + ";Número de imágenes: 1" + ",Número de fallos: 0" + ",Tiempo: 05 seg";
             writer.write(registro);
+            writer.newLine();
             writer.close();
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
     
     
@@ -195,5 +203,4 @@ public class Game implements Serializable, Cloneable{
     public String getActividad() {
         return actividad;
     }
-
 }

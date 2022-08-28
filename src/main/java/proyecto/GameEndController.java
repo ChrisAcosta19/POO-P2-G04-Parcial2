@@ -72,12 +72,8 @@ public class GameEndController implements Initializable {
         } else{
             int min=0; int sec=0;
             min=tiempoMedioSec/60;
-            sec=tiempoMedioSec%60;
-            lblTiempoMedio.setText(String.valueOf(min)+" min "+String.valueOf(sec)+" seg");
+            sec = tiempoMedioSec % 60;
+            lblTiempoMedio.setText(String.valueOf(min) + " min " + String.valueOf(sec) + " seg");
         }
-        
-        
-        
     }
-
 }

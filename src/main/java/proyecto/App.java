@@ -98,16 +98,17 @@ public class App extends Application {
     }
      
     public static void main(String[] args) {   
-        try(BufferedReader br = new BufferedReader(new FileReader("archivos/Iniciar.txt"))){
+        try(BufferedReader br = new BufferedReader(new FileReader("Iniciar.txt"))){
             String linea = br.readLine();
             if(linea.equalsIgnoreCase("false")){
+                new File("archivos/").mkdir();
                 Servicio.crearArchivo(pathServicios);
                 Empleado.crearArchivo(pathEmpleados, pathServicios);
                 Cliente.crearArchivo(pathClientes);
                 Cita.crearArchivo(pathCitas);
                 Atencion.crearArchivo(pathAtenciones);
-                Game.crearArchivo();
-                try(BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/Iniciar.txt"))){
+                Game.crearArchivo(pathAtenciones);
+                try(BufferedWriter bw = new BufferedWriter(new FileWriter("Iniciar.txt"))){
                     bw.write("true");
                 }catch(IOException e){
                     System.out.println(e.getMessage());

@@ -1,13 +1,9 @@
-
 package proyecto;
 
 import modelo.Game;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -16,17 +12,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -225,13 +218,12 @@ public class ActividadesController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Debe seleccionar una sesión de juego");
             alert.showAndWait();
-        }else {
-                ArrayList<Game> listaActividades=Game.cargarActividades(ClientesController.clienteSeleccionado.getCedula());
-                int indiceGame=listaResultados.indexOf(g); //Se obtiene el objeto Game rejugable correspondiente al objeto Game de resultados seleccionado de la tabla
-                Game gSelected=listaActividades.get(indiceGame);
-                replayGame=gSelected; //Asigna el objeto a la variable que se utiliza en el controlador del juego para poder ser ejecutado
-                App.setRoot("game");
-            
+        } else {
+            ArrayList<Game> listaActividades = Game.cargarActividades(ClientesController.clienteSeleccionado.getCedula());
+            int indiceGame = listaResultados.indexOf(g); //Se obtiene el objeto Game rejugable correspondiente al objeto Game de resultados seleccionado de la tabla
+            Game gSelected = listaActividades.get(indiceGame);
+            replayGame = gSelected; //Asigna el objeto a la variable que se utiliza en el controlador del juego para poder ser ejecutado
+            App.setRoot("game");
         }
     }
     

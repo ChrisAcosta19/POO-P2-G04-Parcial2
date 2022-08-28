@@ -71,8 +71,8 @@ public class NuevaAtencionController implements Initializable{
     }
     
     /**
-    Método que guarda la atención
-    */
+     * Método que guarda la atención
+     */
     @FXML
     public void guardarAtencion(ActionEvent event) {
         ArrayList<Atencion> atenciones = Atencion.cargarAtenciones(App.pathAtenciones);//cargar la lista del archivo
@@ -105,28 +105,27 @@ public class NuevaAtencionController implements Initializable{
                     }
                 }
             GameEndController.juegoAcabado = false;
-            
-        } else if(Validacion.mensaje.equals("")){
+        } else if (Validacion.mensaje.equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error al intentar guardar atención");
             alert.setHeaderText(null);
             alert.setContentText("Llenar todos los campos");
             alert.showAndWait();
             Validacion.mensaje = "";
-        }  else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error al intentar guardar atención");
             alert.setHeaderText(null);
             alert.setContentText(Validacion.mensaje);
             alert.showAndWait();
             Validacion.mensaje = "";
-        }   
+        }
     }
     
     /**
-    Método que llena los labels con la infromación de la cita que se registra
-    @param c Cita que se está registrando
-    */
+     * Método que llena los labels con la infromación de la cita que se registra
+     * @param c Cita que se está registrando
+     */
     public void llenarCampos(Cita c){
         cita = c;
         lblFecha.setText(c.getFecha());
@@ -138,8 +137,8 @@ public class NuevaAtencionController implements Initializable{
     }
     
     /**
-    Método para realizar la actividad correspondiente a la atención
-    */
+     * Método para realizar la actividad correspondiente a la atención
+     */
     @FXML
     private void actividad(ActionEvent event) throws IOException {
         App.setRoot("gameMain");

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author chris
+ * @author Christopher Acosta
  */
 public class Persona implements Serializable {
     //Atributos de la clase Persona
@@ -13,7 +13,13 @@ public class Persona implements Serializable {
     private String telefono;
     private String email;
     
-    //Constructores de Persona
+    /**
+     * Constructores de Persona
+     * @param cedula cédula de la persona
+     * @param nombre nombre de la persona
+     * @param telefono telefono de la persona
+     * @param email email de la persona
+     */
     public Persona(String cedula, String nombre, String telefono, String email) {
         this.cedula = cedula;
         this.nombre = nombre;
@@ -66,9 +72,11 @@ public class Persona implements Serializable {
         this.email = email;
     }
     
-    //metodo equals para comparar si dos personas son iguales
-    /*retornara verdadero si coinciden en al menos uno de los
-    siguientes atributos: cedula, telefono, email*/
+    /**
+     * metodo equals para comparar si dos personas son iguales
+     * @param obj recibe el objeto a comparar
+     * @return true si coinciden en al menos uno de los siguientes atributos: cedula, telefono, email
+     */
     @Override
     public boolean equals(Object obj) {
         if(this == obj){

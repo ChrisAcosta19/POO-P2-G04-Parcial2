@@ -119,11 +119,11 @@ public class GameController implements Initializable, Serializable {
         } 
     }
     
-    /** 
+    /**
      * Método que determina los comportamientos de jugabilidad y guardado de resultados de la actividad
-    @param g Objeto tipo Game que se está jugando
-    @param guardarResultados Indica si se guardan los resultados de ls sesión de juego actual
-    */
+     * @param g Objeto tipo Game que se está jugando
+     * @param guardarResultados Indica si se guardan los resultados de la sesión de juego actual
+     */
     void jugar(Game g, boolean guardarResultados){
         try {
             ejercicio(g,ejercicio);
@@ -251,8 +251,9 @@ public class GameController implements Initializable, Serializable {
                             
                             //Se guardan los detalles de cada ejercicio en el txt correspondiente
                             try ( BufferedWriter writer = new BufferedWriter(new FileWriter("archivos/registro/" + cliente + "/GamesDetalles.txt", true))) {
-                                String registro = "Fecha: " + g2.getFecha() + ",Número de ejercicios: " + g2.getNumEjercicios() + ",Número de fallos: " + g2.getFallos() + ",Tiempo total: " + g2.getTiempoEnFormato() + infoPorPregunta + "\n";
+                                String registro = "Fecha: " + g2.getFecha() + ",Número de ejercicios: " + g2.getNumEjercicios() + ",Número de fallos: " + g2.getFallos() + ",Tiempo total: " + g2.getTiempoEnFormato() + infoPorPregunta;
                                 writer.write(registro);
+                                writer.newLine();
                                 writer.close();
                                 System.out.println("GUARDADO DE RESULTADOS EXITOSO");
                             } catch (Exception e) {
@@ -314,8 +315,8 @@ public class GameController implements Initializable, Serializable {
     
     /**
      * Método que reproduce un sonido dependiendo de la respuesta obtenida en el TextField
-    @ param respuesta Indica si la respuesta es correcta o incorrecta
-    */
+     * @ param respuesta Indica si la respuesta es correcta o incorrecta
+     */
     void sonido(boolean respuesta) {
         Media media;
         MediaPlayer mp;
@@ -340,10 +341,13 @@ public class GameController implements Initializable, Serializable {
     }
     
     /**
-     * Método que ejecuta las acciones necesarias para jugar cada ejercicio, coloca las imágenes de cada ejercicio llamando al método imagesLocation y mide el tiempo utilizando un hilo
-    @param g Objeto tipo Game que se está jugando
-    @param ejercicio Índice del ejercicio en la lista de ejercicios del objeto Game 
-    */
+     * Método que ejecuta las acciones necesarias para jugar cada ejercicio,
+     * coloca las imágenes de cada ejercicio llamando al método imagesLocation y
+     * mide el tiempo utilizando un hilo
+     * @param g Objeto tipo Game que se está jugando
+     * @param ejercicio Índice del ejercicio en la lista de ejercicios del
+     * objeto Game
+     */
     void ejercicio(Game g, int ejercicio) throws IOException {
         img00.imageProperty().set(null);img01.imageProperty().set(null);img02.imageProperty().set(null);
         img03.imageProperty().set(null);img10.imageProperty().set(null);img11.imageProperty().set(null);
@@ -369,10 +373,12 @@ public class GameController implements Initializable, Serializable {
         }
         
     /**
-     * Método que dependiendo de la respuesta obtenida del TextField, aumenta un intento fallido al ejercicio o caso contrario cambia es estadio del ejercicio como respondido correctamente 
-    @param e Ejercicio el cual se está jugando
-    @param correcta Indica si la respuesta recibida es correcta o no
-    */
+     * Método que dependiendo de la respuesta obtenida del TextField, aumenta un
+     * intento fallido al ejercicio o caso contrario cambia el estadio del
+     * ejercicio como respondido correctamente
+     * @param e Ejercicio el cual se está jugando
+     * @param correcta Indica si la respuesta recibida es correcta o no
+     */
     void respuesta(Ejercicio e, boolean correcta) {
         if (correcta) {
             e.done();
@@ -381,10 +387,13 @@ public class GameController implements Initializable, Serializable {
         }
     }
     
-    /* Método que retorna el ImageView correspondiente a la posición que tendrá la imagen según su índice en la lista
-    @param i índice de imagen en la lista (siendo 7 el máximo, porque 8 es la cantidad máxima de imágenes posibles en el ejercicio)
-    @return Devuelve un ImageView
-    */
+    /**
+     * Método que retorna el ImageView correspondiente a la posición que tendrá
+     * la imagen según su índice en la lista
+     * @param i índice de imagen en la lista (siendo 7 el máximo, porque 8 es la
+     * cantidad máxima de imágenes posibles en el ejercicio)
+     * @return Devuelve un ImageView
+     */
     ImageView getIView(int i){
         ImageView iv=null;
         if(i==0){iv= img01;}
@@ -399,10 +408,11 @@ public class GameController implements Initializable, Serializable {
     }
     
     /**
-     * Método que determina la cantidad de imágenes en cada ejercicio aleatoriamente, según la cantidad de ejercicios totales de la sesion de juego
-    @param numEjercicios Número de ejercicios en total de la sesión de juego
-    @return Devuelve una lista de enteros
-    */
+     * Método que determina la cantidad de imágenes en cada ejercicio
+     * aleatoriamente, según la cantidad de ejercicios totales de la sesion de juego
+     * @param numEjercicios Número de ejercicios en total de la sesión de juego
+     * @return Devuelve una lista de enteros
+     */
     ArrayList <Integer> imagesPerQuestion(int numEjercicios){
         ArrayList<Integer> imagesPerQ = new ArrayList<>();
         int a;
@@ -433,9 +443,10 @@ public class GameController implements Initializable, Serializable {
     }
     
     /**
-     * Método que recorre la lista de imágenes para colocarlas en el ImageView correspondiente
-    @param imagenes Lista de imágenes del ejercicio
-    */
+     * Método que recorre la lista de imágenes para colocarlas 
+     * en el ImageView correspondiente
+     * @param imagenes Lista de imágenes del ejercicio
+     */
     void imagesLocation(ArrayList <String> imagenes){
         int n = imagenes.size();
         for (int r = 0; r <= (n - 1); r++) {
@@ -446,11 +457,12 @@ public class GameController implements Initializable, Serializable {
     }
     
     /**
-    Método para seleccionar imágenes (nombre de archivos .png) aleatoriamente para cada ejercicio
-    @param n Número de imágenes a seleccionar en cada ejercicio
-    @param imgDif Determina si las imágenes del ejercicio son todas iguales o diferentes
-    @param imagenesElegidas Lista a la cual se agregan las imágenes por cada ejercicio
-    */
+     * Método para seleccionar imágenes (nombre de archivos .png) aleatoriamente
+     * para cada ejercicio
+     * @param n Número de imágenes a seleccionar en cada ejercicio
+     * @param imgDif Determina si las imágenes del ejercicio son todas iguales o diferentes
+     * @param imagenesElegidas Lista a la cual se agregan las imágenes por cada ejercicio
+     */
     void imagesSelection(int n, boolean imgDif,ArrayList<String> imagenesElegidas){
         String imagenElegida=null;
         ImageView iv=null;

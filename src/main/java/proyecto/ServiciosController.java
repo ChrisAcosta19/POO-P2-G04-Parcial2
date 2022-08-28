@@ -9,9 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import java.io.*;
 import java.util.ArrayList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Alert;
@@ -38,8 +36,7 @@ public class ServiciosController implements Initializable {
     @FXML private ImageView editar;
     @FXML private ImageView eliminar;
     @FXML private ImageView icon;
-    @FXML
-    private Label lblTitulo;
+    @FXML private Label lblTitulo;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {

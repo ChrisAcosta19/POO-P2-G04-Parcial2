@@ -60,14 +60,16 @@ public class NuevaCitaController implements Initializable{
     @FXML
     public void crearCita(ActionEvent event) {
         System.out.println("Guardando cita");
+        String hora = txtHora.getText();
+        if(hora.length() == 5){
+            hora += ":00";
+        }
         Validacion.validarFecha(txtFecha.getText());
-        Validacion.validarHora(txtHora.getText());
+        Validacion.validarHora(hora);
         
         if(Validacion.mensaje.equals("") && cmbCliente.getValue()!= null &&cmbServicio.getValue() != null && cmbTerapista.getValue() != null){
-            
-            
             Cita c = new Cita(txtFecha.getText(),
-                              txtHora.getText(),
+                              hora,
                               cmbCliente.getValue(),cmbServicio.getValue(),cmbTerapista.getValue());
             if (!citas.contains(c)) {
                 citas.add(c);//agregar cita a la lista
@@ -89,25 +91,13 @@ public class NuevaCitaController implements Initializable{
                     System.out.println("IOException:" + ex.getMessage());
                 }
             } else {
-                int ind = citas.indexOf(c);
-                citas.set(ind, c);
-
-                try ( ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathCitas))) {
-                    out.writeObject(citas);
-                    out.flush();
-
-                    //mostrar informacion
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Dialog");
-                    alert.setHeaderText("Resultado de la operación");
-                    alert.setContentText("Cita editada exitosamente");
-
-                    alert.showAndWait();
-                    App.setRoot("Citas");
-
-                } catch (IOException ex) {
-                    System.out.println("IOException:" + ex.getMessage());
-                }
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Error");
+                alert.setContentText("No se puede crear la cita porque:\n"
+                        + "1. Ya hay otra cita a esa fecha y hora con ese terapista\n"
+                        + "2. El cliente ya tiene una cita a esa fecha y hora");
+                alert.showAndWait();
             }
         } else if(Validacion.mensaje.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -138,6 +138,10 @@ public class NuevoClienteController implements Initializable {
         }
     }
     
+    /**
+     * metodo para colocar los datos del cliente y de su representante que se van a editar
+     * @param cl cliente cuyos datos se van a editar
+     */
     public void llenarCampos(Cliente cl){
         lblCliente.setText("Editar Cliente");
         txtCedulaCliente.setText(cl.getCedula());

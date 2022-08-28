@@ -3,7 +3,6 @@ package proyecto;
 import modelo.Cliente;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,13 +30,13 @@ public class ClientesController implements Initializable {
     @FXML private TableColumn colEmail;
     @FXML private TableColumn<Cliente, Void> colRepresentante;
     @FXML private ImageView regresar;
-    public static Cliente clienteSeleccionado;
     @FXML private ImageView agregar;
     @FXML private ImageView editar;
     @FXML private ImageView actividades;
     @FXML private ImageView icon;
     @FXML private Label lblTitulo;
     
+    public static Cliente clienteSeleccionado;
     public static boolean juegosExists; 
     /**
      * Initializes the controller class.
@@ -107,7 +106,7 @@ public class ClientesController implements Initializable {
             
             if(!juegosExists){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("D:");
+                alert.setTitle("Información");
                 alert.setHeaderText(null);
                 alert.setContentText("El cliente seleccionado no tiene actividades realizadas");
                 alert.showAndWait();

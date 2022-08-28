@@ -1,16 +1,15 @@
 package modelo;
-import modelo.Cliente;
-import modelo.Cita;
-import proyecto.App;
+
 import java.io.*;
 import java.util.ArrayList;
 import proyecto.App;
 
 /**
  *
- * @author chris
+ * @author Christopher Acosta
  */
 public class Atencion implements Serializable {
+    //Atributos de la clase
     private Cita cita;
     private int duracion;
     private Empleado empleadoAtencion;
@@ -18,7 +17,12 @@ public class Atencion implements Serializable {
     private String fechaCita;
     private String horaCita;
 
-    //Constructor de la clase
+    /**
+     * Constructor de la clase
+     * @param cita cita de la atención
+     * @param duracion duración real en minutos de la atención
+     * @param empleadoAtencion terapista que atendió la cita
+     */
     public Atencion(Cita cita, int duracion, Empleado empleadoAtencion) {
         this.cita = cita;
         this.duracion = duracion;
@@ -62,6 +66,11 @@ public class Atencion implements Serializable {
                 +", Empleado que atendió: "+empleadoAtencion.getNombre();
     }
     
+    /**
+     * método para cargar un ArrayList de atenciones de un archivo binario
+     * @param ruta recibe ruta del archivo binario
+     * @return atenciones con el ArrayList de atenciones del archivo binario
+     */
     public static ArrayList<Atencion> cargarAtenciones(String ruta) {
         ArrayList<Atencion> atenciones = new ArrayList<>();
         //leer la lista de atenciones del archivo serializado
@@ -77,6 +86,10 @@ public class Atencion implements Serializable {
         return atenciones;
     }
     
+    /**
+     * método para crear el archivo binario con un ArrayList de atenciones
+     * @param ruta recibe ruta del archivo binario a crear
+     */
     public static void crearArchivo(String ruta){
         ArrayList<Atencion> atenciones = new ArrayList<>();
         ArrayList<Cita> citas = Cita.cargarCitas(App.pathCitas);
