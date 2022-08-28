@@ -35,7 +35,10 @@ public class NuevaAtencionController implements Initializable{
     @FXML private Button btnCancelar;
     @FXML private Button btnActividad;
     private Cita cita;
-    
+        
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Evalúa si se estpa ingresando a la ventana para registrar la atención o se está volviendo de haber realizado la actividad
