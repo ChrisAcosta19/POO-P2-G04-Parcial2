@@ -1,0 +1,52 @@
+@options
+@packages
+@argfile
+--class-path
+'C:/Users/cdn34/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13.jar;C:/Users/cdn34/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13.jar;C:/Users/cdn34/.m2/repository/org/openjfx/javafx-media/11/javafx-media-11.jar;C:/Users/cdn34/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13.jar;C:/Users/cdn34/.m2/repository/org/openjfx/javafx-base/13/javafx-base-13.jar'
+--module-path
+'C:/Users/cdn34/.m2/repository/org/openjfx/javafx-graphics/13/javafx-graphics-13-win.jar;C:/Users/cdn34/.m2/repository/org/openjfx/javafx-controls/13/javafx-controls-13-win.jar;F:/Users/Jp Pm/OneDrive - Escuela Superior Politécnica del Litoral/POO/NetBeansProjects/POO-P2-G04-Parcial2/target/classes;C:/Users/cdn34/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13-win.jar;C:/Users/cdn34/.m2/repository/org/openjfx/javafx-media/11/javafx-media-11-win.jar;C:/Users/cdn34/.m2/repository/org/openjfx/javafx-base/13/javafx-base-13-win.jar'
+--patch-module
+proyecto='F:/Users/Jp Pm/OneDrive - Escuela Superior Politécnica del Litoral/POO/NetBeansProjects/POO-P2-G04-Parcial2/src/main/java'
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+--module-source-path
+'F:/Users/Jp Pm/OneDrive - Escuela Superior Politécnica del Litoral/POO/NetBeansProjects/POO-P2-G04-Parcial2/target/site/apidocs/src'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'F:/Users/Jp Pm/OneDrive - Escuela Superior Politécnica del Litoral/POO/NetBeansProjects/POO-P2-G04-Parcial2/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'POO-P2-G04-Parcial2 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' 'F:/Users/Jp Pm/OneDrive - Escuela Superior Politécnica del Litoral/POO/NetBeansProjects/POO-P2-G04-Parcial2/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'POO-P2-G04-Parcial2 1.0-SNAPSHOT API'
+proyecto
+'F:/Users/Jp Pm/OneDrive - Escuela Superior Politécnica del Litoral/POO/NetBeansProjects/POO-P2-G04-Parcial2/src/main/java/module-info.java'
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\allclasses-index.html = 1661742734324
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\allpackages-index.html = 1661742734329
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\element-list = 1661742734103
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\help-doc.html = 1661742734388
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\index-all.html = 1661742734375
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\index.html = 1661742734379
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\jquery-ui.overrides.css = 1661742734455
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\member-search-index.js = 1661742734336
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\module-search-index.js = 1661742734331
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\overview-tree.html = 1661742734291
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\package-search-index.js = 1661742734333
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\script.js = 1661742734412
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\search.js = 1661742734417
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\serialized-form.html = 1661742734204
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\stylesheet.css = 1661742734404
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\tag-search-index.js = 1661742734337
+F:\Users\Jp Pm\OneDrive - Escuela Superior Politécnica del Litoral\POO\NetBeansProjects\POO-P2-G04-Parcial2\target\site\apidocs\type-search-index.js = 1661742734334
